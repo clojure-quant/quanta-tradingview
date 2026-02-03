@@ -7,10 +7,10 @@
         nano-id/nano-id {:mvn/version "1.1.0"}
         differ/differ {:mvn/version "0.3.3"}
         babashka/fs {:mvn/version "0.4.19"}
-        org.pinkgorilla/modular {:mvn/version "0.2.56"} ; persistence
-        org.pinkgorilla/webly {:mvn/version "0.7.693"} ; web handlers
-        ta/import {:local/root "../import" :deps/manifest :deps}
-        ta/db {:local/root "../db" :deps/manifest :deps}
+        org.pinkgorilla/modular {:mvn/version "0.2.69"} ; persistence
+        ;ta/import {:local/root "../import" :deps/manifest :deps}
+        ;ta/db {:local/root "../db" :deps/manifest :deps}
+        io.github.clojure-quant/quanta-bar-warehouse {:mvn/version "0.6.60"}
         }
  :aliases
  {:test {:extra-paths ["test"]
@@ -19,34 +19,7 @@
          :main-opts ["-m" "cognitect.test-runner"]
          :exec-fn cognitect.test-runner.api/test}
 
-  :goldly-docs
-  {:extra-paths ["resources"]
-   :extra-deps {org.pinkgorilla/goldly-docs {:mvn/version "0.8.28"}}
-   ; todo: perhaps this profile needs to be updated to the latest config of clj-service and webly
-   :exec-fn goldly.app/goldly-server-run!
-   :exec-args {:profile "jetty"
-               :config {:goldly {:lazy true
-                                 :src-dir "src"
-                                 ; runtime
-                                 :autoload-cljs-dir ["src/goldly/page"]
-                                 :autoload-clj-ns [demo.env.config]
-                                 :routes {:app {}
-                                          :api {}}}
-
-                        :devtools {:rdocument  {:storage-root "../../rdocument/"
-                                                :url-root "/api/rdocument/file/"}
-                                   :collections {:demo [:clj "demo/notebook/"]}}
-
-                        :ta {:warehouse {:series  {:crypto "../db/crypto/"
-                                                   :stocks "../db/stocks/"
-                                                   :random "../db/random/"
-                                                   :shuffled  "../db/shuffled/"}}
-                             :tradingview {:charts-path "../resources/tradingview-charts/"
-                                           :template-path "src/ta/tradingview/chart/template/"}}
-
-                        :user {}}}}
-
-  :make-demo-charts {:exec-fn  demo.chartmaker/make-demo-charts}
+  
 
 ;
   }}

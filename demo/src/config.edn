@@ -1,0 +1,14 @@
+{:web-server {:port 8083 :host "0.0.0.0"}
+  
+ :extension {:disabled #{"ui-tailwind"
+                         "missionary-sci"}}
+  ;:spa {:title "Quanta Juan FX"
+  ;     :mount-fn router.app/mount}
+ 
+ ;:reitit {:wrap juan.app/wrap-app}
+
+ :tradingview {:charts-path "../resources/tradingview-charts/"
+               :template-path "src/ta/tradingview/chart/template/"}
+
+;
+ }

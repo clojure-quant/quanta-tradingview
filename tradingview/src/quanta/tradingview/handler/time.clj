@@ -1,4 +1,4 @@
-(ns ta.tradingview.handler.time
+(ns quanta.tradingview.handler.time
   (:require
    [tick.core :as t]
    [ring.util.response :as res]))

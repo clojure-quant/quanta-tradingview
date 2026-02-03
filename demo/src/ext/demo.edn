@@ -1,0 +1,33 @@
+{:name "demo"
+ :lazy true ; must be true, since it depends on dali
+ ;:depends-on #{:dali :dali-flowy :rtable-cheetah :tick-util :ui-flexlayout  :layout-golden}
+ :cljs-namespace [;juan.app
+                  ;juan.ui.page
+                  ]
+ :cljs-ns-bindings {;'juan.app {'wrap-app juan.app/wrap-app
+                    ;           'routes juan.app/routes}
+                    ;'juan.ui.page {'page juan.ui.page/page
+                    ;               'page-algo-system juan.ui.page/page-algo-system}
+                    }
+
+  ; runtime
+ ;:cljs-routes-reitit juan.app/routes
+ 
+ :sci-cljs-ns [;juan.ui/juan-page
+               ;juan.statistics.ui/statistics-page
+               ]
+ 
+
+ :flowy [; one services is defined here, 
+         ; the rest of the services are defined in the config.
+         ]
+; :web/routes [["/cookie" {:get demo.fortune/fortune-handler
+;                          :middleware [webserver.middleware.ctx/ctx-middleware]
+;                          :services #{:fortune-db}}]
+;              ["/error" {:get demo.error/error-handler}]]
+ 
+ 
+ 
+ 
+ }
+

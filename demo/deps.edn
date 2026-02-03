@@ -1,0 +1,48 @@
+{:paths ["src"
+         "resources" ; extension data
+         ".data" ; for dynamic data.
+         ]
+ :deps
+ {org.clojure/clojure    {:mvn/version "1.12.0"}
+  org.clj-commons/hickory {:mvn/version "0.7.3"}
+  org.pinkgorilla/modular {:mvn/version "0.2.69"}  ; modular.writer
+  org.pinkgorilla/extension {:mvn/version "0.0.16"} ; extension config
+  org.pinkgorilla/flowy {:mvn/version "0.1.43"}
+  org.pinkgorilla/webly {:mvn/version "0.9.724"}
+  org.pinkgorilla/transit-ajax {:mvn/version "0.1.11"} ; encoding
+  org.pinkgorilla/css-theme {:mvn/version "0.1.8"}
+  io.github.clojure-quant/quanta-tradingview {:local/root "../tradingview" :deps/manifest :deps}}
+ :aliases
+ {:test {:extra-paths ["test"]
+         :extra-deps {io.github.cognitect-labs/test-runner {:git/url "https://github.com/cognitect-labs/test-runner.git"
+                                                            :sha "9e35c979860c75555adaff7600070c60004a0f44"}}
+         :main-opts ["-m" "cognitect.test-runner"]
+         :exec-fn cognitect.test-runner.api/test}
+
+  :web {:extra-deps {org.pinkgorilla/modular {:mvn/version "0.2.69"}}
+          :exec-fn modular.system/start!
+          :exec-args {:profile "jetty"
+                      :config ["config.edn"]
+                      :services "services.edn"}}
+  
+
+  ; web compile
+  
+  :npm-install {:exec-fn webly.spa/webly-build
+                :exec-args {:profile "npm-install"
+                            :config ["config-shared.edn"
+                                     "config-live.edn"]}}
+
+  :compile {:exec-fn webly.spa/webly-build
+            :exec-args {:profile "compile"
+                        :config [{:extension {:disabled #{"ui-tailwind"
+                                                          "missionary-sci"}}}
+                                 "config-shared.edn"
+                                 "config-live.edn"]}}
+
+  :adv {:exec-args {:profile "release-adv"}}
+
+  :make-demo-charts {:exec-fn  demo.chartmaker/make-demo-charts}
+
+;
+  }}

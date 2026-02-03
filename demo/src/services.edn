@@ -33,7 +33,9 @@
   ;; webserver
   :webly {:start (webly.spa/start-webly
                   {:exts (clip/ref :exts)
-                   :ctx {:flowy (flowy.reflower/start-reflower (clip/ref :exec))}}
+                   :ctx {:flowy (flowy.reflower/start-reflower (clip/ref :exec))
+                         :bar-db (clip/ref :duckdb)
+                         }}
                   (clip/ref :config)
                   (:profile #ref [:modular]))
           :stop (webly.spa/stop-webly this)}

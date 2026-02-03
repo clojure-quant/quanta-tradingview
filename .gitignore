@@ -36,6 +36,8 @@ shadow-cljs.edn
 \#*\#
 .\#*
 .~*
+classes/
+classes
 .gorilla/
 # database
 demo/duck/

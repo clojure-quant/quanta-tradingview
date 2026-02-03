@@ -2,8 +2,7 @@
   (:require
    [modular.system]))
 
-(defn get-bar-db []
-  (modular.system/system :bardb-dynamic))
+
 
 (def charts-path "../../output/tradingview-charts/")
 

@@ -18,10 +18,13 @@
  
  :web/routes [["/tv/time" {:get quanta.tradingview.handler.time/time-handler
                            :middleware [ webserver.middleware.api/wrap-api-handler]
-                           :services #{}}
-               
-               
-               ]
+                           :services #{}}]
+              ["/tv/history" {:get quanta.tradingview.handler.history/history-handler
+                              :middleware [webserver.middleware.api/wrap-api-handler
+                                           webserver.middleware.ctx/ctx-middleware
+                                           ]
+                              :services #{:bar-db}}]
+
               ;["/error" {:get demo.error/error-handler}]
               ]
 

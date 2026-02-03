@@ -1,14 +1,15 @@
-(ns ta.tradingview.handler.history
+(ns quanta.tradingview.handler.history
   (:require
    [clojure.walk]
    [ring.util.response :as res]
-   [ta.tradingview.db.bars :refer [load-series]]))
+   [quanta.tradingview.response.bars :refer [load-series]]))
 
-(defn history-handler [{:keys [query-params] :as req}]
-  (let [{:keys [symbol resolution from to]} (clojure.walk/keywordize-keys query-params)
-        from (Long/parseLong from) ;(Integer/parseInt from)
-        to (Long/parseLong to) ; (Integer/parseInt to)
-        series (load-series symbol resolution from to)]
+(defn history-handler [{:keys [bar-db ctx query-params] :as req}]
+  ; todo, return resolution other than :d and markets other than :us
+  (let [db (:bar-db ctx)
+        _ (println "query-params: " query-params)
+        {:keys [symbol resolution from to]} (clojure.walk/keywordize-keys query-params)
+        series (load-series db symbol resolution from to)]
     (res/response series)))
 
 (comment

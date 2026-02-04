@@ -1,5 +1,6 @@
-(ns ta.tradingview.handler.marks
+(ns quanta.tradingview.handler.mark
   (:require
+   [clojure.walk]
    [ring.util.response :as res]))
 
 (def demo-marks
@@ -19,8 +20,8 @@
 (defn marks-handler [{:keys [query-params] :as req}]
   ; https://demo_feed.tradingview.com/marks?symbol=AAPL&from=1488810600&to=1491226200&resolution=D
   (let [{:keys [symbol resolution from to]} (clojure.walk/keywordize-keys query-params)
-        from (Integer/parseInt from)
-        to (Integer/parseInt to)
+        ;from (Integer/parseInt from)
+        ;to (Integer/parseInt to)
         ;marks (load-marks symbol resolution from to)
         ;_ (info "marks: " marks)
         marks demo-marks]

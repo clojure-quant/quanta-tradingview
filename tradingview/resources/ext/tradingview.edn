@@ -23,6 +23,11 @@
                               :middleware [webserver.middleware.api/wrap-api-handler
                                            webserver.middleware.ctx/ctx-middleware]
                               :services #{:bar-db}}]
+              ["/tv/marks" {:get quanta.tradingview.handler.mark/marks-handler
+                            :middleware [webserver.middleware.api/wrap-api-handler
+                                         webserver.middleware.ctx/ctx-middleware]
+                            :services #{}}]
+
               ["/tv/storage/1.1/charts" {:get quanta.tradingview.handler.storage/load-chart-handler
                                          :post quanta.tradingview.handler.storage/save-chart-handler
                                          :put quanta.tradingview.handler.storage/modify-chart-handler

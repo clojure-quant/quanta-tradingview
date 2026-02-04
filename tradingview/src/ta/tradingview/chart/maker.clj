@@ -3,7 +3,7 @@
    [nano-id.core :refer [nano-id]]
    [ta.db.asset.db :refer [instrument-details]]
    [ta.tradingview.db.chart :refer [save-chart now-epoch chart-list load-chart load-chart-boxed]]
-   [ta.tradingview.db.asset :refer [inst-type]]
+   [quanta.tradingview.response.asset :refer [inst-type]]
    [ta.tradingview.chart.template.mainseries :refer [template-mainseries]]
    [ta.tradingview.chart.template.study :refer [template-study]]
    [ta.tradingview.chart.template.sessions :refer [template-sessions]]

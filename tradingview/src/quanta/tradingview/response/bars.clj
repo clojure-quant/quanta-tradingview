@@ -86,7 +86,6 @@
         ;exchange (get-asset-exchange asset)
         ;calendar [exchange (dict-tv->interval resolution)]
          calendar [:us :d]
-        ; opts (merge opts (clip/import-for-exchange exchange))
          window (date-range->window calendar {:start start :end end})
          bar-ds (m/? (b/get-bars db {:asset asset :calendar calendar} window))]
      (println "bar-ds: " bar-ds)

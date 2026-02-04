@@ -1,7 +1,7 @@
-(ns ta.tradingview.db.asset
+(ns quanta.tradingview.response.asset
   (:require
    [clojure.string :as str]
-   [ta.db.asset.db :refer [search instrument-details]]))
+   [quanta.tradingview.asset.db :refer [search instrument-details]]))
 
 (def category-names-1
   {:crypto "Crypto"
@@ -34,8 +34,8 @@
 (defn symbol-info
   "Converts instrument [from db] to tradingview symbol-information
    Used in symbol and search"
-  [s]
-  (let [i (instrument-details s)]
+  [asset-db s]
+  (let [i (instrument-details asset-db s)]
     {:ticker s  ; OUR SYMBOL FORMAT. TV uses exchange:symbol
      :name  s ; for tv this is only the symbol
      :description (:name i)
@@ -63,22 +63,22 @@
      ; :expiration_date  (to-epoch-no-ms- (-> 1 t/hours t/ago))
      }))
 
-(defn instrument->tradingview [{:keys [symbol name] :as i}]
-  {:ticker symbol
-   :symbol symbol ; OUR SYMBOL FORMAT. TV uses exchange:symbol
+(defn instrument->tradingview [{:keys [asset name] :as i}]
+  {:ticker asset
+   :symbol asset ; OUR SYMBOL FORMAT. TV uses exchange:symbol
    :full_name name
    :description  (:name i)
    :exchange (:exchange i)
    :type (inst-type i)})
 
-(defn symbol-search [query category exchange limit]
+(defn symbol-search [asset-db query category exchange limit]
   (let [category (when (and type (string? category)
                             (not (str/blank? category)))
                    (keyword category))
         exchange (when (and type (string? exchange)
                             (not (str/blank? exchange)))
                    (keyword exchange))
-        result (search query category exchange)
+        result (search asset-db query category exchange)
         result (take limit result)
         result-tv (map instrument->tradingview result)]
     result-tv))

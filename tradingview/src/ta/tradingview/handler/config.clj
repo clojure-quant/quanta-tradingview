@@ -1,7 +1,7 @@
 (ns ta.tradingview.handler.config
   (:require
    [ring.util.response :as res]
-   [ta.tradingview.db.asset :refer [category-names]]))
+   [quanta.tradingview.response.asset :refer [category-names]]))
 
 ;; CONFIG - Tell TradingView which featurs are supported by server.
 

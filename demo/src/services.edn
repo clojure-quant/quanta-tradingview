@@ -18,12 +18,8 @@
             :start (quanta.bar.db.duck/start-bardb-duck "./duck/bento.ddb")
             :stop (quanta.bar.db.duck/stop-bardb-duck this)}
 
-   ;; asset db
+   :asset-db {:start (quanta.tradingview.asset.db/start-asset-db (:assets (clip/ref :config)))}
    
-  ;:asset-db {:start (juan.data.asset/add-assets)}
-   
-   
-
    ;; executor
    
    :exec {:start (flowy.executor/start-executor
@@ -38,6 +34,7 @@
                    {:exts (clip/ref :exts)
                     :ctx {:flowy (flowy.reflower/start-reflower (clip/ref :exec))
                           :bar-db (clip/ref :duckdb)
+                          :asset-db (clip/ref :asset-db)
                           :tradingview (:tradingview (clip/ref :config))
                           }}
                    (clip/ref :config)

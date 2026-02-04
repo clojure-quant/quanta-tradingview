@@ -10,6 +10,9 @@
  :tradingview {:charts-path "./tv/chart/"
                :template-path "./tv/template/"
                :marks-path "./tv/mark/"}
+ 
+ :assets [{:asset "A" :name "asdf" :category "stock" :exchange "US"}
+          {:asset "AA" :name "anonomynous alcoholico" :category "stock" :exchange "US"}]
 
 ;
  }

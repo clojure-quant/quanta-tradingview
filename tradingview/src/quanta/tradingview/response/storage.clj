@@ -1,23 +1,24 @@
-(ns ta.tradingview.db.chart
+(ns quanta.tradingview.response.storage
   (:require
-   [clojure.set :refer [rename-keys]]
+   ;[clojure.set :refer [rename-keys]]
    [clojure.walk]
-   [taoensso.timbre :refer [trace debug info warnf error]]
+   [taoensso.timbre :refer [debug info warnf]]
    [cheshire.core :refer [parse-string generate-string]]
-   [schema.core :as s]
+   ;[schema.core :as s]
    [tick.core :as tick]
    [cljc.java-time.instant :as ti]
    [clojure.java.io :as io]
    [babashka.fs :refer [create-dirs]]
    [modular.persist.protocol :refer [save loadr]]
-   [modular.helper.id :refer [guuid-str]]
-   [ta.tradingview.db.clip :refer [charts-path template-path marks-path]]))
+   ;[modular.helper.id :refer [guuid-str]]
+   ;[ta.tradingview.db.clip :refer [charts-path template-path marks-path]]
+   ))
 
 (defn now-epoch []
   (-> (tick/now)
       (ti/get-epoch-second)))
 
-(defn chart-unbox [{:keys [content client id user] :as data}]
+(defn chart-unbox [{:keys [content _client _id _user] :as data}]
   (let [data-without-content (dissoc data :content :chart)
         content-edn (parse-string content true)
         {:keys [legs content]} content-edn
@@ -52,44 +53,44 @@
 
 ;; chart
 
-(defn filename-chart  [client-id user-id chart-id]
+(defn filename-chart  [charts-path client-id user-id chart-id]
   (str charts-path "chart_" client-id "_" user-id "_" chart-id ".edn"))
 
 (defn save-chart
-  [client-id user-id chart-id data]
+  [charts-path client-id user-id chart-id data]
   (let [data (assoc data
                     :timestamp (now-epoch)
                     :id (if (string? chart-id)  (Integer/parseInt chart-id) chart-id)
                     :client (if (string? client-id)  (Integer/parseInt client-id) client-id)
                     :user (if (string? user-id)  (Integer/parseInt user-id) user-id))]
     (create-dirs charts-path)
-    (save :edn (filename-chart client-id user-id chart-id) data)
+    (save :edn (filename-chart charts-path client-id user-id chart-id) data)
     (info "saved chart id: " chart-id)))
 
-(defn filename-chart-unboxed  [client-id user-id chart-id]
+(defn filename-chart-unboxed  [charts-path client-id user-id chart-id]
   (str charts-path "boxed_chart_" client-id "_" user-id "_" chart-id ".edn"))
 
 (def debug? false)
 
 (defn save-chart-boxed
-  [client-id user-id chart-id data-boxed]
+  [charts-path client-id user-id chart-id data-boxed]
   ;(info "save-chart-boxed: " data-boxed)
   (let [{:keys [content]} data-boxed
         data-edn (chart-unbox data-boxed)]
     (when debug?
-      (save :edn (filename-chart-unboxed client-id user-id chart-id) data-boxed))
-    (save-chart client-id user-id chart-id data-edn)))
+      (save :edn (filename-chart-unboxed charts-path client-id user-id chart-id) data-boxed))
+    (save-chart charts-path client-id user-id chart-id data-edn)))
 
-(defn load-chart [client-id user-id chart-id]
-  (loadr :edn (filename-chart client-id user-id chart-id)))
+(defn load-chart [charts-path client-id user-id chart-id]
+  (loadr :edn (filename-chart charts-path client-id user-id chart-id)))
 
-(defn load-chart-boxed [client-id user-id chart-id]
-  (let [data (load-chart client-id user-id chart-id)
+(defn load-chart-boxed [charts-path client-id user-id chart-id]
+  (let [data (load-chart charts-path client-id user-id chart-id)
         data-boxed (chart-box data)]
     (dissoc data-boxed :client :user)))
 
-(defn delete-chart [client-id user-id chart-id]
-  (info "deleting: " (filename-chart client-id user-id chart-id)))
+(defn delete-chart [charts-path client-id user-id chart-id]
+  (info "deleting: " (filename-chart charts-path client-id user-id chart-id)))
 
 ;; explore
 
@@ -131,30 +132,31 @@
 (defn timestamp-as-float [{:keys [timestamp] :as data}]
   (assoc data :timestamp (float timestamp)))
 
-(defn chart-summary [{:keys [client-id user-id chart-id]}]
-  (let [chart (load-chart client-id user-id chart-id)]
+(defn chart-summary [charts-path {:keys [client-id user-id chart-id]}]
+  (let [chart (load-chart charts-path client-id user-id chart-id)]
     (->   (select-keys chart [:name :symbol :resolution :id :timestamp])
           timestamp-as-float
           ;(rename-keys  {:chart :id})
           )))
-(defn chart-list [client-id user-id]
+
+(defn chart-list [charts-path client-id user-id]
   (let [client-id (if (string? client-id)  (Integer/parseInt client-id) client-id)
         user-id (if (string? user-id)  (Integer/parseInt user-id) user-id)]
     (info "chart list for: client: " client-id " user: " user-id)
     (->> (explore-dir charts-path)
          (filter (user-files "chart" client-id user-id))
-         (map chart-summary)
+         (map #(chart-summary charts-path %))
          (into []))))
 
 (comment
 
   (split-filename "chart_77_77_1636524198.edn")
   (split-filename ".placeholder")
-  (explore-dir "tvdb")
-  (chart-list 77 77)
-  (chart-list "77" "77")
-  (chart-list 10 10)
+  (explore-dir "./tvdb")
+  (chart-list "./tvdb" 77 77)
+  (chart-list "./tvdb" "77" "77")
+  (chart-list "./tvdb" 10 10)
 
-  (load-chart-boxed 77 77 1636558275)
+  (load-chart-boxed "./tvdb" 77 77 1636558275)
 ;  
   )

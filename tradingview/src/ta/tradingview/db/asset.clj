@@ -62,6 +62,7 @@
      ; :expired true ; whether this symbol is an expired futures contract or not.
      ; :expiration_date  (to-epoch-no-ms- (-> 1 t/hours t/ago))
      }))
+
 (defn instrument->tradingview [{:keys [symbol name] :as i}]
   {:ticker symbol
    :symbol symbol ; OUR SYMBOL FORMAT. TV uses exchange:symbol

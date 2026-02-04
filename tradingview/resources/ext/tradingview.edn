@@ -1,10 +1,10 @@
 {:name "quanta-tradingview"
  ; runtime
  ;:api-routes {"tv/" {:get  {"config" ta.tradingview.handler/wrapped-config-handler 
-;                            "time" ta.tradingview.handler/wrapped-time-handler
+;                           
 ;                            "search" ta.tradingview.handler/wrapped-search-handler 
 ;                            "symbols" ta.tradingview.handler/wrapped-symbols-handler
-;                            "history" ta.tradingview.handler/wrapped-history-handler 
+;                            
                             ;"marks" ta.tradingview.handler/wrapped-marks-handler}
 ;                     "storage/1.1/" {"charts" {:get  ta.tradingview.handler/wrapped-load-chart-handler
 ;                                               :post  ta.tradingview.handler/wrapped-save-chart-handler
@@ -15,18 +15,37 @@
 ;                                               ; :put ta.tradingview.handler-storage/ 
 ;                                               ; :delete ta.tradingview.handler-storage/
 ;                                                        }}}}
- 
+
  :web/routes [["/tv/time" {:get quanta.tradingview.handler.time/time-handler
-                           :middleware [ webserver.middleware.api/wrap-api-handler]
+                           :middleware [webserver.middleware.api/wrap-api-handler]
                            :services #{}}]
               ["/tv/history" {:get quanta.tradingview.handler.history/history-handler
                               :middleware [webserver.middleware.api/wrap-api-handler
-                                           webserver.middleware.ctx/ctx-middleware
-                                           ]
+                                           webserver.middleware.ctx/ctx-middleware]
                               :services #{:bar-db}}]
-
+              ["/tv/storage/1.1/charts" {:get quanta.tradingview.handler.storage/load-chart-handler
+                                         :post quanta.tradingview.handler.storage/save-chart-handler
+                                         :put quanta.tradingview.handler.storage/modify-chart-handler
+                                         :delete quanta.tradingview.handler.storage/delete-chart-handler
+                                         :middleware [webserver.middleware.api/wrap-api-handler
+                                                      ring.middleware.multipart-params/wrap-multipart-params
+                                                      webserver.middleware.ctx/ctx-middleware]
+                                         :services #{:tradingview}}]
+              
+              #_["/tv/storage/1.1/study_templates" {:get quanta.tradingview.handler.storage/load-template-handler
+                                         :post quanta.tradingview.handler.storage/save-template-handler 
+                                         ;:put quanta.tradingview.handler.storage/modify-chart-handler
+                                         ;:delete quanta.tradingview.handler.storage/delete-chart-handler
+                                         :middleware [webserver.middleware.api/wrap-api-handler
+                                                      ring.middleware.multipart-params/wrap-multipart-params
+                                                      webserver.middleware.ctx/ctx-middleware]
+                                         :services #{:tradingview}}]
+              
+              
               ;["/error" {:get demo.error/error-handler}]
               ]
+
+
 
 
  ;:clj-services {:name "quanta-tradingview"
@@ -39,6 +58,4 @@
 
 ; :cljs-routes {"algo/tradingview" ta.tradingview.goldly.page.tradingview-algo/tvalgo-page
 ;               "tradingview" ta.tradingview.goldly.page.tradingview-udf/tradingview-page}
- 
-
  }

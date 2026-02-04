@@ -4,7 +4,7 @@
    [ring.util.response :as res]
    [quanta.tradingview.response.bars :refer [load-series]]))
 
-(defn history-handler [{:keys [bar-db ctx query-params] :as req}]
+(defn history-handler [{:keys [ctx query-params] :as _req}]
   ; todo, return resolution other than :d and markets other than :us
   (let [db (:bar-db ctx)
         _ (println "query-params: " query-params)

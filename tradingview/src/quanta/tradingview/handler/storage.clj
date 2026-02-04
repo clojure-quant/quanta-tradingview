@@ -1,50 +1,54 @@
-(ns ta.tradingview.handler.storage
+(ns quanta.tradingview.handler.storage
   (:require
    [clojure.walk]
-   [taoensso.timbre :refer [trace debug info warnf error]]
+   [taoensso.timbre :refer [info]]
    ;[schema.core :as s]
    [ring.util.response :as res]
-   [ta.tradingview.db.chart :refer [save-chart-boxed delete-chart load-chart-boxed chart-list now-epoch]]))
+   [quanta.tradingview.response.storage :refer [save-chart-boxed delete-chart load-chart-boxed chart-list now-epoch]]))
 
 ;; chart handler
 
-(defn save-chart-handler [{:keys [query-params form-params params] :as req}]
+(defn save-chart-handler [{:keys [ctx query-params form-params params] :as req}]
   ;(info "saving tradingview chart: " (keys req))
   ;(info "saving tradingview chart form-params: " form-params)
   ;(info "saving tradingview chart params: " params) ; {:client "77", :user "77", :chart "1693414404"}
-  (let [{:keys [client user chart]} (clojure.walk/keywordize-keys query-params)
+  (let [{:keys [charts-path]} ctx
+        {:keys [client user chart]} (clojure.walk/keywordize-keys query-params)
         ; post request can contain chart id, or not
         chart (if chart chart (now-epoch))]
     (info "saving tradingview chart: " client user chart)
-    (save-chart-boxed client user chart params)
+    (save-chart-boxed charts-path client user chart params)
     (res/response {:status "ok"
                    :id chart})))
 
-(defn modify-chart-handler [{:keys [query-params body]}]
-  (let [{:keys [client user chart]} query-params
+(defn modify-chart-handler [{:keys [ctx query-params body]}]
+  (let [{:keys [charts-path]} ctx
+        {:keys [client user chart]} query-params
         {:keys [chart-data Chart]} body]
     (info "modifying tradingview chart: " client user chart)
-    (save-chart-boxed client user chart chart-data)
+    (save-chart-boxed charts-path client user chart chart-data)
     (res/response {:status "ok"})))
 
-(defn delete-chart-handler [{:keys [query-params]}]
-  (let [{:keys [client user chart]} query-params]
+(defn delete-chart-handler [{:keys [ctx query-params]}]
+  (let [{:keys [charts-path]} ctx
+        {:keys [client user chart]} query-params]
     ; [client :- s/Int user :- s/Int {chart :- s/Int 0}]
     (info "deleting tradingview chart: " client user chart)
-    (delete-chart client user chart)
+    (delete-chart charts-path client user chart)
     (res/response {:status "ok"})))
 
 (defn load-chart-handler
   "returns eithe chart-summary-list or chart-file"
-  [{:keys [query-params]}]
-  (let [{:keys [client user chart]} (clojure.walk/keywordize-keys query-params);  ;(coerce/coercer CommentRequest coerce/json-coercion-matcher)
+  [{:keys [ctx query-params]}]
+  (let [{:keys [charts-path]} ctx
+        {:keys [client user chart]} (clojure.walk/keywordize-keys query-params);  ;(coerce/coercer CommentRequest coerce/json-coercion-matcher)
         ]
     (info "load chart :" query-params)
     (if chart
-      (if-let [data (load-chart-boxed client user chart)]
+      (if-let [data (load-chart-boxed charts-path client user chart)]
         (res/response {:status "ok" :data data})
         (res/response {:status "error" :error "chart for user not found."}))
-      (if-let [chart-list (chart-list client user)]
+      (if-let [chart-list (chart-list charts-path client user)]
         (res/response {:status "ok" :data chart-list})
         (res/response {:status "error" :error "chart-list for user failed."})))))
 

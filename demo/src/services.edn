@@ -1,60 +1,64 @@
  {:modular (modular.system/modular-env)  ; {:profile "jetty"  :config ["demo.edn" "secrets.edn"]}
- :components
- {:config1 {:start (modular.config/load-config! (:config #ref [:modular]))}
-  :config {:start (deref (clip/ref :config1))}
+  :components
+  {:config1 {:start (modular.config/load-config! (:config #ref [:modular]))}
+   :config {:start (deref (clip/ref :config1))}
 
-  :exts {:start (extension/discover (:extension (clip/ref :config)))}
+   :exts {:start (extension/discover (:extension (clip/ref :config)))}
 
-  :timbre {:start (modular.log/timbre-config!
-                   (:timbre/clj  (clip/ref :config)))}
+   :timbre {:start (modular.log/timbre-config!
+                    (:timbre/clj  (clip/ref :config)))}
 
    ; transit-encoding
-  :transit-tick {:start (transit.type.tick/add-tick-handlers!)}
+   :transit-tick {:start (transit.type.tick/add-tick-handlers!)}
   ;:transit-ds {:start (cquant.transit.techml/add-techml-dataset-handlers!)}
+   
+   ;; BAR DB + MARKET DATA 
+   
+   :duckdb {; duck-db db has .ddb extension
+            :start (quanta.bar.db.duck/start-bardb-duck "./duck/bento.ddb")
+            :stop (quanta.bar.db.duck/stop-bardb-duck this)}
 
-  ;; BAR DB + MARKET DATA 
-
-  :duckdb {; duck-db db has .ddb extension
-           :start (quanta.bar.db.duck/start-bardb-duck "./duck/bento.ddb")
-           :stop (quanta.bar.db.duck/stop-bardb-duck this)}
-
-  ;; asset db
-
+   ;; asset db
+   
   ;:asset-db {:start (juan.data.asset/add-assets)}
+   
+   
 
-  ;; executor
+   ;; executor
+   
+   :exec {:start (flowy.executor/start-executor
+                  {:env {}
+                   :exts (clip/ref :exts)}
+                  (:services (clip/ref :config)))}
 
-  :exec {:start (flowy.executor/start-executor
-                 {:env {}
-                  :exts (clip/ref :exts)}
-                 (:services (clip/ref :config)))}
+   
+
+   ;; webserver
+   :webly {:start (webly.spa/start-webly
+                   {:exts (clip/ref :exts)
+                    :ctx {:flowy (flowy.reflower/start-reflower (clip/ref :exec))
+                          :bar-db (clip/ref :duckdb)
+                          :tradingview (:tradingview (clip/ref :config))
+                          }}
+                   (clip/ref :config)
+                   (:profile #ref [:modular]))
+           :stop (webly.spa/stop-webly this)}
 
 
-  ;; webserver
-  :webly {:start (webly.spa/start-webly
-                  {:exts (clip/ref :exts)
-                   :ctx {:flowy (flowy.reflower/start-reflower (clip/ref :exec))
-                         :bar-db (clip/ref :duckdb)
-                         }}
-                  (clip/ref :config)
-                  (:profile #ref [:modular]))
-          :stop (webly.spa/stop-webly this)}
-
-
-  ;; NREPL
-
-  :nrepl {:start (nrepl.server/start-server
-                  :bind "0.0.0.0"
-                  :port 9100
+   ;; NREPL
+   
+   :nrepl {:start (nrepl.server/start-server
+                   :bind "0.0.0.0"
+                   :port 9100
                   ;:middleware cider.nrepl.middleware/cider-middleware
                   ;:handler cider.nrepl/cider-nrepl-handler
-                  )
-          :stop (.close this)}
+                   )
+           :stop (.close this)}
 
 
 
 ;
-  }}
+   }}
 
 
 

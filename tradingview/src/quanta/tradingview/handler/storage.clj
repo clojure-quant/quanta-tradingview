@@ -4,7 +4,7 @@
    [taoensso.timbre :refer [info]]
    ;[schema.core :as s]
    [ring.util.response :as res]
-   [quanta.tradingview.response.storage :refer [save-chart-boxed delete-chart load-chart-boxed chart-list now-epoch]]))
+   [quanta.tradingview.handler.response.storage :refer [save-chart-boxed delete-chart load-chart-boxed chart-list now-epoch]]))
 
 ;; chart handler
 
@@ -12,7 +12,7 @@
   ;(info "saving tradingview chart: " (keys req))
   ;(info "saving tradingview chart form-params: " form-params)
   ;(info "saving tradingview chart params: " params) ; {:client "77", :user "77", :chart "1693414404"}
-  (let [{:keys [charts-path]} ctx
+  (let [{:keys [charts-path]} (:tradingview ctx)
         {:keys [client user chart]} (clojure.walk/keywordize-keys query-params)
         ; post request can contain chart id, or not
         chart (if chart chart (now-epoch))]
@@ -22,7 +22,7 @@
                    :id chart})))
 
 (defn modify-chart-handler [{:keys [ctx query-params body]}]
-  (let [{:keys [charts-path]} ctx
+  (let [{:keys [charts-path]} (:tradingview ctx)
         {:keys [client user chart]} query-params
         {:keys [chart-data Chart]} body]
     (info "modifying tradingview chart: " client user chart)
@@ -30,7 +30,7 @@
     (res/response {:status "ok"})))
 
 (defn delete-chart-handler [{:keys [ctx query-params]}]
-  (let [{:keys [charts-path]} ctx
+  (let [{:keys [charts-path]} (:tradingview ctx)
         {:keys [client user chart]} query-params]
     ; [client :- s/Int user :- s/Int {chart :- s/Int 0}]
     (info "deleting tradingview chart: " client user chart)
@@ -38,9 +38,9 @@
     (res/response {:status "ok"})))
 
 (defn load-chart-handler
-  "returns eithe chart-summary-list or chart-file"
+  "returns either chart-summary-list or chart-file"
   [{:keys [ctx query-params]}]
-  (let [{:keys [charts-path]} ctx
+  (let [{:keys [charts-path]} (:tradingview ctx)
         {:keys [client user chart]} (clojure.walk/keywordize-keys query-params);  ;(coerce/coercer CommentRequest coerce/json-coercion-matcher)
         ]
     (info "load chart :" query-params)

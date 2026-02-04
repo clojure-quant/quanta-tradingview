@@ -1,4 +1,4 @@
-(ns quanta.tradingview.response.asset
+(ns quanta.tradingview.handler.response.asset
   (:require
    [clojure.string :as str]
    [quanta.tradingview.asset.db :refer [search instrument-details]]))

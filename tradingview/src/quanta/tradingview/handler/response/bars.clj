@@ -1,4 +1,4 @@
-(ns quanta.tradingview.response.bars
+(ns quanta.tradingview.handler.response.bars
    (:require
     [tick.core :as t]
     [cljc.java-time.instant :refer [of-epoch-milli]]

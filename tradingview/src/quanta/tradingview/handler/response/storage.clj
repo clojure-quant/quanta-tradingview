@@ -1,4 +1,4 @@
-(ns quanta.tradingview.response.storage
+(ns quanta.tradingview.handler.response.storage
   (:require
    ;[clojure.set :refer [rename-keys]]
    [clojure.walk]

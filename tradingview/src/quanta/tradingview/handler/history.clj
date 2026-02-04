@@ -2,7 +2,7 @@
   (:require
    [clojure.walk]
    [ring.util.response :as res]
-   [quanta.tradingview.response.bars :refer [load-series]]))
+   [quanta.tradingview.handler.response.bars :refer [load-series]]))
 
 (defn history-handler [{:keys [ctx query-params] :as _req}]
   ; todo, return resolution other than :d and markets other than :us

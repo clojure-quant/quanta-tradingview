@@ -2,7 +2,7 @@
   (:require
    [clojure.walk]
    [ring.util.response :as res]
-   [quanta.tradingview.response.asset :refer [symbol-search symbol-info]]))
+   [quanta.tradingview.handler.response.asset :refer [symbol-search symbol-info]]))
 
 ;https://demo_feed.tradingview.com/search?query=B&type=stock&exchange=NYSE&limit=10
 ;[{"symbol":"BLK","full_name":"BLK","description":"BlackRock, Inc.","exchange":"NYSE","type":"stock"},

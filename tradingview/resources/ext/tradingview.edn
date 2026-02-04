@@ -20,10 +20,10 @@
                               :middleware [webserver.middleware.api/wrap-api-handler
                                            webserver.middleware.ctx/ctx-middleware]
                               :services #{:asset-db}}]
-              #_["/tv/config" {:get quanta.tradingview.handler.asset/search-handler
+              ["/tv/config" {:get quanta.tradingview.handler.config/config-handler
                                :middleware [webserver.middleware.api/wrap-api-handler
                                             webserver.middleware.ctx/ctx-middleware]
-                               :services #{:asset-db}}]
+                               :services #{:tradingview}}]
 
               ;; storage 
               ["/tv/storage/1.1/charts" {:get quanta.tradingview.handler.storage/load-chart-handler

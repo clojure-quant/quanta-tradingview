@@ -1,7 +1,4 @@
-{:paths ["src"
-         "resources" ; extension data
-         ".data" ; for dynamic data.
-         ]
+{:paths ["src" "resources" ]
  :deps
  {org.clojure/clojure    {:mvn/version "1.12.0"}
   org.clj-commons/hickory {:mvn/version "0.7.3"}
@@ -20,10 +17,10 @@
          :exec-fn cognitect.test-runner.api/test}
 
   :web {:extra-deps {org.pinkgorilla/modular {:mvn/version "0.2.69"}}
-          :exec-fn modular.system/start!
-          :exec-args {:profile "jetty"
-                      :config ["config.edn"]
-                      :services "services.edn"}}
+        :exec-fn modular.system/start!
+        :exec-args {:profile "jetty"
+                    :config ["config.edn"]
+                    :services "services.edn"}}
   
 
   ; web compile

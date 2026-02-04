@@ -12,21 +12,18 @@
                :marks-path "./tv/mark/"
                :config {:supports_time true  ; we send our server-time
                         :supports_search true ;search and individual symbol resolve logic.
-                        :supports_marks true
+                        :supports_marks false
                         :supports_timescale_marks false
                         :supports_group_request false
-                        :supported_resolutions ["15" "D"] ; ["1" "5" "15" "30" "60" "1D" "1W" "1M"]
+                        :supported_resolutions ["D"] ; ["1" "5" "15" "30" "60" "1D" "1W" "1M"]
                         :symbols_types [{:value "" :name "All"}
-                                        {:value "Crypto" :name "Crypto"}
-                                        {:value "Equity" :name "Equities"}
-                                        {:value "Mutualfund" :name "Mutualfund"}
+                                        {:value "stock" :name "Stocks"}
                                         {:value "ETF" :name "ETF"}]
                         :exchanges [{:value "" :name "All Exchanges" :desc ""}
-                                    {:value "crypto" :name "Crypto" :desc ""}
                                     {:value "us" :name "US Stocks" :desc ""}]}}
  
- :assets [{:asset "A" :name "asdf" :category "stock" :exchange "US"}
-          {:asset "AA" :name "anonomynous alcoholico" :category "stock" :exchange "US"}]
+ :assets [{:asset "A" :name "asdf" :category "stock" :exchange "us"}
+          {:asset "AA" :name "anonomynous alcoholico" :category "stock" :exchange "us"}]
 
 ;
  }

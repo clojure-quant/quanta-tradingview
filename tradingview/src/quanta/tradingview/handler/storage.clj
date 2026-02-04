@@ -96,10 +96,12 @@
 
 (defn load-template-handler
   "returns eithe chart-template-list or chart-template"
-  [{:keys [query-params]}]
-  (let [{:keys [client user chart]} (clojure.walk/keywordize-keys query-params);  ;(coerce/coercer CommentRequest coerce/json-coercion-matcher)
+  [{:keys [ctx query-params]}]
+  (let [{:keys [template-path]} (:tradingview ctx)
+        {:keys [client user chart]} (clojure.walk/keywordize-keys query-params);  ;(coerce/coercer CommentRequest coerce/json-coercion-matcher)
         ]
-    (info "load template :" query-params)
+    (info "load template query params :" query-params)
+    (println "template path: "  template-path)
     (if chart
       (if-let [template-data [] ;(load-chart-boxed client user chart)
                ]
@@ -110,19 +112,21 @@
         (res/response {:status "ok" :data template-list})
         (res/response {:status "error" :error "template-list not found."})))))
 
-(defn save-template-handler [{:keys [query-params form-params body multipart-params] :as req}] ; params
+(defn save-template-handler [{:keys [ctx query-params form-params body multipart-params] :as req}] ; params
   (info "saving tradingview template: " (keys req))
   (info "saving tradingview template query-params: " (keys query-params))
   (info "saving tradingview template form-params: " form-params)
   (info "saving tradingview template body: " body)
   (info "saving tradingview template multipart-params: " multipart-params)
 
-  (let [{:keys [client user]} (clojure.walk/keywordize-keys query-params)
+  (let [{:keys [template-path]} (:tradingview ctx)
+        {:keys [client user]} (clojure.walk/keywordize-keys query-params)
         ;{:keys [name content]} (clojure.walk/keywordize-keys multipart-params)
         id (now-epoch)
         ; post request can contain chart id, or not
         ;chart (if chart chart (now-epoch))
         ]
+    (println "template path: "  template-path)
     (spit "/tmp/template.edn" (pr-str multipart-params))
     (res/response {:status "ok"
                    :id id})))

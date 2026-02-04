@@ -28,8 +28,6 @@
 (defn category-name->category [c]
   (or (get category-names c) :equity))
 
-(defn get-asset-exchange [asset]
-  (-> asset instrument-details :exchange))
 
 (defn symbol-info
   "Converts instrument [from db] to tradingview symbol-information
@@ -44,7 +42,7 @@
      :type (inst-type i)
      :supported_resolutions [;"15"
                              "D"]
-     :has_no_volume false
+    ; :has_no_volume false
      ; FORMATTING OF DIGITS
      :minmov 1  ; is the amount of price precision steps for 1 tick. For example, since the tick size for U.S. equities is 0.01, minmov is 1. But the price of the E-mini S&P futures contract moves upward or downward by 0.25 increments, so the minmov is 25.
      :pricescale 100 ;  If a price is displayed as 1.01, pricescale is 100; If it is displayed as 1.005, pricescale is 1000.
@@ -53,11 +51,12 @@
      :volume_precision 0 ;Integer showing typical volume value decimal places for a particular symbol. 0 means volume is always an integer. 1 means that there might be 1 numeric character after the comma.
      :pointvalue 1
      ; session
-     :data_status "endofday"  ; streaming endofday pulsed delayed_streaming delayed  delayed_streaming
+     :data_status "endofday"  ; streaming endofday pulsed delayed_streaming delayed  delayed_streaming 
      :has_intraday true
      :timezone "Etc/UTC" ; "America/New_York"
      :session "0900-1600"  ;"0900-1630|0900-1400:2",
                            ;:session-regular "0900-1600"
+     :has_empty_bars true
 
      ; :expired true ; whether this symbol is an expired futures contract or not.
      ; :expiration_date  (to-epoch-no-ms- (-> 1 t/hours t/ago))

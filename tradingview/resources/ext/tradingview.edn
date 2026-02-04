@@ -35,8 +35,8 @@
                                                       webserver.middleware.ctx/ctx-middleware]
                                          :services #{:tradingview}}]
 
-              #_["/tv/storage/1.1/study_templates" {:get quanta.tradingview.handler.storage/load-template-handler
-                                                    :post quanta.tradingview.handler.storage/save-template-handler
+              ["/tv/storage/1.1/study_templates" {:get quanta.tradingview.handler.storage/load-template-handler
+                                                  :post quanta.tradingview.handler.storage/save-template-handler
                                          ;:put quanta.tradingview.handler.storage/modify-chart-handler
                                          ;:delete quanta.tradingview.handler.storage/delete-chart-handler
                                                     :middleware [webserver.middleware.api/wrap-api-handler

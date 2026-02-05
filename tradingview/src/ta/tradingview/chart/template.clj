@@ -1,6 +1,6 @@
 (ns ta.tradingview.chart.template
   (:require
-   [tick.core :as tick]
+   [tick.core :as t]
    [modular.persist.protocol :refer [save loadr]]
    [modular.persist.edn] ; side effects
    [ta.helper.date :refer [now-datetime datetime->epoch-second epoch-second->datetime]]
@@ -25,7 +25,7 @@
 ; helper
 
 (defn dt [s]
-  (-> s tick/date-time datetime->epoch-second))
+  (-> s t/date-time datetime->epoch-second))
 
 ; impl
 

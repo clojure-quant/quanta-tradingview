@@ -19,7 +19,7 @@
   :web {:extra-deps {org.pinkgorilla/modular {:mvn/version "0.2.69"}}
         :exec-fn modular.system/start!
         :exec-args {:profile "jetty"
-                    :config ["config.edn"]
+                    :config ["config.edn" "tv-assets.edn"]
                     :services "services.edn"}}
   
 

@@ -17,21 +17,7 @@
 
 (defn symbols-handler [{:keys [ctx query-params] :as _req}]
   (let [asset-db (:asset-db ctx)
+        _ (println "symbols handler asset-db " asset-db)
         {:keys [symbol]} (clojure.walk/keywordize-keys query-params)
         si (symbol-info asset-db symbol)]
     (res/response si)))
-
-(comment
- 
-  (require '[quanta.tradingview.asset.db])
-  (def assets [{:asset "A" :name "asdf" :category "stock" :exchange "US"}
-               {:asset "AA" :name "anonomynous alcoholico" :category "stock" :exchange "US"}])
-  (def asset-db (quanta.tradingview.asset.db/start-asset-db assets))
-
-  asset-db
-
-  (symbol-info asset-db "AA")
-
-  (symbol-search asset-db "A" "" "" 10)
-  ;
-  )

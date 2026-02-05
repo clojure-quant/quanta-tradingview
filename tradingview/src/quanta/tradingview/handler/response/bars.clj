@@ -4,8 +4,7 @@
    [cljc.java-time.instant :refer [of-epoch-milli]]
    [tablecloth.api :as tc]
    [tech.v3.datatype :as dtype]
-   [missionary.core :as m]
-   [quanta.calendar.window :refer [date-range->window create-trailing-window]]
+   [missionary.core :as m] 
    [quanta.bar.protocol :as b]
    ;[ta.tradingview.db.asset :refer [get-asset-exchange]]
    ))
@@ -81,22 +80,8 @@
      :v (into [] (map int (:volume bar-epoch-ds)))
      :s "ok"}))
 
-;indow start:  #inst "2024-08-24T00:00:00.000000000-00:00"  end:  #inst "2024-08-25T00:00:00.000000000-00:00"
-
-
-
-
-(-> (date-range->window [:us :d] {:start (t/instant "2024-08-24T00:00:00.000000000-00:00")
-                                  :end (t/instant "2024-08-25T00:00:00.000000000-00:00")})
-
-    :window
-    seq
- )
-
-
-
 (defn load-series [db asset resolution from to countback]
-  (println "load series asset: " asset " resolution: " resolution " from: " from " to: " to 
+  (println "load series asset: " asset " resolution: " resolution " from: " from " to: " to
            " countback: " countback)
   (try
     (let [from (Long/parseLong from) ;(Integer/parseInt from)
@@ -107,7 +92,7 @@
         ;exchange (get-asset-exchange asset)
         ;calendar [exchange (dict-tv->interval resolution)]
           calendar [:us :d]
-          n (when countback 
+          n (when countback
               (println "using countback: " countback)
               (Integer/parseInt countback))
           window (if n
@@ -115,7 +100,7 @@
                    {:start start :end end})
           bar-ds (m/? (b/get-bars db {:asset asset :calendar calendar} window))]
       (println "bar-ds: " bar-ds)
-      (if (or (nil? bar-ds) 
+      (if (or (nil? bar-ds)
               (= (tc/row-count bar-ds) 0))
         tv-no-data-response
         (tv-response bar-ds)))

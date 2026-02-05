@@ -17,8 +17,6 @@ pom.xml.asc
 .cpcache
 resources/test
 profiles.clj
-/tmp-charts/*
-Rplots.pdf
 creds.edn
 .webly
 .sniffer.edn
@@ -31,7 +29,9 @@ karma.conf.js
 package-lock.json
 package.json
 shadow-cljs.edn
-.clj-kondo
+tradingview/.clj-kondo/**
+!tradingview/.clj-kondo/
+!tradingview/.clj-kondo/config.edn
 *~
 \#*\#
 .\#*

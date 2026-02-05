@@ -22,8 +22,8 @@
                         :exchanges [{:value "" :name "All Exchanges" :desc ""}
                                     {:value "us" :name "US Stocks" :desc ""}]}}
  
- :assets [{:asset "A" :name "asdf" :category "stock" :exchange "us"}
-          {:asset "AA" :name "anonomynous alcoholico" :category "stock" :exchange "us"}]
+ ;:assets [{:asset "A" :name "asdf" :category "stock" :exchange "us"}
+ ;         {:asset "AA" :name "anonomynous alcoholico" :category "stock" :exchange "us"}]
 
 ;
  }

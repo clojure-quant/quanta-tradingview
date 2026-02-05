@@ -13,29 +13,3 @@
         {:keys [symbol resolution from to countback]} (clojure.walk/keywordize-keys query-params)
         series (load-series db symbol resolution from to countback)]
     (res/response series)))
-
-(comment
-
-  ; test load known symbol
-  (history-handler {:query-params {:symbol "ETHUSD"
-                                   :from "1617235200"
-                                   :to "1619827200"
-                                   :resolution "D"}})
-
-  ; test for unknown symbol
-  (history-handler {:query-params {:symbol "XXXX"
-                                   :from "1617235200"
-                                   :to "1619827200"
-                                   :resolution "D"}})
-
-  (history-handler {:query-params {:symbol "Unknown-"
-                                   :from "1617235200"
-                                   :to "1619827200"
-                                   :resolution "D"}})
-
-  (history-handler {:query-params   {"symbol" "BTCUSD"
-                                     "resolution" "D"
-                                     "from" "1299075015"
-                                     "to" "1303308614"}})
-;
-  )

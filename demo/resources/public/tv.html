@@ -21,7 +21,7 @@
 
 			function addTV (container, asset) {
 				var datafeedUrl = "http://localhost:8080/tv";
-				var datafeedUrl = "https://demo_feed.tradingview.com";
+				//var datafeedUrl = "https://demo_feed.tradingview.com";
 				var customDataUrl = getParameterByName('dataUrl');
 				if (customDataUrl !== "") {
 					datafeedUrl = customDataUrl.startsWith('https://') ? customDataUrl : `https://${customDataUrl}`;

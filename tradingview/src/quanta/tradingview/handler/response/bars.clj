@@ -107,15 +107,13 @@
         ;exchange (get-asset-exchange asset)
         ;calendar [exchange (dict-tv->interval resolution)]
           calendar [:us :d]
-          trailing-n (when countback 
-                       (println "using countback: " countback)
-                       (Integer/parseInt countback))
-          window (if countback 
-                   (create-trailing-window  [:us24 :d] trailing-n end)
-                   (date-range->window [:us24 :d] {:start start :end end}))
-          bar-ds (if (seq (:window window))
-                   (m/? (b/get-bars db {:asset asset :calendar calendar} window))
-                   (println "no bardb request for empty window-range"))]
+          n (when countback 
+              (println "using countback: " countback)
+              (Integer/parseInt countback))
+          window (if n
+                   {:n n :end end}
+                   {:start start :end end})
+          bar-ds (m/? (b/get-bars db {:asset asset :calendar calendar} window))]
       (println "bar-ds: " bar-ds)
       (if (or (nil? bar-ds) 
               (= (tc/row-count bar-ds) 0))

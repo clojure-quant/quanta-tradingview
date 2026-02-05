@@ -8,11 +8,8 @@
         differ/differ {:mvn/version "0.3.3"}
         babashka/fs {:mvn/version "0.4.19"}
         org.pinkgorilla/modular {:mvn/version "0.2.69"} ; persistence
-        ;ta/import {:local/root "../import" :deps/manifest :deps}
-        ;ta/db {:local/root "../db" :deps/manifest :deps}
-        io.github.clojure-quant/quanta-bar-warehouse {:mvn/version "0.6.60"}
         io.github.clojure-quant/quanta-calendar {:mvn/version "0.6.29"}
-        }
+        io.github.clojure-quant/quanta-bar-warehouse {:mvn/version "0.6.62"}}
  :aliases
  {:test {:extra-paths ["test"]
          :extra-deps {io.github.cognitect-labs/test-runner {:git/url "https://github.com/cognitect-labs/test-runner.git"

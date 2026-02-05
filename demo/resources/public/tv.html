@@ -19,9 +19,9 @@
 				return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 			}
 
-			function initOnReady() {
+			function addTV (container, asset) {
 				var datafeedUrl = "http://localhost:8080/tv";
-			//	var datafeedUrl = "https://demo_feed.tradingview.com";
+				var datafeedUrl = "https://demo_feed.tradingview.com";
 				var customDataUrl = getParameterByName('dataUrl');
 				if (customDataUrl !== "") {
 					datafeedUrl = customDataUrl.startsWith('https://') ? customDataUrl : `https://${customDataUrl}`;
@@ -29,10 +29,11 @@
 
 				var widget = window.tvWidget = new TradingView.widget({
 					// debug: true, // uncomment this line to see Library errors and warnings in the console
-					fullscreen: true,
-					symbol: 'AA',
+					//fullscreen: true,
+					autosize: true,
+					symbol: asset,
 					interval: '1D',
-					container: "tv_chart_container",
+					container: container,
 
 					//	BEWARE: no trailing slash is expected in feed URL
 					datafeed: new Datafeeds.UDFCompatibleDatafeed(datafeedUrl, undefined, {
@@ -51,9 +52,18 @@
 					charts_storage_url: 'http://localhost:8080/tv/storage',
 					charts_storage_api_version: "1.1",
 					client_id: 'tradingview.com',
-					user_id: 'public_user_id',
+					user_id: 'user-444',
 					theme: getParameterByName('theme'),
 				});
+
+
+			}
+
+			function initOnReady() {
+				addTV("tv_chart_container1", 'AA');
+				addTV("tv_chart_container2", 'A');
+				addTV("tv_chart_container3", 'MSFT');
+				addTV("tv_chart_container4", 'SPY');
 			};
 
 			window.addEventListener('DOMContentLoaded', initOnReady, false);
@@ -62,7 +72,16 @@
 	</head>
 
 	<body style="margin:0px;">
-		<div id="tv_chart_container"></div>
+		
+		
+		<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;height:100vh;">
+			<div id="tv_chart_container1"></div>
+			<div id="tv_chart_container2"></div>
+			<div id="tv_chart_container3"></div>
+			<div id="tv_chart_container4"></div>
+
+		</div>
+
 	</body>
 
 </html>

@@ -9,9 +9,10 @@
    [cljc.java-time.instant :as ti]
    [clojure.java.io :as io]
    [babashka.fs :refer [create-dirs]]
+   [modular.persist.edn] ; side effects to load edn files
    [modular.persist.protocol :refer [save loadr]]
    ;[modular.helper.id :refer [guuid-str]]
-   ;[ta.tradingview.db.clip :refer [charts-path template-path marks-path]]
+   
    ))
 
 (defn now-epoch []
@@ -19,7 +20,11 @@
       (ti/get-epoch-second)))
 
 (defn chart-unbox [{:keys [content _client _id _user] :as data}]
-  (let [data-without-content (dissoc data :content :chart)
+  (let [data-without-content (dissoc data :content :chart 
+                                     "content" "chart")
+        content (or content (get data "content"))
+        ;(:client :user "name" "content" "symbol" "resolution")
+        
         content-edn (parse-string content true)
         {:keys [legs content]} content-edn
         ; content-edn
@@ -29,10 +34,13 @@
         chart-meta (dissoc content-edn :content)
         content-unboxed  (parse-string content true) ; {:layout :charts}
         legs-unboxed (into [] (parse-string legs true))]
-    (info "data keys:" (keys data))
+    (info "chart-unbox: data keys:" (keys data))
+    ;(:client :user "name" "content" "symbol" "resolution")
     (info "data no content: " data-without-content)
     (info "content-edn keys" (keys content-edn))
+    ;(:description :charts_symbols :content :listed_exchange :symbol :name :is_realtime :short_name :resolution :legs :exchange :symbol_type)
     (info "content-unboxed keys" (keys content-unboxed))
+    ;(:symbolLock :trackTimeLock :layout :name :dateRangeLock :layoutsSizes :intervalLock :crosshairLock :charts)
     (merge data-without-content
            chart-meta
            {:legs legs-unboxed}
@@ -60,9 +68,10 @@
   [charts-path client-id user-id chart-id data]
   (let [data (assoc data
                     :timestamp (now-epoch)
-                    :id (if (string? chart-id)  (Integer/parseInt chart-id) chart-id)
-                    :client (if (string? client-id)  (Integer/parseInt client-id) client-id)
-                    :user (if (string? user-id)  (Integer/parseInt user-id) user-id))]
+                    :id chart-id ;(if (string? chart-id)  (Integer/parseInt chart-id) chart-id)
+                    :client client-id ; (if (string? client-id)  (Integer/parseInt client-id) client-id)
+                    :user user-id ;(if (string? user-id)  (Integer/parseInt user-id) user-id)
+                    )]
     (create-dirs charts-path)
     (save :edn (filename-chart charts-path client-id user-id chart-id) data)
     (info "saved chart id: " chart-id)))
@@ -102,9 +111,10 @@
         [_ type client user chart] m]
     (when m
       {:type type
-       :client-id (Integer/parseInt client)
-       :user-id (Integer/parseInt user)
-       :chart-id (Integer/parseInt chart)})))
+       :client-id client ;(Integer/parseInt client)
+       :user-id user ;(Integer/parseInt user)
+       :chart-id chart ;(Integer/parseInt chart)
+       })))
 
 (defn explore-dir [dir]
   (let [dir (io/file dir)
@@ -140,13 +150,11 @@
           )))
 
 (defn chart-list [charts-path client-id user-id]
-  (let [client-id (if (string? client-id)  (Integer/parseInt client-id) client-id)
-        user-id (if (string? user-id)  (Integer/parseInt user-id) user-id)]
-    (info "chart list for: client: " client-id " user: " user-id)
-    (->> (explore-dir charts-path)
-         (filter (user-files "chart" client-id user-id))
-         (map #(chart-summary charts-path %))
-         (into []))))
+  (info "chart list for: client: " client-id " user: " user-id)
+  (->> (explore-dir charts-path)
+       (filter (user-files "chart" client-id user-id))
+       (map #(chart-summary charts-path %))
+       (into [])))
 
 (comment
 

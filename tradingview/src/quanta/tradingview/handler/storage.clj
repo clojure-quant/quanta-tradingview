@@ -4,15 +4,18 @@
    [taoensso.timbre :refer [info]]
    ;[schema.core :as s]
    [ring.util.response :as res]
-   [quanta.tradingview.chart :refer [save-chart-boxed delete-chart load-chart-boxed chart-list now-epoch]]))
+   [quanta.tradingview.chart.box :refer [save-chart-boxed load-chart-boxed]]
+   [quanta.tradingview.chart.db :refer [delete-chart chart-list now-epoch]]))
 
 ;; chart handler
+
 
 (defn save-chart-handler [{:keys [ctx query-params form-params params] :as req}]
   ;(info "saving tradingview chart: " (keys req))
   ;(info "saving tradingview chart form-params: " form-params)
   ;(info "saving tradingview chart params: " params) ; {:client "77", :user "77", :chart "1693414404"}
   (let [{:keys [charts-path]} (:tradingview ctx)
+        params (clojure.walk/keywordize-keys params)
         {:keys [client user chart]} (clojure.walk/keywordize-keys query-params)
         ; post request can contain chart id, or not
         chart (if chart chart (now-epoch))]

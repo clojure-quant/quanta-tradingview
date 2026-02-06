@@ -1,47 +1,9 @@
 (ns quanta.tradingview.chart.analyzer
   (:require
    [nano-id.core :refer [nano-id]]
-   [differ.core :as differ]
    [modular.persist.protocol :refer [save loadr]]
    [modular.persist.edn] ; side effects
-   [quanta.tradingview.chart :refer [save-chart chart-list load-chart]]
-   ;[ta.tradingview.chart.template :refer [save-template]]
    ))
-
-;; extract
-
-(defn get-pane [chart]
-  (-> chart
-      :charts first :panes first))
-
-(defn get-sources [chart]
-  (-> chart
-      :charts first :panes first :sources))
-
-
-
-(defn filter-type [chart t]
-  (let [sources (get-sources chart)]
-    (-> (filter #(= t (:type %)) sources)
-        first)))
-
-(defn source-state-summary [source]
-  (select-keys (:state source) [:shortName :symbol]))
-
-(defn keys-sorted [o]
-  (-> o keys sort))
-
-#_(defn diff-summary [preprocess id-generated id-compare]
-    (let [g (-> (load-chart 77 77 id-generated) preprocess)
-          c (-> (load-chart 77 77 id-compare) preprocess)]
-      {:l (differ/diff g c)
-       :r (differ/diff c g)}))
-
-#_(defn extract-study [user-id client-id chart-id type name]
-    (let [save #(save-template name %)]
-      (-> (load-chart user-id client-id chart-id)
-          (filter-type type)
-          (save))))
 
 (defn describe-sources [chart-idx pane-idx pane]
   (map-indexed
@@ -65,7 +27,7 @@
   "input: a loaded chart data,
    output: a seq of chart/pane/source description
    contains all sources for all charts and all panes
-   "
+   useful to be printed as a table."
   [chart-data]
   (->> (:charts chart-data)
        (map-indexed
@@ -98,9 +60,14 @@
         (assoc-in [:state  :interval] interval))))
 
 (defn pane [data chart-idx pane-idx]
+  "data is a loaded chart 
+   returns the a pane (with index pane-idx) for chart (with index chart-idx)"
   (-> data :charts (get chart-idx) :panes (get pane-idx)))
 
-(defn pane-owner [data chart-idx pane-idx]
+(defn pane-owner
+  "returns the id of the mainseries or the first study in the pane.
+   this is needed because drawings need to link to this id."
+  [data chart-idx pane-idx]
   (let [p (pane data chart-idx pane-idx)
         main (->> p
                   :sources
@@ -116,98 +83,46 @@
                    :id)]
     (or main study)))
 
-(defn add-templates [data]
+(defn add-templates
+  "data is a loaded chart 
+   all drawings contained in the chart will be saved as a template"
+  [data]
   (let [rows  (->> (describe-charts data)
                    (remove (fn [row] (= (:type row) "MainSeries")))
                    (remove (fn [row] (= (:type row) "Study"))))]
     (doall (map (fn [row]
-                  (-> data 
-                      (get-source (:chart row) (:pane row) (:source row))    
-                      (save-source))) rows))
-    ))
+                  (-> data
+                      (get-source (:chart row) (:pane row) (:source row))
+                      (save-source))) rows))))
 
 
+(defn keep-only-main-chart [data]
+  (let [chart-0 (-> data :charts (get 0))
+        pane-0-0 (pane data 0 0)
+        chart-0-pane-0 (assoc chart-0 :panes [pane-0-0])]
+    (assoc data :charts [chart-0-pane-0])))
 
 
-(comment
+(defn remove-pane-drawings [pane]
+  (let [sources (->> (:sources pane)
+                     (filter (fn [source]
+                               (or (= (:type source) "MainSeries")
+                                   (= (:type source) "Study"))))
+                     (into []))]
+    (assoc pane :sources sources)))
 
-  (extract-study 77 77 1636805136 "LineToolGannComplex" "gann-nice")
+(defn remove-chart-drawings [chart]
+  (let [panes (->> (:panes chart)
+                   (map remove-pane-drawings)
+                   (into []))]
+    (assoc chart :panes panes)))
 
-  (extract-study 77 77 1636839899 "LineToolFibCircles" "fib-circle")
+(defn remove-drawings [data]
+  (let [charts (->> (:charts data)
+                    (map remove-chart-drawings)
+                    (into []))]
+    (assoc data :charts charts)))
 
-  (def id-generated 123)
-  (def id-compare 1636726545)
-
-
-
-  ; test: sources list
-  (-> (load-chart 77 77 id-generated) sources-summary)
-  (-> (load-chart 77 77 id-compare)   sources-summary)
-
-  ; test: mainseries keys
-  (-> (load-chart 77 77 id-generated)       (filter-type "MainSeries") keys-sorted)
-  (-> (load-chart 77 77 id-compare)  (filter-type "MainSeries") keys-sorted)
-
-   ; test: mainseries state
-  (-> (load-chart 77 77 id-generated)       (filter-type "MainSeries") source-state-summary)
-  (-> (load-chart 77 77 id-compare)  (filter-type "MainSeries") source-state-summary)
-
-; test mainseries differences (in both ways)
-  (differ/diff
-   (-> (load-chart 77 77 id-generated) (filter-type "MainSeries"))
-   (-> (load-chart 77 77 id-compare)  (filter-type "MainSeries")))
-
-  (differ/diff
-   (-> (load-chart 77 77 id-compare)  (filter-type "MainSeries"))
-   (-> (load-chart 77 77 id-generated) (filter-type "MainSeries")))
-
-; test study differences (in both ways)
-  (differ/diff
-   (-> (load-chart 77 77 id-generated) (filter-type "Study"))
-   (-> (load-chart 77 77 id-compare)  (filter-type "Study")))
-
-  (differ/diff
-   (-> (load-chart 77 77 id-compare)  (filter-type "Study"))
-   (-> (load-chart 77 77 id-generated) (filter-type "Study")))
-
-    ; test study differences (in both ways)
-  (diff-summary
-   #(dissoc % :id :charts :symbol_type :exchange :timestamp :symbol :name :short_name :publish_request_id :legs)
-   id-generated id-compare)
-
-  ;; no differences in mainseries
-  (diff-summary
-   #(filter-type % "MainSeries")
-   id-generated id-compare)
-
-  ;; no differences in study (except for ids)
-  (diff-summary
-   #(filter-type % "Study")
-   id-generated id-compare)
-
-  ;; no differences in except ids of sources
-  (diff-summary
-   #(-> (get-pane %) (dissoc :sources))
-   id-generated id-compare)
-
-  (diff-summary
-   #(dissoc % :symbol :name :short_name :publish_request_id :legs :id :exchange :timestamp :symbol_type)
-         ;identity
-   id-generated id-compare)
-
-  (-> (load-chart 77 77 1636558275) ; AMZN: Pitchfork   MSFT: LineTrend
-      :content  ; :layout :charts
-      :charts
-      first
-      :panes
-      first ; (:sources :leftAxisSources  :rightAxisSources :leftAxisState :rightAxisState  :overlayPriceScales :mainSourceId)
-   ; :sources
-      :sources
-    ;count
-      (get 5)
-    ;:type
-    ;(get-in [:state :styles])
-      )
-
-;  
-  )
+; | :chart | :pane | :source |               :type |       :id |
+; |--------+-------+---------+---------------------+-----------|
+; |      0 |     0 |       0 |          MainSeries | _seriesId |

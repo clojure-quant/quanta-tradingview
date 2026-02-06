@@ -1,11 +1,12 @@
 (ns demo.chart-analysis
   (:require
    [clojure.pprint :refer [print-table]]
-   [quanta.tradingview.chart :refer [save-chart chart-list load-chart]]
+   [quanta.tradingview.chart.db :refer [save-chart chart-list load-chart]]
    [quanta.tradingview.chart.analyzer :refer [get-pane get-sources 
                                               describe-charts get-source describe-sources
                                               save-source create-source
-                                              pane pane-owner add-templates
+                                              pane pane-owner add-templates keep-only-main-chart
+                                              remove-drawings
                                               ]]
    [demo.env :refer [env]]))
 
@@ -44,6 +45,25 @@
 ; |      0 |     1 |       1 |   LineToolTrendLine |    cbmSrG |
 
 (-> (load-chart env {:chart-id "1770323667"})
+    (keep-only-main-chart)
+    (describe-charts)
+    (print-table))
+
+; | :chart | :pane | :source |               :type |       :id |
+; |--------+-------+---------+---------------------+-----------|
+; |      0 |     0 |       0 |          MainSeries | _seriesId |
+; |      0 |     0 |       1 |     LineToolHorzRay |    k8HPzJ |
+; |      0 |     0 |       2 |    LineToolVertLine |    c56ymk |
+; |      0 |     0 |       3 |    LineToolVertLine |    k5ScMA |
+; |      0 |     0 |       4 |   LineToolTrendLine |    cxJ4et |
+; |      0 |     0 |       5 |     LineToolHorzRay |    Dq6XrD |
+; |      0 |     0 |       6 |   LineToolCrossLine |    niL0xL |
+; |      0 |     0 |       7 |        LineToolText |    Q7dHoz |
+; |      0 |     0 |       8 | LineToolArrowMarker |    kQVlCl |
+; |      0 |     0 |       9 |       LineToolTable |    HPnS7G |
+
+
+(-> (load-chart env {:chart-id "1770323667"})
     (get-source 0 0 3))
 
 (-> (load-chart env {:chart-id "1770323667"})
@@ -76,23 +96,25 @@
     (pane-owner 0 1))
 ; "EfnuL8"
 
-(let [pane (-> (load-chart env {:chart-id "1770323667"})
-               (pane 0 0))]
-  
-  (->> pane
-       :sources
-       (filter (fn [source]
-                 (= (:type source) "MainSeries")
-                 ))
-       first
-       :id
-       
-       )
 
-  )
 (-> (load-chart env {:chart-id "1770323667"})
     (add-templates)
     (print-table))
+
+
+(->> (load-chart env {:chart-id "1770323667"})
+     (remove-drawings)
+     (keep-only-main-chart)
+     (save-chart env {:chart-id "999"}))
+
+(-> (load-chart env {:chart-id "999"})
+    (describe-charts)
+    (print-table)
+    )
+
+; | :chart | :pane | :source |      :type |       :id |
+; |--------+-------+---------+------------+-----------|
+; |      0 |     0 |       0 | MainSeries | _seriesId |
 
 
 "LineToolVertLine"

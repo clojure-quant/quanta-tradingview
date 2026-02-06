@@ -1,4 +1,4 @@
-(ns quanta.tradingview.handler.response.storage
+(ns quanta.tradingview.chart
   (:require
    ;[clojure.set :refer [rename-keys]]
    [clojure.walk]
@@ -90,8 +90,18 @@
       (save :edn (filename-chart-unboxed charts-path client-id user-id chart-id) data-boxed))
     (save-chart charts-path client-id user-id chart-id data-edn)))
 
-(defn load-chart [charts-path client-id user-id chart-id]
-  (loadr :edn (filename-chart charts-path client-id user-id chart-id)))
+(defn load-chart 
+  ([charts-path client-id user-id chart-id]
+   (println "charts-path: " charts-path " client-id: " client-id " user-id: " user-id " chart-id: " chart-id)
+   (loadr :edn (filename-chart charts-path client-id user-id chart-id)))
+  ([env opts]
+   (let [charts-path (get-in env [:tradingview :charts-path])
+         client-id (or (:client-id opts) (get-in env [:default :client-id]))
+         user-id (or (:user-id opts) (get-in env [:default :user-id]))
+         chart-id (:chart-id opts)]
+     (println "charts-path: " charts-path " client-id: " client-id " user-id: " user-id " chart-id: " chart-id)
+     (load-chart charts-path client-id user-id chart-id))))
+
 
 (defn load-chart-boxed [charts-path client-id user-id chart-id]
   (let [data (load-chart charts-path client-id user-id chart-id)
@@ -149,22 +159,29 @@
           ;(rename-keys  {:chart :id})
           )))
 
-(defn chart-list [charts-path client-id user-id]
-  (info "chart list for: client: " client-id " user: " user-id)
-  (->> (explore-dir charts-path)
-       (filter (user-files "chart" client-id user-id))
-       (map #(chart-summary charts-path %))
-       (into [])))
+(defn chart-list 
+  ([charts-path client-id user-id]
+   (info "chart list for: client: " client-id " user: " user-id)
+   (->> (explore-dir charts-path)
+        (filter (user-files "chart" client-id user-id))
+        (map #(chart-summary charts-path %))
+        (into [])))
+  ([env]
+   (let [charts-path (get-in env [:tradingview :charts-path])
+         client-id  (get-in env [:default :client-id])
+         user-id (get-in env [:default :user-id])]
+     (chart-list charts-path client-id user-id)))
+  ([env opts]
+   (let [charts-path (get-in env [:tradingview :charts-path])
+         client-id (or (:client-id opts) (get-in env [:default :client-id]))
+         user-id (or (:user-id opts) (get-in env [:default :user-id]))]
+     (chart-list charts-path client-id user-id))))
 
 (comment
 
   (split-filename "chart_77_77_1636524198.edn")
   (split-filename ".placeholder")
-  (explore-dir "./tvdb")
-  (chart-list "./tvdb" 77 77)
-  (chart-list "./tvdb" "77" "77")
-  (chart-list "./tvdb" 10 10)
-
-  (load-chart-boxed "./tvdb" 77 77 1636558275)
+  (explore-dir "./tv/chart")
+  
 ;  
   )

@@ -4,7 +4,9 @@
    [quanta.tradingview.asset.db :refer [search instrument-details]]
    [quanta.tradingview.handler.asset :refer [symbols-handler search-handler]]
    [quanta.tradingview.handler.response.asset :refer [symbol-search symbol-info]]
-   [quanta.tradingview.handler.history :refer [history-handler]]))
+   [quanta.tradingview.handler.history :refer [history-handler]]
+   [demo.env :refer [env]]
+   ))
 
 ;; use custom asset db
 
@@ -17,10 +19,7 @@
 (search asset-db "")
 
 ;; use webserver config
-(def env
-  {:tradingview  (:tradingview (system :config))
-   :bar-db (system :duckdb)
-   :asset-db (system :asset-db)})
+
 env
 
 (symbol-info (:asset-db env) "AA")

@@ -4,7 +4,7 @@
    [taoensso.timbre :refer [info]]
    ;[schema.core :as s]
    [ring.util.response :as res]
-   [quanta.tradingview.handler.response.storage :refer [save-chart-boxed delete-chart load-chart-boxed chart-list now-epoch]]))
+   [quanta.tradingview.chart :refer [save-chart-boxed delete-chart load-chart-boxed chart-list now-epoch]]))
 
 ;; chart handler
 

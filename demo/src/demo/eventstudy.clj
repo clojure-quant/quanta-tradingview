@@ -8,7 +8,7 @@
                                               pane pane-owner add-templates keep-only-main-chart
                                               remove-drawings
                                               list-sources load-source create-source add-drawing
-                                          modify-chart
+                                          modify-chart set-chart-asset
                                           ]]
    [demo.env :refer [env]]))
 
@@ -68,6 +68,7 @@
                      :short_name "KO",
                      :legs [{:symbol "KO", :pro_symbol "us:KO"}],
                      })
+      (set-chart-asset {:asset "KO"})
       (add-drawing {:type "LineToolText"
                     :asset "KO"
                     :interval "1D"
@@ -79,33 +80,33 @@
      (save-chart env {}))
 
      
-BLA
- :state :text "blabla blup\n"
-        :interval "1D",
-        :visible true,
-        :symbol "KO",
-:points [{:time_t 1764838800,
-          :offset 0,
-          :price 76.76029531223321,
-          :interval "1D"}],
-:id "JClhBh",
-:linkKey "4EHSKX3sXCti",
 
 
 (-> (load-chart env {:chart-id "indicatortext"})
     (describe-charts)
     (print-table))
 
+(defn is-main [x]
+  ;(println "x: " x)
+  (println "xcoutn " (count x))
+  (= (:type x) "MainSeries"))
+
+(even? 3 )
 
   (->> (load-chart env {:chart-id "1770419848"})
        ;(specter/transform pane-sources-path (fn [v] (conj (or v []) {:BONGO "3"})))
-       (specter/select-one pane-sources-path)
-       count
+       (specter/select [:charts specter/ALL :panes specter/ALL :sources specter/ALL (specter/pred is-main)])
+       (map #(select-keys % [:name :id :type :symbol :asset :state] ))
+       (map :state)
+       (map #(select-keys % [:symbol :shortName]))
        
        
-  )
+       
+       
+       )
  
     
+
         
      
     

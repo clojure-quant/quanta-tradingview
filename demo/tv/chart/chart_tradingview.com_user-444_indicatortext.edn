@@ -1,4 +1,4 @@
-; saved on 2026-02-07 11:29:12
+; saved on 2026-02-07 12:14:19
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
@@ -18,7 +18,7 @@
  :id "indicatortext",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770481752,
+ :timestamp 1770484459,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -208,7 +208,7 @@
                                                     :upColor "#089981",
                                                     :thinBars true,
                                                     :upColorProjection "#a9dcc3"},
-                                       :symbol "KREF",
+                                       :symbol "KO",
                                        :showFuturesContractExpiration true,
                                        :prevClosePriceLineWidth 1,
                                        :bidAsk {:visible false,
@@ -285,7 +285,7 @@
                                                      :baselinePosition "bottom",
                                                      :upColor "rgba(8, 153, 129, 0.5)",
                                                      :downColor "rgba(242, 54, 69, 0.5)"},
-                                       :shortName "KREF",
+                                       :shortName "KO",
                                        :showLastNews true,
                                        :priceLineWidth 1,
                                        :statusViewStyle {:fontSize 16,
@@ -846,8 +846,8 @@
                                          :offset 0,
                                          :price 70.50679151792849,
                                          :interval "1D"}],
-                               :id "L0z2np",
-                               :linkKey "WE3H_sGBE_6C",
+                               :id "UwPUrt",
+                               :linkKey "y_wpfg1hHu3a",
                                :isSelectionEnabled true,
                                :zorder -79}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -869,7 +869,7 @@
                                                   "Uncxcm"
                                                   "EVlZNG"
                                                   "_seriesId"
-                                                  "L0z2np"]}],
+                                                  "UwPUrt"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

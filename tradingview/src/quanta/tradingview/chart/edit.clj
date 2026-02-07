@@ -112,8 +112,7 @@
           data-state (-> data
                          :state
                          (assoc :symbol asset :interval interval)
-                         (merge state-fields)
-                         )]
+                         (merge state-fields))]
       (assoc data
              :id (nano-id 6)
              :linkKey (nano-id 12)
@@ -124,26 +123,21 @@
   (merge chart-data opts))
 
 
-(defn add-drawing  [ {:keys [type asset interval points state
-                                       chart-idx pane-idx
-                                       ]
-                                :or {chart-idx 0
-                                     pane-idx 0}
-                                :as opts} chart-data]
+(defn add-drawing  [{:keys [type asset interval points state
+                            chart-idx pane-idx]
+                     :or {chart-idx 0
+                          pane-idx 0}
+                     :as opts} chart-data]
   (let [source (create-source opts)
         axis-sources-path [:charts chart-idx :panes pane-idx :rightAxisesState 0 :sources]
         source-id (:id source)
-        pane-sources-path [:charts chart-idx :panes pane-idx :sources]
-        ]
+        pane-sources-path [:charts chart-idx :panes pane-idx :sources]]
     (println "pane-sources-path " pane-sources-path)
-    (->> chart-data 
+    (->> chart-data
          ; add drawing to pane
          (specter/transform pane-sources-path (fn [v] (conj (or v []) source)))
          ; add drawing to right-axes source list
-         (specter/transform axis-sources-path (fn [v] (conj (or v []) source-id)))
-         )
-    
-    ))
+         (specter/transform axis-sources-path (fn [v] (conj (or v []) source-id))))))
 
 
 (defn add-source [m new-source]
@@ -219,4 +213,18 @@
 ; |--------+-------+---------+---------------------+-----------|
 ; |      0 |     0 |       0 |          MainSeries | _seriesId |
 
+(defn is-main [x]
+  ;(println "x: " x)
+  (println "xcoutn " (count x))
+  (= (:type x) "MainSeries"))
+
+(defn set-chart-asset 
+  "sets the asset of a chart, chart 0 if no chart-id specified"
+  [{:keys [asset chart-id]
+                        :or {chart-id 0}} chart-data]
+  (let [path [:charts chart-id :panes specter/ALL :sources specter/ALL (specter/pred is-main) :state]]
+    (specter/transform path (fn [v]
+                              (assoc v :symbol asset
+                                     :shortName asset))
+                       chart-data)))
 

@@ -21,10 +21,15 @@
                                            webserver.middleware.ctx/ctx-middleware]
                               :services #{:asset-db}}]
               ["/tv/config" {:get quanta.tradingview.handler.config/config-handler
-                               :middleware [webserver.middleware.api/wrap-api-handler
-                                            webserver.middleware.ctx/ctx-middleware]
-                               :services #{:tradingview}}]
+                             :middleware [webserver.middleware.api/wrap-api-handler
+                                          webserver.middleware.ctx/ctx-middleware]
+                             :services #{:tradingview}}]
+              ; trading
 
+              ["/tv/quotes" {:get quanta.tradingview.handler.quotes/quote-handler
+                             :middleware [webserver.middleware.api/wrap-api-handler
+                                          webserver.middleware.ctx/ctx-middleware]
+                             :services #{:tradingview}}]
               ;; storage 
               ["/tv/storage/1.1/charts" {:get quanta.tradingview.handler.storage/load-chart-handler
                                          :post quanta.tradingview.handler.storage/save-chart-handler
@@ -39,10 +44,10 @@
                                                   :post quanta.tradingview.handler.storage/save-template-handler
                                          ;:put quanta.tradingview.handler.storage/modify-chart-handler
                                          ;:delete quanta.tradingview.handler.storage/delete-chart-handler
-                                                    :middleware [webserver.middleware.api/wrap-api-handler
-                                                                 ring.middleware.multipart-params/wrap-multipart-params
-                                                                 webserver.middleware.ctx/ctx-middleware]
-                                                    :services #{:tradingview}}]
+                                                  :middleware [webserver.middleware.api/wrap-api-handler
+                                                               ring.middleware.multipart-params/wrap-multipart-params
+                                                               webserver.middleware.ctx/ctx-middleware]
+                                                  :services #{:tradingview}}]
 
 
               ;["/error" {:get demo.error/error-handler}]
@@ -56,7 +61,7 @@
  ;                         ta.tradingview.handler.asset/symbol-info
  ;                         ta.tradingview.handler.asset/symbol-search
  ;                         ta.tradingview.handler.time/server-time]}
- 
+
 ; :cljs-routes {"algo/tradingview" ta.tradingview.goldly.page.tradingview-algo/tvalgo-page
 ;               "tradingview" ta.tradingview.goldly.page.tradingview-udf/tradingview-page}
  }

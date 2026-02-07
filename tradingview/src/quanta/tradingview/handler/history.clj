@@ -7,7 +7,7 @@
 (defn history-handler [{:keys [ctx query-params] :as _req}]
   ; todo, return resolution other than :d and markets other than :us
   (let [db (:bar-db ctx)
-        _ (println "query-params: " query-params)
+        ;_ (println "query-params: " query-params)
         ;countback	The number of bars to return, starting with to. 
         ;           This has higher priority than from. If countback is set, from should be ignored.
         {:keys [symbol resolution from to countback]} (clojure.walk/keywordize-keys query-params)

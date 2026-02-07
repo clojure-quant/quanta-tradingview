@@ -17,7 +17,6 @@
 
 (defn symbols-handler [{:keys [ctx query-params] :as _req}]
   (let [asset-db (:asset-db ctx)
-        _ (println "symbols handler asset-db " asset-db)
         {:keys [symbol]} (clojure.walk/keywordize-keys query-params)
         si (symbol-info asset-db symbol)]
     (res/response si)))

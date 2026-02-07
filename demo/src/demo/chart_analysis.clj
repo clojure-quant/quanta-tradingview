@@ -2,12 +2,10 @@
   (:require
    [clojure.pprint :refer [print-table]]
    [quanta.tradingview.chart.db :refer [save-chart chart-list load-chart]]
-   [quanta.tradingview.chart.analyzer :refer [get-pane get-sources 
-                                              describe-charts get-source describe-sources
-                                              save-source create-source
-                                              pane pane-owner add-templates keep-only-main-chart
-                                              remove-drawings
-                                              ]]
+   [quanta.tradingview.chart.edit :refer [describe-charts get-source describe-sources
+                                          save-source create-source
+                                          pane pane-owner add-templates keep-only-main-chart
+                                          remove-drawings]]
    [demo.env :refer [env]]))
 
 (-> (chart-list env)
@@ -68,8 +66,7 @@
 
 (-> (load-chart env {:chart-id "1770323667"})
     (get-source 0 0 6)
-    (save-source)
-    )
+    (save-source))
 
 (-> (load-chart env {:chart-id "1770323667"})
     (add-templates))
@@ -79,17 +76,16 @@
 
 (create-source "LineToolTrendLine" "MO" "5D")
 
-(create-source 
+(create-source
  {:type "LineToolVertLine"
   :asset "MO"
   :interval  "5D"
   :points [{:time_t 1610096400,
             :offset 0,
-            :price 67.13970181128232}]
-  })
+            :price 67.13970181128232}]})
 
 (-> (load-chart env {:chart-id "1770323667"})
-    (pane-owner 0 0)) 
+    (pane-owner 0 0))
 ; "_seriesId"
 
 (-> (load-chart env {:chart-id "1770323667"})
@@ -109,8 +105,7 @@
 
 (-> (load-chart env {:chart-id "999"})
     (describe-charts)
-    (print-table)
-    )
+    (print-table))
 
 ; | :chart | :pane | :source |      :type |       :id |
 ; |--------+-------+---------+------------+-----------|
@@ -118,20 +113,7 @@
 
 
 "LineToolVertLine"
-; trendline
-:type "LineToolTrendLine",
-:id "cbmSrG",
-:ownerSource "EfnuL8", ; study or seriesId (the series in the pane.)
-:state  :symbol "KO",
-        :interval "1D",
-:points [{:time_t 1715590800,
-          :offset 0,
-          :price 90.37129883831498,
-          :interval "1D"}
-         {:time_t 1736845200,
-          :offset 0,
-          :price 59.58837955966041,
-          :interval "1D"}],
+
 
 ; vert line
 :type "LineToolVertLine",
@@ -139,7 +121,7 @@
 :ownerSource "_seriesId", ; study or seriesId (the series in the pane.)
 :linkKey "PkPEA06MeEBJ",
 :state :symbol "US:KO",
-       :interval "1D",
+:interval "1D",
 :points [{:time_t 1610096400,
           :offset 0,
           :price 67.13970181128232}],
@@ -155,16 +137,9 @@
 
 ; cross
 :type "LineToolCrossLine",
-:id "niL0xL", 
-:ownerSource "_seriesId", 
-:linkKey "3XiV44bHTztK", 
+:id "niL0xL",
+:ownerSource "_seriesId",
+:linkKey "3XiV44bHTztK",
 :state :symbol "KO"
-       :interval "1D"
+:interval "1D"
 
-(:timezone :lineToolsGroups :shouldBeSavedEvenIfHidden 
-           :timeScale :linkingGroup :chartProperties :chartId :sessions :version :panes)
-charts(0).panes
-
-pane0: 2 sources
-         MainSeries
-         Study ; (:type :id :state :zorder :ownFirstValue :metaInfo)

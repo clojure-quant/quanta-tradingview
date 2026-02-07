@@ -32,7 +32,7 @@
    (let [charts-path (get-in env [:tradingview :charts-path])
          client-id (or (:client-id opts) (get-in env [:default :client-id]))
          user-id (or (:user-id opts) (get-in env [:default :user-id]))
-         chart-id (:chart-id opts)]
+         chart-id (or (:chart-id opts) (:chart-id data))]
      (println "charts-path: " charts-path " client-id: " client-id " user-id: " user-id " chart-id: " chart-id)
      (save-chart charts-path client-id user-id chart-id data))))
 

@@ -144,6 +144,10 @@
 
       tr:hover td { background: rgba(245, 211, 94, 0.22); }
 
+      tr.selected td {
+        background: rgba(11, 102, 195, 0.25) !important;
+      }
+
       a { color: var(--accent); text-decoration: none; }
       a:hover { text-decoration: underline; }
       .muted { color: var(--muted); }
@@ -396,8 +400,11 @@
         return { text: s, href: null };
       }
 
+      let selectedTr = null;
+
       function renderEvents(events) {
         bodyEl.innerHTML = '';
+        selectedTr = null;
 
         if (!Array.isArray(events) || events.length === 0) {
           const tr = document.createElement('tr');
@@ -422,6 +429,11 @@
           tr.addEventListener('click', (e) => {
             // Don't trigger when clicking links.
             if (e.target && e.target.closest && e.target.closest('a')) return;
+
+            if (selectedTr) selectedTr.classList.remove('selected');
+            tr.classList.add('selected');
+            selectedTr = tr;
+
             console.log(`loading chart ${String(asset)} date: ${toDisplayDate(date)}`);
           });
 

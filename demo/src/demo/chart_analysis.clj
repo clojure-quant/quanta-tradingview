@@ -1,9 +1,9 @@
 (ns demo.chart-analysis
   (:require
    [clojure.pprint :refer [print-table]]
+      [com.rpl.specter :as specter]
    [quanta.tradingview.chart.db :refer [save-chart chart-list load-chart]]
    [quanta.tradingview.chart.edit :refer [describe-charts get-source describe-sources
-                                          create-source
                                           pane pane-owner keep-only-main-chart
                                           remove-drawings]]
    [demo.env :refer [env]]))
@@ -42,11 +42,30 @@
 ; |      0 |     1 |       0 |               Study |    EfnuL8 |        |
 ; |      0 |     1 |       1 |   LineToolTrendLine |    cbmSrG |     KO |
 
-(-> (load-chart env {:chart-id "1770323667"})
-    (keep-only-main-chart)
-    (describe-charts)
-    (print-table))
+(-> (load-chart env {:chart-id "1770585201"})
+ ;(load-chart env {:chart-id "event-AIG-63"})
+ (describe-charts)
+ (print-table)
+ )
+; | :chart | :pane | :source |        :type |       :id | :asset |
+; |--------+-------+---------+--------------+-----------+--------|
+; |      0 |     0 |       0 |   MainSeries | _seriesId |    OMC |
+; |      0 |     0 |       1 | study_Volume |    389Oub |        |
+; |      0 |     0 |       2 |        Study |    Eex4ul |        |
+; |      0 |     0 |       3 |        Study |    snTsLT |        |
 
+(->> (load-chart env {:chart-id "1770585201"})
+     (specter/select [:charts 0 :panes 0 :sources specter/ALL 
+                     (specter/pred #(not (= "study_Volume" (:type %))))
+                      :id])
+     )
+["_seriesId" "389Oub" "Eex4ul" "snTsLT"]
+(->> (load-chart env {:chart-id "1770585201"})
+     (specter/select [:charts 0 :panes 0 :rightAxisesState 0 :sources]))
+[["_seriesId" "Eex4ul" "snTsLT"]]
+
+;["_seriesId" "389Oub" "Eex4ul" "snTsLT" "VYONZ0"
+;"s-uhgz" "hhTNy6" "qGauYr"]
 ; | :chart | :pane | :source |               :type |       :id |
 ; |--------+-------+---------+---------------------+-----------|
 ; |      0 |     0 |       0 |          MainSeries | _seriesId |

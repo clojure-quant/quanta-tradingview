@@ -21,7 +21,8 @@
 
 (defn create-chart-for-event [{:keys [date asset close
                                       trailing-high trailing-high-date]}]
-  (->> (load-chart env {:chart-id "1770419848"})
+  (->> (load-chart env {:chart-id "1770585201"  ;"1770419848"
+                        })
        (modify-chart {:chart-id "eventtest"
                       :name "eventtest"
                       :layout "s" ; s is the single asset layout
@@ -29,8 +30,8 @@
                       :short_name asset
                       :legs [{:symbol asset, :pro_symbol (str "us:" asset)}]})
        (set-chart-asset {:asset asset})
-       (keep-only-main-chart)
-       (remove-drawings)
+       ;(keep-only-main-chart)
+       ;(remove-drawings)
        (add-drawing {:type "LineToolText"
                      :asset asset
                      :interval "1D"

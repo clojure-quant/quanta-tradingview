@@ -2,7 +2,7 @@
   (:require
    [nano-id.core :refer [nano-id]]
    [com.rpl.specter :as specter]
-   [quanta.tradingview.chart.source :refer [create-source]]
+   [quanta.tradingview.chart.source :refer [create-source source-type-study]] 
    ))
 
 (defn describe-sources [chart-idx pane-idx pane]
@@ -101,10 +101,7 @@
 (defn remove-pane-drawings [pane]
   (let [sources (->> (:sources pane)
                      (filter (fn [source]
-                               (or (= (:type source) "MainSeries")
-                                   (= (:type source) "Study")
-                                   (= (:type source) "Study")
-                                   )))
+                               (contains? source-type-study (:type source))))
                      (into []))]
     (assoc pane :sources sources)))
 
@@ -143,6 +140,11 @@
   ([{:keys [chart-id pane-id]
      :or {chart-id 0
           pane-id 0}} chart-data]
-   (let [sources (specter/select [:charts chart-id :panes pane-id :sources specter/ALL :id] chart-data)]
+   (let [; we do not want to include volume study in the right axis, as this would
+         ; fuck up the axis specification. But both MainSeries, Studies (Indicators) 
+         ; and Drawings can be included.
+         sources (specter/select [:charts chart-id :panes pane-id :sources specter/ALL 
+                                  (specter/pred #(not (= "study_Volume" (:type %))))
+                                  :id] chart-data)]
      (specter/setval [:charts chart-id :panes pane-id :rightAxisesState 0 :sources]
                      sources chart-data))))

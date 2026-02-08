@@ -174,6 +174,10 @@
 
 #${ROOT_ID} tr:hover td { background: rgba(245, 211, 94, 0.22); }
 
+#${ROOT_ID} tr.events-selected td {
+  background: rgba(11, 102, 195, 0.25) !important;
+}
+
 #${ROOT_ID} a { color: var(--events-accent); text-decoration: none; }
 #${ROOT_ID} a:hover { text-decoration: underline; }
 #${ROOT_ID} .events-muted { color: var(--events-muted); }
@@ -591,8 +595,11 @@
       return true;
     }
 
+    let selectedTr = null;
+
     function renderEvents(events) {
       bodyEl.innerHTML = '';
+      selectedTr = null;
 
       if (!Array.isArray(events) || events.length === 0) {
         bodyEl.appendChild(el('tr', null, el('td', { colspan: '5', class: 'events-muted' }, 'No events.')));
@@ -610,6 +617,10 @@
 
         tr.addEventListener('click', async (e) => {
           if (e.target && e.target.closest && e.target.closest('a')) return;
+
+          if (selectedTr) selectedTr.classList.remove('events-selected');
+          tr.classList.add('events-selected');
+          selectedTr = tr;
 
           console.log(`loading chart ${String(asset)} date: ${toDisplayDate(date)}`);
 

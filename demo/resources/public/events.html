@@ -6,66 +6,125 @@
     <title>Events</title>
     <style>
       :root {
-        --bg: #0b0f14;
-        --panel: #111826;
-        --text: #e6edf3;
-        --muted: #9aa4b2;
-        --border: #223044;
-        --accent: #5aa7ff;
+        --bg: #f5d35e; /* gold */
+        --text: #1b1f24;
+        --muted: rgba(27, 31, 36, 0.72);
+        --border: rgba(27, 31, 36, 0.18);
+        --accent: #0b66c3;
+        --window: rgba(255, 255, 255, 0.86);
+        --window-strong: rgba(255, 255, 255, 0.96);
+        --shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
       }
+
       body {
         margin: 0;
-        padding: 14px;
+        height: 100vh;
         font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
           "Apple Color Emoji", "Segoe UI Emoji";
-        background: var(--bg);
+        background:
+          radial-gradient(1200px 600px at 20% 10%, rgba(255, 255, 255, 0.45), transparent 60%),
+          radial-gradient(900px 500px at 85% 35%, rgba(255, 255, 255, 0.22), transparent 60%),
+          var(--bg);
         color: var(--text);
+        overflow: hidden;
       }
-      header {
+
+      /* Floating, resizable window */
+      .window {
+        position: fixed;
+        left: 24px;
+        top: 24px;
+        width: min(520px, calc(100vw - 48px));
+        height: min(620px, calc(100vh - 48px));
+        min-width: 360px;
+        min-height: 240px;
+        background: var(--window);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        overflow: auto;
+        resize: both;
+        backdrop-filter: blur(7px);
+      }
+
+      .window-header {
+        position: sticky;
+        top: 0;
         display: flex;
-        align-items: baseline;
+        align-items: center;
         justify-content: space-between;
         gap: 12px;
-        margin-bottom: 12px;
+        padding: 8px 10px;
+        background: linear-gradient(var(--window-strong), rgba(255, 246, 208, 0.9));
+        border-bottom: 1px solid var(--border);
+        cursor: grab;
+        user-select: none;
+        touch-action: none;
+        z-index: 2;
       }
-      h1 {
-        font-size: 18px;
+      .window-header:active { cursor: grabbing; }
+
+      .header-left {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        min-width: 0;
+      }
+
+      .window-title {
+        font-size: 14px;
+        font-weight: 700;
         margin: 0;
       }
-      .controls {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-      }
-      button {
-        background: var(--panel);
-        color: var(--text);
-        border: 1px solid var(--border);
-        padding: 6px 8px;
-        border-radius: 8px;
-        cursor: pointer;
-      }
-      button:hover { border-color: var(--accent); }
+
       .status {
         color: var(--muted);
         font-size: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 40vw;
       }
-      .error {
-        background: #2a0f14;
-        border: 1px solid #5a1a24;
-        padding: 10px 12px;
+
+      .controls {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      button {
+        background: rgba(255, 255, 255, 0.55);
+        color: var(--text);
+        border: 1px solid var(--border);
+        padding: 6px 8px;
         border-radius: 10px;
-        margin: 12px 0;
+        cursor: pointer;
+      }
+      button:hover { border-color: rgba(11, 102, 195, 0.55); }
+
+      .window-body {
+        padding: 10px;
+      }
+
+      .error {
+        background: rgba(216, 44, 67, 0.10);
+        border: 1px solid rgba(216, 44, 67, 0.35);
+        padding: 8px 10px;
+        border-radius: 10px;
+        margin: 0 0 10px 0;
         white-space: pre-wrap;
       }
+
       table {
         width: 100%;
-        border-collapse: collapse;
+        border-collapse: separate;
+        border-spacing: 0;
         border: 1px solid var(--border);
-        background: var(--panel);
+        background: rgba(255, 255, 255, 0.5);
         border-radius: 12px;
         overflow: hidden;
       }
+
       th, td {
         text-align: left;
         padding: 6px 8px;
@@ -73,53 +132,136 @@
         font-size: 13px;
         line-height: 1.2;
       }
+
       th {
         color: var(--muted);
-        font-weight: 600;
+        font-weight: 700;
         font-size: 11px;
         letter-spacing: 0.03em;
         text-transform: uppercase;
+        background: rgba(245, 211, 94, 0.35);
       }
-      tr:hover td { background: rgba(90, 167, 255, 0.06); }
+
+      tr:hover td { background: rgba(245, 211, 94, 0.22); }
+
       a { color: var(--accent); text-decoration: none; }
       a:hover { text-decoration: underline; }
       .muted { color: var(--muted); }
-      .right { text-align: right; }
+
+      dialog {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: var(--window-strong);
+        box-shadow: 0 22px 70px rgba(0, 0, 0, 0.35);
+        padding: 12px 12px;
+        max-width: min(520px, 90vw);
+      }
+      dialog::backdrop {
+        background: rgba(0, 0, 0, 0.35);
+      }
     </style>
   </head>
   <body>
-    <header>
-      <div>
-        <h1>Events</h1>
-        <div class="status" id="status">Loading…</div>
+    <div id="events-window" class="window" role="dialog" aria-label="events window">
+      <div id="events-window-header" class="window-header" title="Drag to move. Resize from the bottom-right corner.">
+        <div class="header-left">
+          <div class="window-title">Events</div>
+          <div class="status" id="status">Loading…</div>
+        </div>
+        <div class="controls">
+          <button id="reload" type="button">Reload</button>
+        </div>
       </div>
-      <div class="controls">
-        <button id="reload">Reload</button>
+
+      <div class="window-body">
+        <div id="error" class="error" style="display:none"></div>
+
+        <table aria-label="events">
+          <thead>
+            <tr>
+              <th>Asset</th>
+              <th>Date</th>
+              <th>Chart</th>
+            </tr>
+          </thead>
+          <tbody id="events-body">
+            <tr>
+              <td colspan="3" class="muted">Loading…</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <dialog id="row-dialog" aria-label="event details">
+          <form method="dialog" style="margin:0">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:10px;">
+              <div style="font-weight:700;">Event</div>
+              <button id="row-dialog-close" value="close" type="submit">Close</button>
+            </div>
+            <div id="row-dialog-content" style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 12px; white-space: pre-wrap;"></div>
+          </form>
+        </dialog>
       </div>
-    </header>
-
-    <div id="error" class="error" style="display:none"></div>
-
-    <table aria-label="events">
-      <thead>
-        <tr>
-          <th>Asset</th>
-          <th>Date</th>
-          <th>Chart</th>
-        </tr>
-      </thead>
-      <tbody id="events-body">
-        <tr>
-          <td colspan="3" class="muted">Loading…</td>
-        </tr>
-      </tbody>
-    </table>
+    </div>
 
     <script>
       const statusEl = document.getElementById('status');
       const errorEl = document.getElementById('error');
       const bodyEl = document.getElementById('events-body');
       const reloadBtn = document.getElementById('reload');
+      const winEl = document.getElementById('events-window');
+      const winHeaderEl = document.getElementById('events-window-header');
+      const rowDialog = document.getElementById('row-dialog');
+      const rowDialogContent = document.getElementById('row-dialog-content');
+
+      (function makeWindowDraggable(win, handle) {
+        if (!win || !handle) return;
+
+        let dragging = false;
+        let startX = 0;
+        let startY = 0;
+        let startLeft = 0;
+        let startTop = 0;
+
+        handle.addEventListener('pointerdown', (e) => {
+          // Only left mouse / primary pointer
+          if (e.button != null && e.button !== 0) return;
+
+          // Don't start dragging when clicking UI controls.
+          if (e.target && e.target.closest && e.target.closest('button,a,input,select,textarea,label')) return;
+
+          dragging = true;
+          const rect = win.getBoundingClientRect();
+          startLeft = rect.left;
+          startTop = rect.top;
+          startX = e.clientX;
+          startY = e.clientY;
+
+          // Ensure window stays in fixed coordinates.
+          win.style.left = `${startLeft}px`;
+          win.style.top = `${startTop}px`;
+          win.style.right = 'auto';
+          win.style.bottom = 'auto';
+
+          handle.setPointerCapture?.(e.pointerId);
+          e.preventDefault();
+        });
+
+        handle.addEventListener('pointermove', (e) => {
+          if (!dragging) return;
+          const dx = e.clientX - startX;
+          const dy = e.clientY - startY;
+          win.style.left = `${startLeft + dx}px`;
+          win.style.top = `${startTop + dy}px`;
+        });
+
+        function stopDrag() {
+          dragging = false;
+        }
+
+        handle.addEventListener('pointerup', stopDrag);
+        handle.addEventListener('pointercancel', stopDrag);
+        handle.addEventListener('lostpointercapture', stopDrag);
+      })(winEl, winHeaderEl);
 
       function setStatus(text) {
         statusEl.textContent = text;
@@ -177,6 +319,53 @@
         }
       }
 
+      function toUnixSeconds(v) {
+        if (v == null) return null;
+
+        // numbers: seconds or millis
+        if (typeof v === 'number' && Number.isFinite(v)) {
+          const sec = v >= 1e12 ? Math.floor(v / 1000) : Math.floor(v);
+          return Number.isFinite(sec) ? sec : null;
+        }
+
+        if (typeof v === 'string') {
+          // If string already looks like epoch number
+          if (/^\d{10,13}$/.test(v)) return toUnixSeconds(Number(v));
+
+          const d = new Date(v);
+          if (!Number.isNaN(d.getTime())) return Math.floor(d.getTime() / 1000);
+          return null;
+        }
+
+        if (typeof v === 'object') {
+          if (typeof v.epochSecond === 'number') return Math.floor(v.epochSecond);
+          if (typeof v.epochMillis === 'number') return Math.floor(v.epochMillis / 1000);
+          if (typeof v.time === 'number') return toUnixSeconds(v.time);
+          if (typeof v.instant === 'string') return toUnixSeconds(v.instant);
+        }
+
+        return null;
+      }
+
+      function showRowDialog(evObj) {
+        const asset = pick(evObj, ['asset', 'symbol', 'ticker', 'instrument']) ?? '';
+        const dateRaw = pick(evObj, ['date', 'date-instant', 'dateInstant', 'datetime', 'time', 'ts', 'timestamp']);
+        const unixSeconds = toUnixSeconds(dateRaw);
+
+        const lines = [
+          `asset: ${String(asset)}`,
+          `unix:  ${unixSeconds == null ? 'n/a' : unixSeconds}`
+        ];
+
+        if (rowDialog && typeof rowDialog.showModal === 'function') {
+          rowDialogContent.textContent = lines.join('\n');
+          rowDialog.showModal();
+        } else {
+          // Fallback for older browsers
+          alert(lines.join('\n'));
+        }
+      }
+
       function pick(obj, keys) {
         for (const k of keys) {
           if (obj && Object.prototype.hasOwnProperty.call(obj, k) && obj[k] != null) return obj[k];
@@ -225,6 +414,13 @@
           const chart = chartCellValue(ev);
 
           const tr = document.createElement('tr');
+          tr.style.cursor = 'pointer';
+
+          tr.addEventListener('click', (e) => {
+            // Don't trigger when clicking links.
+            if (e.target && e.target.closest && e.target.closest('a')) return;
+            showRowDialog(ev);
+          });
 
           const tdAsset = document.createElement('td');
           tdAsset.textContent = String(asset);

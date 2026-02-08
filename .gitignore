@@ -41,3 +41,4 @@ classes
 .gorilla/
 # database
 demo/duck/
+demo/.clj-kondo

@@ -3,8 +3,8 @@
    [clojure.pprint :refer [print-table]]
    [quanta.tradingview.chart.db :refer [save-chart chart-list load-chart]]
    [quanta.tradingview.chart.edit :refer [describe-charts get-source describe-sources
-                                          save-source create-source
-                                          pane pane-owner add-templates keep-only-main-chart
+                                          create-source
+                                          pane pane-owner keep-only-main-chart
                                           remove-drawings]]
    [demo.env :refer [env]]))
 
@@ -27,20 +27,20 @@
     (describe-charts)
     (print-table))
 
-; | :chart | :pane | :source |               :type |       :id |
-; |--------+-------+---------+---------------------+-----------|
-; |      0 |     0 |       0 |          MainSeries | _seriesId |
-; |      0 |     0 |       1 |     LineToolHorzRay |    k8HPzJ |
-; |      0 |     0 |       2 |    LineToolVertLine |    c56ymk |
-; |      0 |     0 |       3 |    LineToolVertLine |    k5ScMA |
-; |      0 |     0 |       4 |   LineToolTrendLine |    cxJ4et |
-; |      0 |     0 |       5 |     LineToolHorzRay |    Dq6XrD |
-; |      0 |     0 |       6 |   LineToolCrossLine |    niL0xL |
-; |      0 |     0 |       7 |        LineToolText |    Q7dHoz |
-; |      0 |     0 |       8 | LineToolArrowMarker |    kQVlCl |
-; |      0 |     0 |       9 |       LineToolTable |    HPnS7G |
-; |      0 |     1 |       0 |               Study |    EfnuL8 |
-; |      0 |     1 |       1 |   LineToolTrendLine |    cbmSrG |
+; | :chart | :pane | :source |               :type |       :id | :asset |
+; |--------+-------+---------+---------------------+-----------+--------|
+; |      0 |     0 |       0 |          MainSeries | _seriesId |     KO |
+; |      0 |     0 |       1 |     LineToolHorzRay |    k8HPzJ |  US:KO |
+; |      0 |     0 |       2 |    LineToolVertLine |    c56ymk |  US:KO |
+; |      0 |     0 |       3 |    LineToolVertLine |    k5ScMA |  US:KO |
+; |      0 |     0 |       4 |   LineToolTrendLine |    cxJ4et |     KO |
+; |      0 |     0 |       5 |     LineToolHorzRay |    Dq6XrD |     KO |
+; |      0 |     0 |       6 |   LineToolCrossLine |    niL0xL |     KO |
+; |      0 |     0 |       7 |        LineToolText |    Q7dHoz |     KO |
+; |      0 |     0 |       8 | LineToolArrowMarker |    kQVlCl |     KO |
+; |      0 |     0 |       9 |       LineToolTable |    HPnS7G |     KO |
+; |      0 |     1 |       0 |               Study |    EfnuL8 |        |
+; |      0 |     1 |       1 |   LineToolTrendLine |    cbmSrG |     KO |
 
 (-> (load-chart env {:chart-id "1770323667"})
     (keep-only-main-chart)
@@ -66,15 +66,11 @@
 
 (-> (load-chart env {:chart-id "1770323667"})
     (get-source 0 0 6)
-    (save-source))
-
-(-> (load-chart env {:chart-id "1770323667"})
-    (add-templates))
+    )
 
 
 
 
-(create-source "LineToolTrendLine" "MO" "5D")
 
 (create-source
  {:type "LineToolVertLine"
@@ -92,10 +88,6 @@
     (pane-owner 0 1))
 ; "EfnuL8"
 
-
-(-> (load-chart env {:chart-id "1770323667"})
-    (add-templates)
-    (print-table))
 
 
 (->> (load-chart env {:chart-id "1770323667"})

@@ -1,8 +1,12 @@
 (function (global) {
+
     function DemoBrokerTerminal(host) {
       this._host = host;
   
-      this._accounts = [{ id: "DEMO", name: "Demo Account" }];
+      this._accounts = [{ id: "DEMO",
+                           name: "Demo Account",
+                           default: true
+                        }];
       this._currentAccountId = "DEMO";
   
       this._orderId = 1;

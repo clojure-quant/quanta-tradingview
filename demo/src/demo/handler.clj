@@ -1,6 +1,5 @@
-(ns demo.raw
-  (:require
-   [modular.system :refer [system]]
+(ns demo.handler
+  (:require 
    [quanta.tradingview.asset.db :refer [search instrument-details]]
    [quanta.tradingview.handler.asset :refer [symbols-handler search-handler]]
    [quanta.tradingview.handler.response.asset :refer [symbol-search symbol-info]]

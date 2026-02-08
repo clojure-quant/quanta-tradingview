@@ -1,4 +1,4 @@
-(ns ta.tradingview.chart.color)
+(ns quanta.tradingview.chart.color)
 
 (def colors
   {:aliceblue "#f0f8ff"

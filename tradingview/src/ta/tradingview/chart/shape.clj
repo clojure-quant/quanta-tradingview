@@ -118,21 +118,7 @@
                                 :horzLabelsAlign "right",
                                 :vertLabelsAlign "top"}}})
 
-(defn sanitize-point [{:keys [time price] :as point}]
-  (if (and time (not (number? time)))
-    (update point :time ->epoch-second)
-    point))
 
-(defn sanitize-points [points]
-  (->> (map sanitize-point points)
-       (into [])))
-
-(comment
-  (sanitize-point {:time (parse-date "2023-01-30") :price 5})
-  (sanitize-points [{:time (parse-date "2022-01-30") :price 50}
-                    {:time (parse-date "2023-01-30") :price 100}])
-  ;
-  )
 (defn- plot-shape [type points user-style]
   ; helper function to apply default styles to a shape
   (let [default-style (get shapes type)]

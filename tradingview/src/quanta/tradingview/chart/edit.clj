@@ -1,10 +1,7 @@
 (ns quanta.tradingview.chart.edit
   (:require
-   [babashka.fs :as fs]
    [nano-id.core :refer [nano-id]]
    [com.rpl.specter :as specter]
-   [modular.persist.protocol :refer [save loadr]]
-   [modular.persist.edn] ; side effects
    [quanta.tradingview.chart.source :refer [create-source]]
    ))
 
@@ -50,23 +47,6 @@
 (defn modify-chart [opts chart-data]
   (merge chart-data opts))
 
-
-(defn add-drawing  [{:keys [type asset interval points state
-                            chart-idx pane-idx]
-                     :or {chart-idx 0
-                          pane-idx 0}
-                     :as opts} chart-data]
-  (let [source (create-source opts)
-        axis-sources-path [:charts chart-idx :panes pane-idx :rightAxisesState 0 :sources]
-        source-id (:id source)
-        pane-sources-path [:charts chart-idx :panes pane-idx :sources]]
-    (println "pane-sources-path " pane-sources-path)
-    (->> chart-data
-         ; add drawing to pane
-         (specter/transform pane-sources-path (fn [v] (conj (or v []) source)))
-         ; add drawing to right-axes source list
-         (specter/transform axis-sources-path (fn [v] (conj (or v []) source-id))))))
-
 (defn pane [chart-data chart-idx pane-idx]
   "data is a loaded chart 
    returns the a pane (with index pane-idx) for chart (with index chart-idx)"
@@ -74,7 +54,7 @@
 
 (defn pane-owner
   "returns the id of the mainseries or the first study in the pane.
-   this is needed because drawings need to link to this id."
+   this is needed because drawings need to set their :ownerSource to this id."
   [chart-data chart-idx pane-idx]
   (let [p (pane chart-data chart-idx pane-idx)
         main (->> p
@@ -90,6 +70,26 @@
                    first
                    :id)]
     (or main study)))
+
+(defn add-drawing  [{:keys [type asset interval points state
+                            chart-idx pane-idx]
+                     :or {chart-idx 0
+                          pane-idx 0}
+                     :as opts} chart-data]
+  (let [owner-source-id (pane-owner chart-data chart-idx pane-idx)
+        source (-> (create-source opts)
+                   (assoc :ownerSource owner-source-id))
+        axis-sources-path [:charts chart-idx :panes pane-idx :rightAxisesState 0 :sources]
+        source-id (:id source)
+        pane-sources-path [:charts chart-idx :panes pane-idx :sources]]
+    ;(println "pane-sources-path " pane-sources-path)
+    (->> chart-data
+         ; add drawing to pane
+         (specter/transform pane-sources-path (fn [v] (conj (or v []) source)))
+         ; add drawing to right-axes source list
+         (specter/transform axis-sources-path (fn [v] (conj (or v []) source-id))))))
+
+
 
 (defn keep-only-main-chart [chart-data]
   (let [chart-0 (-> chart-data :charts (get 0))

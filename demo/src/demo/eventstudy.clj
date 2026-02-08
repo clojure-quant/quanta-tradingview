@@ -10,8 +10,7 @@
                                           remove-drawings
                                           add-drawing
                                           modify-chart set-chart-asset
-                                          set-axes-sources
-                                          ]]
+                                          set-axes-sources]]
    [demo.env :refer [env]]))
 
 
@@ -60,7 +59,7 @@
 
 
 
-(-> (load-chart env {:chart-id "indicatortext"})
+(-> (load-chart env {:chart-id "eventtest"})
     (describe-charts)
     (print-table))
 
@@ -82,7 +81,7 @@
 (def events
   (-> (tc/dataset "2018-pl2.csv" {:key-fn keyword})
       (tc/select-columns [:date-instant :asset :close :trailing-high
-                          :trailing-high-date])
+                          :trailing-high-date :idx])
       (tc/rename-columns {:date-instant :date})
       (tc/rows :as-maps)))
 
@@ -107,7 +106,7 @@ events
        (add-drawing {:type "LineToolText"
                      :asset asset
                      :interval "1D"
-                     :state {:text "wunderbar"}
+                     :state {:text "breakout!!"}
                      :points [{:time_t date
                                :offset 0
                                :price trailing-high
@@ -115,7 +114,7 @@ events
        (add-drawing {:type "LineToolVertLine"
                      :asset asset
                      :interval "1D"
-                     :state {:text "wunderbar"}
+                     :state {:text "breakout-date"}
                      :points [{:time_t date
                                :offset 0
                                :price trailing-high
@@ -123,7 +122,7 @@ events
        (add-drawing {:type "LineToolVertLine"
                      :asset asset
                      :interval "1D"
-                     :state {:text "wunderbar"}
+                     :state {:text "trailing-window-high-date"}
                      :points [{:time_t trailing-high-date
                                :offset 0
                                :price trailing-high
@@ -131,13 +130,12 @@ events
        (add-drawing {:type "LineToolHorzRay"
                      :asset asset
                      :interval "1D"
-                     :state {:text "wunderbar"}
+                     :state {:text "trailing-window-high-price"}
                      :points [{:time_t trailing-high-date
                                :offset 0
                                :price trailing-high
                                :interval "1D"}]})
-       (set-axes-sources)
-       (save-chart env {})))
+       (set-axes-sources)))
 
 
 (-> (load-chart env {:chart-id "eventtest"})
@@ -155,20 +153,16 @@ events
   :asset "ABC", :close 157.84, :trailing-high 167.19,
   :trailing-high-date #time/zoned-date-time "2022-04-21T00:00Z"})
 
+(->> (create-chart-for-event (get events 1))
+     (modify-chart {:chart-id (str "event-demo")
+                    :name "event-demo"})
+     (save-chart env {}))
 
+(defn create-chart-asset-event [event]
+  (let [chart-name (str "event-" (:asset event) "-" (:idx event))]
+    (->> (create-chart-for-event event)
+         (modify-chart {:chart-id chart-name
+                        :name chart-name})
+         (save-chart env {}))))
 
-(->> (load-chart env {:chart-id "eventtest"})
-     (specter/select [:charts 0 :panes 0 :rightAxisesState 0 :sources]))
-    ; [["IMJvUT" "Uncxcm" "EVlZNG" "_seriesId" "dEAF5W" "AGgSlg" "GPQTYy" "iCdF3b"]]
-
-(->> (load-chart env {:chart-id "eventtest"})
-     (specter/select [:charts 0 :panes 0 :sources specter/ALL :type]))
-["MainSeries" "LineToolText" "LineToolVertLine" "LineToolVertLine" "LineToolHorzRay"]
-
-(->> (load-chart env {:chart-id "eventtest"})
-     (specter/select [:charts 0 :panes 0 :sources specter/ALL :id]))
-["_seriesId" "dEAF5W" "AGgSlg" "GPQTYy" "iCdF3b"]
-
-(->> (load-chart env {:chart-id "eventtest"})
-     set-axes-sources
-     (specter/select [:charts 0 :panes 0 :rightAxisesState 0 :sources]))
+(doall (map create-chart-asset-event events))

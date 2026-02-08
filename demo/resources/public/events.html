@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Events</title>
+    <style>
+      :root {
+        --bg: #0b0f14;
+        --panel: #111826;
+        --text: #e6edf3;
+        --muted: #9aa4b2;
+        --border: #223044;
+        --accent: #5aa7ff;
+      }
+      body {
+        margin: 0;
+        padding: 14px;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+          "Apple Color Emoji", "Segoe UI Emoji";
+        background: var(--bg);
+        color: var(--text);
+      }
+      header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      h1 {
+        font-size: 18px;
+        margin: 0;
+      }
+      .controls {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      button {
+        background: var(--panel);
+        color: var(--text);
+        border: 1px solid var(--border);
+        padding: 6px 8px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      button:hover { border-color: var(--accent); }
+      .status {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .error {
+        background: #2a0f14;
+        border: 1px solid #5a1a24;
+        padding: 10px 12px;
+        border-radius: 10px;
+        margin: 12px 0;
+        white-space: pre-wrap;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--border);
+        background: var(--panel);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      th, td {
+        text-align: left;
+        padding: 6px 8px;
+        border-bottom: 1px solid var(--border);
+        font-size: 13px;
+        line-height: 1.2;
+      }
+      th {
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 11px;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+      }
+      tr:hover td { background: rgba(90, 167, 255, 0.06); }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .muted { color: var(--muted); }
+      .right { text-align: right; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Events</h1>
+        <div class="status" id="status">Loading…</div>
+      </div>
+      <div class="controls">
+        <button id="reload">Reload</button>
+      </div>
+    </header>
+
+    <div id="error" class="error" style="display:none"></div>
+
+    <table aria-label="events">
+      <thead>
+        <tr>
+          <th>Asset</th>
+          <th>Date</th>
+          <th>Chart</th>
+        </tr>
+      </thead>
+      <tbody id="events-body">
+        <tr>
+          <td colspan="3" class="muted">Loading…</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      const statusEl = document.getElementById('status');
+      const errorEl = document.getElementById('error');
+      const bodyEl = document.getElementById('events-body');
+      const reloadBtn = document.getElementById('reload');
+
+      function setStatus(text) {
+        statusEl.textContent = text;
+      }
+
+      function showError(err) {
+        errorEl.style.display = 'block';
+        errorEl.textContent = String(err && err.stack ? err.stack : err);
+      }
+
+      function hideError() {
+        errorEl.style.display = 'none';
+        errorEl.textContent = '';
+      }
+
+      function toDisplayDate(v) {
+        if (v == null) return '';
+
+        function isoDateOnly(d) {
+          // UTC date (YYYY-MM-DD)
+          return d.toISOString().slice(0, 10);
+        }
+
+        // If the server returns a string date/time, normalize to date only when possible.
+        if (typeof v === 'string') {
+          // Fast path for ISO-ish strings like 2024-01-31T...
+          if (v.length >= 10 && /^\d{4}-\d{2}-\d{2}/.test(v)) return v.slice(0, 10);
+
+          const d = new Date(v);
+          if (!Number.isNaN(d.getTime())) return isoDateOnly(d);
+
+          return v;
+        }
+
+        // Handle unix epoch seconds/millis.
+        if (typeof v === 'number' && Number.isFinite(v)) {
+          const ms = v < 1e12 ? v * 1000 : v;
+          const d = new Date(ms);
+          if (!Number.isNaN(d.getTime())) return isoDateOnly(d);
+          return String(v);
+        }
+
+        // Try common nested shapes
+        if (typeof v === 'object') {
+          if (typeof v.epochMillis === 'number') return toDisplayDate(v.epochMillis);
+          if (typeof v.epochSecond === 'number') return toDisplayDate(v.epochSecond);
+          if (typeof v.time === 'number') return toDisplayDate(v.time);
+          if (typeof v.instant === 'string') return toDisplayDate(v.instant);
+        }
+
+        try {
+          return JSON.stringify(v);
+        } catch (_) {
+          return String(v);
+        }
+      }
+
+      function pick(obj, keys) {
+        for (const k of keys) {
+          if (obj && Object.prototype.hasOwnProperty.call(obj, k) && obj[k] != null) return obj[k];
+        }
+        return undefined;
+      }
+
+      function chartCellValue(ev) {
+        const v = pick(ev, ['chart', 'chartId', 'chart-id', 'chart_id', 'chartid', 'id']);
+        if (v == null) return { text: '', href: null };
+
+        // object chart
+        if (typeof v === 'object') {
+          const url = pick(v, ['url', 'href']);
+          const id = pick(v, ['id', 'chartId', 'chart-id']);
+          if (url) return { text: String(id ?? url), href: String(url) };
+          return { text: JSON.stringify(v), href: null };
+        }
+
+        const s = String(v);
+        if (s.startsWith('http://') || s.startsWith('https://') || s.startsWith('/')) {
+          return { text: s, href: s };
+        }
+
+        // We don't know your chart route; keep as text.
+        return { text: s, href: null };
+      }
+
+      function renderEvents(events) {
+        bodyEl.innerHTML = '';
+
+        if (!Array.isArray(events) || events.length === 0) {
+          const tr = document.createElement('tr');
+          const td = document.createElement('td');
+          td.colSpan = 3;
+          td.className = 'muted';
+          td.textContent = 'No events.';
+          tr.appendChild(td);
+          bodyEl.appendChild(tr);
+          return;
+        }
+
+        for (const ev of events) {
+          const asset = pick(ev, ['asset', 'symbol', 'ticker', 'instrument']) ?? '';
+          const date = pick(ev, ['date', 'date-instant', 'dateInstant', 'datetime', 'time', 'ts', 'timestamp']);
+          const chart = chartCellValue(ev);
+
+          const tr = document.createElement('tr');
+
+          const tdAsset = document.createElement('td');
+          tdAsset.textContent = String(asset);
+
+          const tdDate = document.createElement('td');
+          tdDate.textContent = toDisplayDate(date);
+
+          const tdChart = document.createElement('td');
+          if (chart.href) {
+            const a = document.createElement('a');
+            a.href = chart.href;
+            a.textContent = chart.text;
+            tdChart.appendChild(a);
+          } else {
+            tdChart.textContent = chart.text;
+          }
+
+          tr.appendChild(tdAsset);
+          tr.appendChild(tdDate);
+          tr.appendChild(tdChart);
+          bodyEl.appendChild(tr);
+        }
+      }
+
+      async function loadEvents() {
+        hideError();
+        setStatus('Loading…');
+
+        const res = await fetch('/events', {
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (!res.ok) {
+          const body = await res.text().catch(() => '');
+          throw new Error(`GET /events failed: ${res.status} ${res.statusText}${body ? "\n\n" + body : ''}`);
+        }
+
+        const data = await res.json();
+
+        // Accept a couple of common shapes: [] or {events: []}
+        let events = data;
+        if (data && !Array.isArray(data) && typeof data === 'object') {
+          if (Array.isArray(data.events)) events = data.events;
+          else if (Array.isArray(data.data)) events = data.data;
+        }
+
+        renderEvents(events);
+        setStatus(`Loaded ${Array.isArray(events) ? events.length : 0} events.`);
+      }
+
+      reloadBtn.addEventListener('click', () => {
+        loadEvents().catch(showError);
+      });
+
+      loadEvents().catch(showError);
+    </script>
+  </body>
+</html>

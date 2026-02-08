@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:08
+; saved on 2026-02-08 13:08:12
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "BMI",
  :name "event-BMI-395",
@@ -18,7 +18,7 @@
  :id "event-BMI-395",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571928,
+ :timestamp 1770574092,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 61.62,
                                          :interval "1D"}],
-                               :id "SobJo4",
-                               :linkKey "P63ZGQPoqYhZ",
+                               :id "eNvew0",
+                               :linkKey "cDU9XTQqI8W-",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 61.62,
                                          :interval "1D"}],
-                               :id "OX6kxx",
-                               :linkKey "264vy_z8WX33",
+                               :id "pCl8Us",
+                               :linkKey "ReT2n53LjyQf",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 61.62,
                                          :interval "1D"}],
-                               :id "8ZXG4G",
-                               :linkKey "Wy0YNN-CfrEH",
+                               :id "SMB2x6",
+                               :linkKey "z7Rq2j3hBvzi",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 61.62,
                                          :interval "1D"}],
-                               :id "ADsi3O",
-                               :linkKey "UZYXmbcMPAsJ",
+                               :id "iehHoQ",
+                               :linkKey "1Fz4qBAdwlTt",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "SobJo4"
-                                                  "OX6kxx"
-                                                  "8ZXG4G"
-                                                  "ADsi3O"]}],
+                                                  "eNvew0"
+                                                  "pCl8Us"
+                                                  "SMB2x6"
+                                                  "iehHoQ"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

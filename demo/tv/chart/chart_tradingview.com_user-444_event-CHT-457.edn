@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:10
+; saved on 2026-02-08 13:08:12
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "CHT",
  :name "event-CHT-457",
@@ -18,7 +18,7 @@
  :id "event-CHT-457",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571930,
+ :timestamp 1770574092,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 37.57,
                                          :interval "1D"}],
-                               :id "wIEOrB",
-                               :linkKey "CNwmgMQaMYN6",
+                               :id "phaefu",
+                               :linkKey "4ycSu-ceQwKO",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 37.57,
                                          :interval "1D"}],
-                               :id "MpUllw",
-                               :linkKey "Jyjya3hz1__y",
+                               :id "UXQy06",
+                               :linkKey "h1hfKgsBJgwS",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 37.57,
                                          :interval "1D"}],
-                               :id "OWhfwF",
-                               :linkKey "NjTH3t6al9iU",
+                               :id "HrxxGb",
+                               :linkKey "7NlYkmVw9Aw4",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 37.57,
                                          :interval "1D"}],
-                               :id "E4vUJf",
-                               :linkKey "bs6nbJtBpB7d",
+                               :id "qzmspV",
+                               :linkKey "9XEa-eNdoF-T",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "wIEOrB"
-                                                  "MpUllw"
-                                                  "OWhfwF"
-                                                  "E4vUJf"]}],
+                                                  "phaefu"
+                                                  "UXQy06"
+                                                  "HrxxGb"
+                                                  "qzmspV"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

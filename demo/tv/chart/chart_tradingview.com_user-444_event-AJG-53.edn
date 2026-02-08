@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:07
+; saved on 2026-02-08 13:08:11
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "AJG",
  :name "event-AJG-53",
@@ -18,7 +18,7 @@
  :id "event-AJG-53",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571927,
+ :timestamp 1770574091,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 70.1,
                                          :interval "1D"}],
-                               :id "vGPN5u",
-                               :linkKey "uDDuzGUEZKfz",
+                               :id "abNM2c",
+                               :linkKey "KRD7Ek81kPbO",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 70.1,
                                          :interval "1D"}],
-                               :id "N1Bd4S",
-                               :linkKey "U4VUC6jcOLyp",
+                               :id "POlCl3",
+                               :linkKey "EplIju34hFtO",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 70.1,
                                          :interval "1D"}],
-                               :id "P1_NtY",
-                               :linkKey "BugB_gZC9o_G",
+                               :id "WpH8qD",
+                               :linkKey "V0NW9fFJT7OL",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 70.1,
                                          :interval "1D"}],
-                               :id "iBwCxc",
-                               :linkKey "lhVJKR8ep7B2",
+                               :id "xtW8pj",
+                               :linkKey "6nc11trGSZ0_",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "vGPN5u"
-                                                  "N1Bd4S"
-                                                  "P1_NtY"
-                                                  "iBwCxc"]}],
+                                                  "abNM2c"
+                                                  "POlCl3"
+                                                  "WpH8qD"
+                                                  "xtW8pj"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

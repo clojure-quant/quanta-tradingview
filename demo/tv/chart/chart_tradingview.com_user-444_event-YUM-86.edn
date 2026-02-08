@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:20
+; saved on 2026-02-08 13:08:20
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "YUM",
  :name "event-YUM-86",
@@ -18,7 +18,7 @@
  :id "event-YUM-86",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571940,
+ :timestamp 1770574100,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 87.11,
                                          :interval "1D"}],
-                               :id "FKEP4c",
-                               :linkKey "dhrZQXB94-_Q",
+                               :id "eb9i4l",
+                               :linkKey "4KnG8f133d5v",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 87.11,
                                          :interval "1D"}],
-                               :id "Y0eC88",
-                               :linkKey "GI9k0ZQjaOWH",
+                               :id "MS_cnO",
+                               :linkKey "JUtYIH4LPZ45",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 87.11,
                                          :interval "1D"}],
-                               :id "HtENDo",
-                               :linkKey "4t5UKiOU2Vya",
+                               :id "jpaUzi",
+                               :linkKey "4Mm_nl8V0c8z",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 87.11,
                                          :interval "1D"}],
-                               :id "mx-ASs",
-                               :linkKey "X1PVyUnnbaHX",
+                               :id "EtJrRa",
+                               :linkKey "414DlQsGGcKU",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "FKEP4c"
-                                                  "Y0eC88"
-                                                  "HtENDo"
-                                                  "mx-ASs"]}],
+                                                  "eb9i4l"
+                                                  "MS_cnO"
+                                                  "jpaUzi"
+                                                  "EtJrRa"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

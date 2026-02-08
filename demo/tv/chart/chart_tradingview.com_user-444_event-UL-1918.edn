@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:19
+; saved on 2026-02-08 13:08:20
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "UL",
  :name "event-UL-1918",
@@ -18,7 +18,7 @@
  :id "event-UL-1918",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571939,
+ :timestamp 1770574100,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 65.65,
                                          :interval "1D"}],
-                               :id "hWJ9Ge",
-                               :linkKey "J5EVcyBRHZQt",
+                               :id "ytRavE",
+                               :linkKey "pf2JutYXfeXQ",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 65.65,
                                          :interval "1D"}],
-                               :id "BPAdkT",
-                               :linkKey "TeO3ZggS_Zdq",
+                               :id "HYnnx5",
+                               :linkKey "rm07I70gIx3T",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 65.65,
                                          :interval "1D"}],
-                               :id "f9rf87",
-                               :linkKey "tLfZ-q-MBGE1",
+                               :id "khJ3S6",
+                               :linkKey "Di5SM4X6wLzK",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 65.65,
                                          :interval "1D"}],
-                               :id "Uvcxg6",
-                               :linkKey "isRYi6sbpayx",
+                               :id "-Xzd5S",
+                               :linkKey "rij0yLYChaTv",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "hWJ9Ge"
-                                                  "BPAdkT"
-                                                  "f9rf87"
-                                                  "Uvcxg6"]}],
+                                                  "ytRavE"
+                                                  "HYnnx5"
+                                                  "khJ3S6"
+                                                  "-Xzd5S"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

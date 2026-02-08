@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:06
+; saved on 2026-02-08 13:08:11
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "ACM",
  :name "event-ACM-1411",
@@ -18,7 +18,7 @@
  :id "event-ACM-1411",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571926,
+ :timestamp 1770574091,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 92.12,
                                          :interval "1D"}],
-                               :id "SDTzIL",
-                               :linkKey "Hg1DEZajYgUt",
+                               :id "zJHUYD",
+                               :linkKey "efhYtPnxiwH4",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 92.12,
                                          :interval "1D"}],
-                               :id "8HN5qp",
-                               :linkKey "FgmXit8PMdfL",
+                               :id "wWfNqh",
+                               :linkKey "Xr7XtpKM_Rwl",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 92.12,
                                          :interval "1D"}],
-                               :id "YkiQ4B",
-                               :linkKey "CHxaiZmN8RKL",
+                               :id "Jcyero",
+                               :linkKey "8jtCJKLEv-Kv",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 92.12,
                                          :interval "1D"}],
-                               :id "kaMojj",
-                               :linkKey "ko7oguCyHikF",
+                               :id "x-O-np",
+                               :linkKey "ZKONdlwb2O5M",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "SDTzIL"
-                                                  "8HN5qp"
-                                                  "YkiQ4B"
-                                                  "kaMojj"]}],
+                                                  "zJHUYD"
+                                                  "wWfNqh"
+                                                  "Jcyero"
+                                                  "x-O-np"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:12
+; saved on 2026-02-08 13:08:14
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "FLO",
  :name "event-FLO-1151",
@@ -18,7 +18,7 @@
  :id "event-FLO-1151",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571932,
+ :timestamp 1770574094,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 29.725,
                                          :interval "1D"}],
-                               :id "acFCiA",
-                               :linkKey "A9l_T36tPhc9",
+                               :id "3mkISu",
+                               :linkKey "lewRFip420DO",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 29.725,
                                          :interval "1D"}],
-                               :id "iNPRft",
-                               :linkKey "y2ZFrgtSQuwX",
+                               :id "uswSsr",
+                               :linkKey "pybVk900Hpmc",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 29.725,
                                          :interval "1D"}],
-                               :id "U_kgWh",
-                               :linkKey "PZx2C7fMPGu8",
+                               :id "F2zk0d",
+                               :linkKey "mPHc3T408Vpk",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 29.725,
                                          :interval "1D"}],
-                               :id "LiCsSP",
-                               :linkKey "IgY3gCC-FAt4",
+                               :id "v_nF2-",
+                               :linkKey "8gOCj5vOFByF",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "acFCiA"
-                                                  "iNPRft"
-                                                  "U_kgWh"
-                                                  "LiCsSP"]}],
+                                                  "3mkISu"
+                                                  "uswSsr"
+                                                  "F2zk0d"
+                                                  "v_nF2-"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

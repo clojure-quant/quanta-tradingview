@@ -1,4 +1,4 @@
-(ns demo.handler
+(ns demo.handler-demo
   (:require 
    [quanta.tradingview.asset.db :refer [search instrument-details]]
    [quanta.tradingview.handler.asset :refer [symbols-handler search-handler]]

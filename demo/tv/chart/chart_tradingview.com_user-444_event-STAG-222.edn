@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:17
+; saved on 2026-02-08 13:08:18
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "STAG",
  :name "event-STAG-222",
@@ -18,7 +18,7 @@
  :id "event-STAG-222",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571937,
+ :timestamp 1770574098,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 29.06,
                                          :interval "1D"}],
-                               :id "GhUaAw",
-                               :linkKey "AByOHYt9_UGa",
+                               :id "qSCfwj",
+                               :linkKey "HJGkvbjEDEzs",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 29.06,
                                          :interval "1D"}],
-                               :id "FtvYB3",
-                               :linkKey "dUr2fPqePxK6",
+                               :id "0k0pGg",
+                               :linkKey "72Ow-S-B73kI",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 29.06,
                                          :interval "1D"}],
-                               :id "4nRWu4",
-                               :linkKey "1ol9Z1iWnSdH",
+                               :id "MoNR3t",
+                               :linkKey "vnUurNvT5z3w",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 29.06,
                                          :interval "1D"}],
-                               :id "N5YCRK",
-                               :linkKey "HF9Cey39Yby1",
+                               :id "FOWdBw",
+                               :linkKey "fYaz-m1Wz22w",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "GhUaAw"
-                                                  "FtvYB3"
-                                                  "4nRWu4"
-                                                  "N5YCRK"]}],
+                                                  "qSCfwj"
+                                                  "0k0pGg"
+                                                  "MoNR3t"
+                                                  "FOWdBw"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

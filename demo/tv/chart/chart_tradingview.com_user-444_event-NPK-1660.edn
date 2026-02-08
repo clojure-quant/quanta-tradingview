@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:15
+; saved on 2026-02-08 13:08:17
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "NPK",
  :name "event-NPK-1660",
@@ -18,7 +18,7 @@
  :id "event-NPK-1660",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571935,
+ :timestamp 1770574097,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 86.14,
                                          :interval "1D"}],
-                               :id "s6M76Q",
-                               :linkKey "9wDswJ21Zmib",
+                               :id "Wgxwap",
+                               :linkKey "2m0TPqTfVkUC",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 86.14,
                                          :interval "1D"}],
-                               :id "GQTcLz",
-                               :linkKey "soFkz8hjuqnY",
+                               :id "TE9yxL",
+                               :linkKey "deaVKtqvRb7E",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 86.14,
                                          :interval "1D"}],
-                               :id "eYPWaA",
-                               :linkKey "cdzpyylQYyog",
+                               :id "Wn05r_",
+                               :linkKey "TB2mXrhotuU6",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 86.14,
                                          :interval "1D"}],
-                               :id "ek4nS3",
-                               :linkKey "fGKCgUxePi04",
+                               :id "Fi-8te",
+                               :linkKey "OPz7hMKFLJv5",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "s6M76Q"
-                                                  "GQTcLz"
-                                                  "eYPWaA"
-                                                  "ek4nS3"]}],
+                                                  "Wgxwap"
+                                                  "TE9yxL"
+                                                  "Wn05r_"
+                                                  "Fi-8te"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

@@ -65,8 +65,7 @@
     (get-source 0 0 3))
 
 (-> (load-chart env {:chart-id "1770323667"})
-    (get-source 0 0 6)
-    )
+    (get-source 0 0 6))
 
 
 
@@ -103,35 +102,4 @@
 ; |--------+-------+---------+------------+-----------|
 ; |      0 |     0 |       0 | MainSeries | _seriesId |
 
-
-"LineToolVertLine"
-
-
-; vert line
-:type "LineToolVertLine",
-:id "k5ScMA",
-:ownerSource "_seriesId", ; study or seriesId (the series in the pane.)
-:linkKey "PkPEA06MeEBJ",
-:state :symbol "US:KO",
-:interval "1D",
-:points [{:time_t 1610096400,
-          :offset 0,
-          :price 67.13970181128232}],
-
-; horizontal ray
-:type "LineToolHorzRay",
-:id "k8HPzJ",
-:ownerSource "_seriesId", ; study or seriesId (the series in the pane.)
-:linkKey "M52wAMEGLzfL",
-:points [{:time_t 1650531600,
-          :offset 0,
-          :price 67.06831592075459}],
-
-; cross
-:type "LineToolCrossLine",
-:id "niL0xL",
-:ownerSource "_seriesId",
-:linkKey "3XiV44bHTztK",
-:state :symbol "KO"
-:interval "1D"
 

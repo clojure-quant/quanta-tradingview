@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:19
+; saved on 2026-02-08 13:08:20
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "VOYA",
  :name "event-VOYA-1604",
@@ -18,7 +18,7 @@
  :id "event-VOYA-1604",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571939,
+ :timestamp 1770574100,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 77.0,
                                          :interval "1D"}],
-                               :id "CUMVXq",
-                               :linkKey "b7w4zUtPI9KU",
+                               :id "Ois5AP",
+                               :linkKey "q4JyXnvTCvsU",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 77.0,
                                          :interval "1D"}],
-                               :id "xqRga6",
-                               :linkKey "eB7ImrV91Eai",
+                               :id "4nfKK3",
+                               :linkKey "H2BXilkXBa5y",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 77.0,
                                          :interval "1D"}],
-                               :id "EHs9FC",
-                               :linkKey "bJBBGEzR3v5O",
+                               :id "JlmdWS",
+                               :linkKey "TCkfaYKi-9Jm",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 77.0,
                                          :interval "1D"}],
-                               :id "_d3RaP",
-                               :linkKey "R6n_8nOnXMR7",
+                               :id "xRBxdT",
+                               :linkKey "BxfMnEsbVhsr",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "CUMVXq"
-                                                  "xqRga6"
-                                                  "EHs9FC"
-                                                  "_d3RaP"]}],
+                                                  "Ois5AP"
+                                                  "4nfKK3"
+                                                  "JlmdWS"
+                                                  "xRBxdT"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

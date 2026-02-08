@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:19
+; saved on 2026-02-08 13:08:20
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "WMK",
  :name "event-WMK-1058",
@@ -18,7 +18,7 @@
  :id "event-WMK-1058",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571939,
+ :timestamp 1770574100,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 86.88,
                                          :interval "1D"}],
-                               :id "01-Es5",
-                               :linkKey "EXKU1ZND-vX5",
+                               :id "bKQ-Dy",
+                               :linkKey "8U4CzBzCeMy7",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 86.88,
                                          :interval "1D"}],
-                               :id "cpeLNb",
-                               :linkKey "qJcTuVMdadnQ",
+                               :id "WVeJnc",
+                               :linkKey "5XaQOW-CiW8z",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 86.88,
                                          :interval "1D"}],
-                               :id "asW6c8",
-                               :linkKey "ZKtTDz3GOVAi",
+                               :id "4ptVVo",
+                               :linkKey "5FyuXTN5AOb1",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 86.88,
                                          :interval "1D"}],
-                               :id "iIucXE",
-                               :linkKey "aAefQGQ9wNWT",
+                               :id "8uP-OK",
+                               :linkKey "QHX2OyVI6ROM",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "01-Es5"
-                                                  "cpeLNb"
-                                                  "asW6c8"
-                                                  "iIucXE"]}],
+                                                  "bKQ-Dy"
+                                                  "WVeJnc"
+                                                  "4ptVVo"
+                                                  "8uP-OK"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

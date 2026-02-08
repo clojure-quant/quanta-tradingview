@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:07
+; saved on 2026-02-08 13:08:11
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "AMRC",
  :name "event-AMRC-44",
@@ -18,7 +18,7 @@
  :id "event-AMRC-44",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571927,
+ :timestamp 1770574091,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 12.65,
                                          :interval "1D"}],
-                               :id "vAJeFl",
-                               :linkKey "fc6KImU4V-2A",
+                               :id "Dev9PG",
+                               :linkKey "sf4Pfjw-kad6",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 12.65,
                                          :interval "1D"}],
-                               :id "1htduN",
-                               :linkKey "aOz9fAk0VXh-",
+                               :id "r8rFXS",
+                               :linkKey "5Lexsejmrt83",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 12.65,
                                          :interval "1D"}],
-                               :id "3yx44u",
-                               :linkKey "KW8S5qOZKQo5",
+                               :id "-wNccR",
+                               :linkKey "3svEVkhCqWe0",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 12.65,
                                          :interval "1D"}],
-                               :id "Wpg4pT",
-                               :linkKey "d0WDFvbHqlMr",
+                               :id "xR6Z8_",
+                               :linkKey "jpqlSiRM4DBC",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "vAJeFl"
-                                                  "1htduN"
-                                                  "3yx44u"
-                                                  "Wpg4pT"]}],
+                                                  "Dev9PG"
+                                                  "r8rFXS"
+                                                  "-wNccR"
+                                                  "xR6Z8_"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

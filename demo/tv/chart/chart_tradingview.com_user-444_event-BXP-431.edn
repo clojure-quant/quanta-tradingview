@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:09
+; saved on 2026-02-08 13:08:12
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "BXP",
  :name "event-BXP-431",
@@ -18,7 +18,7 @@
  :id "event-BXP-431",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571929,
+ :timestamp 1770574092,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 140.35,
                                          :interval "1D"}],
-                               :id "kgJytv",
-                               :linkKey "7Pdx394-8B4z",
+                               :id "1OQm3r",
+                               :linkKey "zlFxDtUf1Zob",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 140.35,
                                          :interval "1D"}],
-                               :id "5AmNsy",
-                               :linkKey "OT667Qzvq6Tp",
+                               :id "EtxojR",
+                               :linkKey "X_t-NKyc9v_H",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 140.35,
                                          :interval "1D"}],
-                               :id "K1OJTv",
-                               :linkKey "F8o3WZ6_0pb2",
+                               :id "-AlRLl",
+                               :linkKey "ckRdgl9c0xiZ",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 140.35,
                                          :interval "1D"}],
-                               :id "JxBP5A",
-                               :linkKey "jTqzI-WcFlR1",
+                               :id "JTkemx",
+                               :linkKey "rv0BsCfEzRHV",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "kgJytv"
-                                                  "5AmNsy"
-                                                  "K1OJTv"
-                                                  "JxBP5A"]}],
+                                                  "1OQm3r"
+                                                  "EtxojR"
+                                                  "-AlRLl"
+                                                  "JTkemx"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

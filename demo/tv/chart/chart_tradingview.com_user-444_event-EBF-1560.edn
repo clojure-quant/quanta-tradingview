@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:11
+; saved on 2026-02-08 13:08:14
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "EBF",
  :name "event-EBF-1560",
@@ -18,7 +18,7 @@
  :id "event-EBF-1560",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571931,
+ :timestamp 1770574094,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 23.17,
                                          :interval "1D"}],
-                               :id "V5ET79",
-                               :linkKey "ClkHmNmZCacb",
+                               :id "7LIx67",
+                               :linkKey "8aPkr3wsI0O8",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 23.17,
                                          :interval "1D"}],
-                               :id "f1nYty",
-                               :linkKey "ECkREDNiOrRJ",
+                               :id "dRb5lp",
+                               :linkKey "J5Grb8BITp-7",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 23.17,
                                          :interval "1D"}],
-                               :id "ktmgbj",
-                               :linkKey "oTgFiU_L4WUT",
+                               :id "_B4fVE",
+                               :linkKey "tYEJkqQ1GN2z",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 23.17,
                                          :interval "1D"}],
-                               :id "LXZirw",
-                               :linkKey "am3wVkS5sFvv",
+                               :id "t9tsGc",
+                               :linkKey "6VTWWbmbhvHg",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "V5ET79"
-                                                  "f1nYty"
-                                                  "ktmgbj"
-                                                  "LXZirw"]}],
+                                                  "7LIx67"
+                                                  "dRb5lp"
+                                                  "_B4fVE"
+                                                  "t9tsGc"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

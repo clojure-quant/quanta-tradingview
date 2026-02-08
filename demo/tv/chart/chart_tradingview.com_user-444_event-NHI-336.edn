@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:15
+; saved on 2026-02-08 13:08:16
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "NHI",
  :name "event-NHI-336",
@@ -18,7 +18,7 @@
  :id "event-NHI-336",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571935,
+ :timestamp 1770574096,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 84.57,
                                          :interval "1D"}],
-                               :id "4a65NH",
-                               :linkKey "UVbibXOhK33C",
+                               :id "fjFRNq",
+                               :linkKey "MFb522n2DX2-",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 84.57,
                                          :interval "1D"}],
-                               :id "95u7Ws",
-                               :linkKey "kUZNK6q1x-Nj",
+                               :id "fRJBKE",
+                               :linkKey "-Ru0vr5wEwe5",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 84.57,
                                          :interval "1D"}],
-                               :id "nSu0yg",
-                               :linkKey "MxIPDUj3PIEG",
+                               :id "2xa6l8",
+                               :linkKey "Q1PI6bzNQRzX",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 84.57,
                                          :interval "1D"}],
-                               :id "BYXhMs",
-                               :linkKey "9hj0Pr1HV0FE",
+                               :id "Butgai",
+                               :linkKey "fH4rJ7fpIFbA",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "4a65NH"
-                                                  "95u7Ws"
-                                                  "nSu0yg"
-                                                  "BYXhMs"]}],
+                                                  "fjFRNq"
+                                                  "fRJBKE"
+                                                  "2xa6l8"
+                                                  "Butgai"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:09
+; saved on 2026-02-08 13:08:12
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "BWXT",
  :name "event-BWXT-1608",
@@ -18,7 +18,7 @@
  :id "event-BWXT-1608",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571929,
+ :timestamp 1770574092,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 107.09,
                                          :interval "1D"}],
-                               :id "XVenTA",
-                               :linkKey "aTJGzhtyyF3h",
+                               :id "hGRTTK",
+                               :linkKey "6vHVznUlfpwc",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 107.09,
                                          :interval "1D"}],
-                               :id "o6tr0L",
-                               :linkKey "O1aifSkUZ0C0",
+                               :id "EqLIV1",
+                               :linkKey "1p8Ad6IMgoLK",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 107.09,
                                          :interval "1D"}],
-                               :id "8FlcaF",
-                               :linkKey "PEYzGAr4lCmz",
+                               :id "pOAvII",
+                               :linkKey "sfVfzUgNDaCI",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 107.09,
                                          :interval "1D"}],
-                               :id "ePWj-1",
-                               :linkKey "rEbp0Mo_cprg",
+                               :id "uW6Pne",
+                               :linkKey "gOEIFVJCctIf",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "XVenTA"
-                                                  "o6tr0L"
-                                                  "8FlcaF"
-                                                  "ePWj-1"]}],
+                                                  "hGRTTK"
+                                                  "EqLIV1"
+                                                  "pOAvII"
+                                                  "uW6Pne"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

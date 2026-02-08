@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:14
+; saved on 2026-02-08 13:08:16
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "KREF",
  :name "event-KREF-417",
@@ -18,7 +18,7 @@
  :id "event-KREF-417",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571934,
+ :timestamp 1770574096,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 21.0,
                                          :interval "1D"}],
-                               :id "0tsPJu",
-                               :linkKey "gOk_edhMkInA",
+                               :id "9qg7g-",
+                               :linkKey "jVKK7HZzyuV8",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 21.0,
                                          :interval "1D"}],
-                               :id "XaX45t",
-                               :linkKey "QiRu_VSSdtLD",
+                               :id "Hp2b-b",
+                               :linkKey "8n9iHgQ1v5wK",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 21.0,
                                          :interval "1D"}],
-                               :id "DaARXE",
-                               :linkKey "0xLCZXw0MFzy",
+                               :id "Z6tiC3",
+                               :linkKey "lH8eBGxasjzw",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 21.0,
                                          :interval "1D"}],
-                               :id "V2xeSN",
-                               :linkKey "C8HWyd75c3dB",
+                               :id "YNGlD8",
+                               :linkKey "2havl64wVmEs",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "0tsPJu"
-                                                  "XaX45t"
-                                                  "DaARXE"
-                                                  "V2xeSN"]}],
+                                                  "9qg7g-"
+                                                  "Hp2b-b"
+                                                  "Z6tiC3"
+                                                  "YNGlD8"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

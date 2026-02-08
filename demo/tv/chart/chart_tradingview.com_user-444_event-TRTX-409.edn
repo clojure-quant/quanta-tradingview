@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:18
+; saved on 2026-02-08 13:08:19
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "TRTX",
  :name "event-TRTX-409",
@@ -18,7 +18,7 @@
  :id "event-TRTX-409",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571938,
+ :timestamp 1770574099,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 20.54,
                                          :interval "1D"}],
-                               :id "A8DLKS",
-                               :linkKey "5yQlzyBCGWYh",
+                               :id "BUWbf3",
+                               :linkKey "Ok-HE3Yn42Ri",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 20.54,
                                          :interval "1D"}],
-                               :id "3di5G_",
-                               :linkKey "ao5eX0K4bkdM",
+                               :id "aBcOEa",
+                               :linkKey "X0XOaWc8hJBw",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 20.54,
                                          :interval "1D"}],
-                               :id "WEw0mt",
-                               :linkKey "Wjtji0R-iDTL",
+                               :id "bhf-lg",
+                               :linkKey "PkMFqSWD2XG8",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 20.54,
                                          :interval "1D"}],
-                               :id "j9aDyw",
-                               :linkKey "JEm5GeAa81sA",
+                               :id "3b80rL",
+                               :linkKey "D_2Jaq2yjOI7",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "A8DLKS"
-                                                  "3di5G_"
-                                                  "WEw0mt"
-                                                  "j9aDyw"]}],
+                                                  "BUWbf3"
+                                                  "aBcOEa"
+                                                  "bhf-lg"
+                                                  "3b80rL"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

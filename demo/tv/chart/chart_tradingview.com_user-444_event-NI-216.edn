@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:15
+; saved on 2026-02-08 13:08:16
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "NI",
  :name "event-NI-216",
@@ -18,7 +18,7 @@
  :id "event-NI-216",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571935,
+ :timestamp 1770574096,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 28.105,
                                          :interval "1D"}],
-                               :id "-33wXB",
-                               :linkKey "9HkgRj25p-nz",
+                               :id "LgPO24",
+                               :linkKey "7PvLj0eDMNX3",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 28.105,
                                          :interval "1D"}],
-                               :id "E5CzMP",
-                               :linkKey "wg4E_jAj6pkz",
+                               :id "yp8Ewz",
+                               :linkKey "dWqPUOHzS8uN",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 28.105,
                                          :interval "1D"}],
-                               :id "--_0Gl",
-                               :linkKey "1eDU37g7qWoZ",
+                               :id "z3oRvl",
+                               :linkKey "F_burvGBd8Ry",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 28.105,
                                          :interval "1D"}],
-                               :id "vWqivY",
-                               :linkKey "SEofUNfaxYNG",
+                               :id "08U2I2",
+                               :linkKey "XyJrsz0rk54X",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "-33wXB"
-                                                  "E5CzMP"
-                                                  "--_0Gl"
-                                                  "vWqivY"]}],
+                                                  "LgPO24"
+                                                  "yp8Ewz"
+                                                  "z3oRvl"
+                                                  "08U2I2"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

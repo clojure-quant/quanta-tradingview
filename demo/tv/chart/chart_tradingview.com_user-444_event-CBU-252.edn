@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:09
+; saved on 2026-02-08 13:08:12
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "CBU",
  :name "event-CBU-252",
@@ -18,7 +18,7 @@
  :id "event-CBU-252",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571929,
+ :timestamp 1770574092,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 67.04,
                                          :interval "1D"}],
-                               :id "Nr7Mp2",
-                               :linkKey "CYR_Yolcy1-n",
+                               :id "mRW_cz",
+                               :linkKey "P_As5YcWp8V7",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 67.04,
                                          :interval "1D"}],
-                               :id "N9OHrg",
-                               :linkKey "t3FRFqk7mQDv",
+                               :id "1ph__u",
+                               :linkKey "bjynCjzNGQIJ",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 67.04,
                                          :interval "1D"}],
-                               :id "JR0GXX",
-                               :linkKey "kjUu6WFhhG-I",
+                               :id "Io5PGJ",
+                               :linkKey "Ckkz1bxONhUs",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 67.04,
                                          :interval "1D"}],
-                               :id "IgFYEv",
-                               :linkKey "CeW8cijpWomu",
+                               :id "MkuEMX",
+                               :linkKey "e9Klsk47wRk1",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "Nr7Mp2"
-                                                  "N9OHrg"
-                                                  "JR0GXX"
-                                                  "IgFYEv"]}],
+                                                  "mRW_cz"
+                                                  "1ph__u"
+                                                  "Io5PGJ"
+                                                  "MkuEMX"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:14
+; saved on 2026-02-08 13:08:16
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "LDOS",
  :name "event-LDOS-54",
@@ -18,7 +18,7 @@
  :id "event-LDOS-54",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571934,
+ :timestamp 1770574096,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 64.09,
                                          :interval "1D"}],
-                               :id "xFqUtL",
-                               :linkKey "-vTLo441FxRW",
+                               :id "VbSJx3",
+                               :linkKey "NowNgdLVvy9d",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 64.09,
                                          :interval "1D"}],
-                               :id "zxNlwD",
-                               :linkKey "t76yACLyU18m",
+                               :id "19Vg-q",
+                               :linkKey "St3q_XbvmUjo",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 64.09,
                                          :interval "1D"}],
-                               :id "zmJef-",
-                               :linkKey "_3GtGsX3In3h",
+                               :id "Vp5sK1",
+                               :linkKey "FCB8X2HRXSQv",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 64.09,
                                          :interval "1D"}],
-                               :id "ivXgx4",
-                               :linkKey "ANMUPyVu6VNW",
+                               :id "zpL6DR",
+                               :linkKey "uAT_aCp3q-zF",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "xFqUtL"
-                                                  "zxNlwD"
-                                                  "zmJef-"
-                                                  "ivXgx4"]}],
+                                                  "VbSJx3"
+                                                  "19Vg-q"
+                                                  "Vp5sK1"
+                                                  "zpL6DR"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

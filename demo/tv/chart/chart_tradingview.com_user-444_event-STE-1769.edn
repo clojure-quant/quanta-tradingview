@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:17
+; saved on 2026-02-08 13:08:19
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "STE",
  :name "event-STE-1769",
@@ -18,7 +18,7 @@
  :id "event-STE-1769",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571937,
+ :timestamp 1770574099,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 248.0,
                                          :interval "1D"}],
-                               :id "KjSM15",
-                               :linkKey "5K_H5C66TmQF",
+                               :id "V599MF",
+                               :linkKey "w3RAGl82agFP",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 248.0,
                                          :interval "1D"}],
-                               :id "Myy7QY",
-                               :linkKey "UtOSkpbm62sc",
+                               :id "htzG41",
+                               :linkKey "KS203EEt2wYH",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 248.0,
                                          :interval "1D"}],
-                               :id "5GMR9-",
-                               :linkKey "g96lK_a9Snv4",
+                               :id "cKcCFi",
+                               :linkKey "I2GNC3X9J3vP",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 248.0,
                                          :interval "1D"}],
-                               :id "5G_sdW",
-                               :linkKey "9SVej38KZ0RD",
+                               :id "Ipu_oA",
+                               :linkKey "IUblOsyv_Yxo",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "KjSM15"
-                                                  "Myy7QY"
-                                                  "5GMR9-"
-                                                  "5G_sdW"]}],
+                                                  "V599MF"
+                                                  "htzG41"
+                                                  "cKcCFi"
+                                                  "Ipu_oA"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

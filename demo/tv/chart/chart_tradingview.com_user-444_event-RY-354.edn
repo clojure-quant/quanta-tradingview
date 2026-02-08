@@ -1,8 +1,8 @@
-; saved on 2026-02-08 12:32:16
+; saved on 2026-02-08 13:08:18
 {:description "",
  :symbolLock 0,
  :trackTimeLock 0,
- :layout "2h",
+ :layout "s",
  :listed_exchange "us",
  :symbol "RY",
  :name "event-RY-354",
@@ -18,7 +18,7 @@
  :id "event-RY-354",
  :crosshairLock 1,
  :exchange "us",
- :timestamp 1770571936,
+ :timestamp 1770574098,
  :charts [{:timezone "Etc/UTC",
            :lineToolsGroups {:groups []},
            :shouldBeSavedEvenIfHidden true,
@@ -476,8 +476,8 @@
                                          :offset 0,
                                          :price 81.56,
                                          :interval "1D"}],
-                               :id "IUfAPo",
-                               :linkKey "aIyGc1sCyDTN",
+                               :id "Q32QuH",
+                               :linkKey "A4PSLXSFSKcA",
                                :isSelectionEnabled true,
                                :zorder -79}
                               {:ownerSource "_seriesId",
@@ -531,8 +531,8 @@
                                          :offset 0,
                                          :price 81.56,
                                          :interval "1D"}],
-                               :id "Zeccen",
-                               :linkKey "MdwKFreYwqa0",
+                               :id "rh5YJ8",
+                               :linkKey "F45s0fJAhZEc",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -586,8 +586,8 @@
                                          :offset 0,
                                          :price 81.56,
                                          :interval "1D"}],
-                               :id "AyVY37",
-                               :linkKey "UyN5q7m0Ugnp",
+                               :id "YOJAhf",
+                               :linkKey "0GLy28jWk4D-",
                                :isSelectionEnabled true,
                                :zorder -1250}
                               {:ownerSource "_seriesId",
@@ -638,8 +638,8 @@
                                          :offset 0,
                                          :price 81.56,
                                          :interval "1D"}],
-                               :id "c-soD5",
-                               :linkKey "cJds2M-r-vy6",
+                               :id "apbQ9e",
+                               :linkKey "oFjT-GksHF0n",
                                :isSelectionEnabled true,
                                :zorder -313}],
                     :rightAxisesState [{:state {:logFormula {:logicalOffset 4,
@@ -658,10 +658,10 @@
                                                 :hasCalculatedPriceRange true,
                                                 :m_isLockScale false},
                                         :sources ["_seriesId"
-                                                  "IUfAPo"
-                                                  "Zeccen"
-                                                  "AyVY37"
-                                                  "c-soD5"]}],
+                                                  "Q32QuH"
+                                                  "rh5YJ8"
+                                                  "YOJAhf"
+                                                  "apbQ9e"]}],
                     :isMaximized false,
                     :mode 0,
                     :isCollapsed false,

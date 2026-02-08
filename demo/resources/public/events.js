@@ -353,13 +353,14 @@
     const errorEl = el('div', { class: 'events-error', style: 'display:none' });
 
     const bodyEl = el('tbody', { id: 'events-overlay-body' }, [
-      el('tr', null, el('td', { colspan: '3', class: 'events-muted' }, 'Loading…'))
+      el('tr', null, el('td', { colspan: '4', class: 'events-muted' }, 'Loading…'))
     ]);
 
     const table = el('table', { 'aria-label': 'events' }, [
       el('thead', null,
         el('tr', null, [
           el('th', null, 'Asset'),
+          el('th', null, 'Unix'),
           el('th', null, 'Date'),
           el('th', null, 'Chart')
         ])
@@ -522,11 +523,69 @@
       return false;
     }
 
+    async function focusTradingViewOnEventDate(evObj) {
+      const widget = getTvWidget();
+      if (!widget) return false;
+
+      await waitForTvWidgetReady(widget);
+
+      // Prefer an explicit unix timestamp field if your /events payload provides one.
+      // Otherwise fall back to parsing the date/time fields.
+      const unixRaw = pick(evObj, ['unix', 'unixSeconds', 'unix_seconds', 'epochSecond', 'epoch_second', 'time_t']);
+      const dateRaw = pick(evObj, ['date', 'date-instant', 'dateInstant', 'datetime', 'time', 'ts', 'timestamp']);
+
+      const unixSeconds = toUnixSeconds(unixRaw != null ? unixRaw : dateRaw);
+      if (unixSeconds == null) return false;
+
+      const chartApi = (typeof widget.activeChart === 'function') ? widget.activeChart() : null;
+      if (!chartApi || typeof chartApi.setVisibleRange !== 'function') return false;
+
+      let range = 86400 * 60; // fallback: ~60 days (in seconds)
+
+      try {
+        if (typeof chartApi.getVisibleRange === 'function') {
+          const current = chartApi.getVisibleRange();
+          if (current && Number.isFinite(current.from) && Number.isFinite(current.to)) {
+            const len = Math.max(0, current.to - current.from);
+            if (len > 0) range = len;
+          }
+        }
+      } catch (_) {
+        // ignore
+      }
+
+      range = Math.max(60, Math.floor(range));
+
+      const to = unixSeconds;
+      const from = unixSeconds - range;
+
+      console.log(`setting range to: ${unixSeconds} range: ${range} from: ${from}`);
+
+      setStatus(`Focusing ${toDisplayDate(dateRaw ?? unixSeconds)}…`);
+
+      // After loading a chart layout, the chart can report ready while the internals are still initializing.
+      // In that case, setVisibleRange can throw (e.g. "Value is null"). We retry briefly.
+      const maxAttempts = 12;
+      for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+        try {
+          await chartApi.setVisibleRange({ from, to });
+          break;
+        } catch (e) {
+          console.warn(`Failed to set visible range (attempt ${attempt}/${maxAttempts}):`, e);
+          if (attempt === maxAttempts) return false;
+          await new Promise((r) => setTimeout(r, 200));
+        }
+      }
+
+      setStatus('Ready.');
+      return true;
+    }
+
     function renderEvents(events) {
       bodyEl.innerHTML = '';
 
       if (!Array.isArray(events) || events.length === 0) {
-        bodyEl.appendChild(el('tr', null, el('td', { colspan: '3', class: 'events-muted' }, 'No events.')));
+        bodyEl.appendChild(el('tr', null, el('td', { colspan: '4', class: 'events-muted' }, 'No events.')));
         return;
       }
 
@@ -538,17 +597,27 @@
         const tr = el('tr');
         tr.style.cursor = 'pointer';
 
-        tr.addEventListener('click', (e) => {
+        tr.addEventListener('click', async (e) => {
           if (e.target && e.target.closest && e.target.closest('a')) return;
 
           console.log(`loading chart ${String(asset)} date: ${toDisplayDate(date)}`);
 
           // If this page has a TradingView Charting Library widget (window.tvWidget),
-          // try to load the chart/layout referenced by this row.
-          loadTradingViewLayoutFromEvent(evObj).catch(showError);
+          // load the chart/layout referenced by this row, then focus time on the event date.
+          try {
+            const loaded = await loadTradingViewLayoutFromEvent(evObj);
+            if (loaded) {
+              await focusTradingViewOnEventDate(evObj);
+            }
+          } catch (err) {
+            showError(err);
+          }
         });
 
+        const unix = toUnixSeconds(date);
+
         const tdAsset = el('td', null, String(asset));
+        const tdUnix = el('td', null, unix == null ? '' : String(unix));
         const tdDate = el('td', null, toDisplayDate(date));
 
         const tdChart = el('td');
@@ -560,6 +629,7 @@
         }
 
         tr.appendChild(tdAsset);
+        tr.appendChild(tdUnix);
         tr.appendChild(tdDate);
         tr.appendChild(tdChart);
         bodyEl.appendChild(tr);

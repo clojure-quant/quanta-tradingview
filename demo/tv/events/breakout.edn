@@ -1,235 +1,937 @@
-; saved on 2026-02-08 13:24:32
-[{:asset "ABT", :date 1630454400, :chart "event-ABT-841"}
- {:asset "ACM", :date 1701907200, :chart "event-ACM-1411"}
- {:asset "ACRE", :date 1567728000, :chart "event-ACRE-340"}
- {:asset "ADC", :date 1658102400, :chart "event-ADC-1060"}
- {:asset "ADM", :date 1528934400, :chart "event-ADM-31"}
- {:asset "ADM", :date 1641168000, :chart "event-ADM-926"}
- {:asset "AEE", :date 1759104000, :chart "event-AEE-1863"}
- {:asset "AFL", :date 1762992000, :chart "event-AFL-1896"}
- {:asset "AGO", :date 1572912000, :chart "event-AGO-382"}
- {:asset "AHH", :date 1556496000, :chart "event-AHH-249"}
- {:asset "AIG", :date 1532995200, :chart "event-AIG-63"}
- {:asset "AIG", :date 1740614400, :chart "event-AIG-1716"}
- {:asset "AIZ", :date 1646870400, :chart "event-AIZ-972"}
- {:asset "AJG", :date 1531785600, :chart "event-AJG-53"}
- {:asset "ALL", :date 1533254400, :chart "event-ALL-66"}
- {:asset "AME", :date 1730764800, :chart "event-AME-1640"}
- {:asset "AMH", :date 1554940800, :chart "event-AMH-238"}
- {:asset "AMRC", :date 1530576000, :chart "event-AMRC-44"}
- {:asset "ARE", :date 1548806400, :chart "event-ARE-188"}
- {:asset "ARI", :date 1568764800, :chart "event-ARI-348"}
- {:asset "ASR", :date 1532304000, :chart "event-ASR-57"}
- {:asset "ATO", :date 1721088000, :chart "event-ATO-1561"}
- {:asset "AXS", :date 1557964800, :chart "event-AXS-262"}
- {:asset "AXS", :date 1710806400, :chart "event-AXS-1480"}
- {:asset "AXS", :date 1765756800, :chart "event-AXS-1917"}
- {:asset "AZO", :date 1705536000, :chart "event-AZO-1438"}
- {:asset "AZO", :date 1733356800, :chart "event-AZO-1661"}
- {:asset "BCE", :date 1542931200, :chart "event-BCE-144"}
- {:asset "BHP", :date 1550102400, :chart "event-BHP-199"}
- {:asset "BKH", :date 1579564800, :chart "event-BKH-433"}
- {:asset "BKH", :date 1761091200, :chart "event-BKH-1880"}
- {:asset "BMI", :date 1574380800, :chart "event-BMI-395"}
- {:asset "BMI", :date 1638835200, :chart "event-BMI-908"}
- {:asset "BRC", :date 1756252800, :chart "event-BRC-1841"}
- {:asset "BRO", :date 1555891200, :chart "event-BRO-244"}
- {:asset "BWXT", :date 1726790400, :chart "event-BWXT-1608"}
- {:asset "BXP", :date 1579132800, :chart "event-BXP-431"}
- {:asset "CACI", :date 1707350400, :chart "event-CACI-1453"}
- {:asset "CAH", :date 1730332800, :chart "event-CAH-1637"}
- {:asset "CB", :date 1553817600, :chart "event-CB-229"}
- {:asset "CB", :date 1765324800, :chart "event-CB-1914"}
- {:asset "CBU", :date 1556755200, :chart "event-CBU-252"}
- {:asset "CCK", :date 1538438400, :chart "event-CCK-107"}
- {:asset "CCK", :date 1642464000, :chart "event-CCK-936"}
- {:asset "CHH", :date 1728950400, :chart "event-CHH-1625"}
- {:asset "CHT", :date 1565654400, :chart "event-CHT-323"}
- {:asset "CHT", :date 1590969600, :chart "event-CHT-457"}
- {:asset "CHT", :date 1610064000, :chart "event-CHT-611"}
- {:asset "CHT", :date 1746057600, :chart "event-CHT-1693"}
- {:asset "CL", :date 1529884800, :chart "event-CL-38"}
- {:asset "CL", :date 1555459200, :chart "event-CL-242"}
- {:asset "CL", :date 1580860800, :chart "event-CL-444"}
- {:asset "CL", :date 1706140800, :chart "event-CL-1443"}
- {:asset "CLX", :date 1581033600, :chart "event-CLX-382"}
- {:asset "CMI", :date 1543536000, :chart "event-CMI-149"}
- {:asset "CMS", :date 1529971200, :chart "event-CMS-39"}
- {:asset "CNA", :date 1568160000, :chart "event-CNA-343"}
- {:asset "CNO", :date 1533081600, :chart "event-CNO-64"}
- {:asset "CNO", :date 1765497600, :chart "event-CNO-1916"}
- {:asset "CP", :date 1707177600, :chart "event-CP-1451"}
- {:asset "CUBE", :date 1557705600, :chart "event-CUBE-259"}
- {:asset "CVS", :date 1528934400, :chart "event-CVS-31"}
- {:asset "CX", :date 1529280000, :chart "event-CX-33"}
- {:asset "D", :date 1529280000, :chart "event-D-33"}
- {:asset "DAR", :date 1573084800, :chart "event-DAR-384"}
- {:asset "DCI", :date 1706745600, :chart "event-DCI-1448"}
- {:asset "DE", :date 1646352000, :chart "event-DE-968"}
- {:asset "DEO", :date 1548806400, :chart "event-DEO-188"}
- {:asset "DOC", :date 1574726400, :chart "event-DOC-397"}
- {:asset "DTE", :date 1530489600, :chart "event-DTE-43"}
- {:asset "DUK", :date 1648080000, :chart "event-DUK-982"}
- {:asset "EBF", :date 1721001600, :chart "event-EBF-1560"}
- {:asset "ECL", :date 1581984000, :chart "event-ECL-452"}
- {:asset "ED", :date 1534204800, :chart "event-ED-73"}
- {:asset "EIG", :date 1529280000, :chart "event-EIG-33"}
- {:asset "EIX", :date 1530748800, :chart "event-EIX-45"}
- {:asset "ES", :date 1530835200, :chart "event-ES-46"}
- {:asset "ESE", :date 1720742400, :chart "event-ESE-1559"}
- {:asset "ESRT", :date 1534377600, :chart "event-ESRT-75"}
- {:asset "EXR", :date 1553126400, :chart "event-EXR-223"}
- {:asset "FCN", :date 1721779200, :chart "event-FCN-1567"}
- {:asset "FCPT", :date 1579737600, :chart "event-FCPT-435"}
- {:asset "FCPT", :date 1650499200, :chart "event-FCPT-1001"}
- {:asset "FDS", :date 1731369600, :chart "event-FDS-1645"}
- {:asset "FE", :date 1758758400, :chart "event-FE-1795"}
- {:asset "FG", :date 1533600000, :chart "event-FG-68"}
- {:asset "FLO", :date 1669161600, :chart "event-FLO-1151"}
- {:asset "FMX", :date 1530748800, :chart "event-FMX-45"}
- {:asset "FR", :date 1550102400, :chart "event-FR-199"}
- {:asset "FRT", :date 1571356800, :chart "event-FRT-370"}
- {:asset "FTS", :date 1639440000, :chart "event-FTS-913"}
- {:asset "GATX", :date 1756252800, :chart "event-GATX-1841"}
- {:asset "GD", :date 1669852800, :chart "event-GD-1087"}
- {:asset "GHC", :date 1541030400, :chart "event-GHC-129"}
- {:asset "GIB", :date 1738108800, :chart "event-GIB-1627"}
- {:asset "GIS", :date 1584316800, :chart "event-GIS-471"}
- {:asset "GIS", :date 1638489600, :chart "event-GIS-906"}
- {:asset "GPC", :date 1658361600, :chart "event-GPC-1063"}
- {:asset "GSK", :date 1564099200, :chart "event-GSK-311"}
- {:asset "GWW", :date 1635897600, :chart "event-GWW-885"}
- {:asset "GWW", :date 1726704000, :chart "event-GWW-1607"}
- {:asset "HESM", :date 1736726400, :chart "event-HESM-1685"}
- {:asset "HII", :date 1534118400, :chart "event-HII-72"}
- {:asset "HRL", :date 1579132800, :chart "event-HRL-431"}
- {:asset "HSBC", :date 1714348800, :chart "event-HSBC-1439"}
- {:asset "HYT", :date 1561680000, :chart "event-HYT-292"}
- {:asset "IEX", :date 1635984000, :chart "event-IEX-886"}
- {:asset "IFF", :date 1540771200, :chart "event-IFF-126"}
- {:asset "IFF", :date 1559779200, :chart "event-IFF-276"}
- {:asset "IHG", :date 1727222400, :chart "event-IHG-1611"}
- {:asset "INVH", :date 1552521600, :chart "event-INVH-218"}
- {:asset "IRM", :date 1548720000, :chart "event-IRM-187"}
- {:asset "ITW", :date 1636934400, :chart "event-ITW-893"}
- {:asset "ITW", :date 1730764800, :chart "event-ITW-1640"}
- {:asset "IVR", :date 1565136000, :chart "event-IVR-319"}
- {:asset "JNJ", :date 1579132800, :chart "event-JNJ-431"}
- {:asset "JNJ", :date 1627862400, :chart "event-JNJ-819"}
- {:asset "JNJ", :date 1648598400, :chart "event-JNJ-986"}
- {:asset "JNJ", :date 1740960000, :chart "event-JNJ-1718"}
- {:asset "KO", :date 1559606400, :chart "event-KO-274"}
- {:asset "KO", :date 1743552000, :chart "event-KO-1740"}
- {:asset "KOF", :date 1546905600, :chart "event-KOF-173"}
- {:asset "KR", :date 1730764800, :chart "event-KR-1640"}
- {:asset "KREF", :date 1577318400, :chart "event-KREF-417"}
- {:asset "KRG", :date 1721606400, :chart "event-KRG-1565"}
- {:asset "L", :date 1558310400, :chart "event-L-264"}
- {:asset "LADR", :date 1581292800, :chart "event-LADR-447"}
- {:asset "LDOS", :date 1531872000, :chart "event-LDOS-54"}
- {:asset "LTC", :date 1565308800, :chart "event-LTC-321"}
- {:asset "MCD", :date 1666828800, :chart "event-MCD-1132"}
- {:asset "MCD", :date 1727222400, :chart "event-MCD-1611"}
- {:asset "MDT", :date 1563148800, :chart "event-MDT-302"}
- {:asset "MDT", :date 1759363200, :chart "event-MDT-1866"}
- {:asset "MMM", :date 1555372800, :chart "event-MMM-241"}
- {:asset "MMS", :date 1543276800, :chart "event-MMS-146"}
- {:asset "MMS", :date 1715126400, :chart "event-MMS-1515"}
- {:asset "MPLX", :date 1764288000, :chart "event-MPLX-1840"}
- {:asset "NAD", :date 1551139200, :chart "event-NAD-206"}
- {:asset "NEA", :date 1550016000, :chart "event-NEA-198"}
- {:asset "NGG", :date 1638835200, :chart "event-NGG-908"}
- {:asset "NHI", :date 1567123200, :chart "event-NHI-336"}
- {:asset "NI", :date 1552348800, :chart "event-NI-216"}
- {:asset "NIQ", :date 1548806400, :chart "event-NIQ-188"}
- {:asset "NNI", :date 1715212800, :chart "event-NNI-1516"}
- {:asset "NPK", :date 1733270400, :chart "event-NPK-1660"}
- {:asset "NVG", :date 1553558400, :chart "event-NVG-226"}
- {:asset "NZF", :date 1552348800, :chart "event-NZF-216"}
- {:asset "OHI", :date 1566432000, :chart "event-OHI-330"}
- {:asset "OMC", :date 1549238400, :chart "event-OMC-191"}
- {:asset "ORI", :date 1562025600, :chart "event-ORI-294"}
- {:asset "PAY", :date 1534464000, :chart "event-PAY-76"}
- {:asset "PG", :date 1631232000, :chart "event-PG-847"}
- {:asset "PGR", :date 1641427200, :chart "event-PGR-929"}
- {:asset "PH", :date 1635897600, :chart "event-PH-885"}
- {:asset "PNW", :date 1581465600, :chart "event-PNW-449"}
- {:asset "PPG", :date 1555286400, :chart "event-PPG-240"}
- {:asset "PPG", :date 1571184000, :chart "event-PPG-368"}
- {:asset "PPL", :date 1530489600, :chart "event-PPL-43"}
- {:asset "PPL", :date 1571616000, :chart "event-PPL-371"}
- {:asset "PPL", :date 1660521600, :chart "event-PPL-1080"}
- {:asset "PRU", :date 1538697600, :chart "event-PRU-110"}
- {:asset "PSA", :date 1558483200, :chart "event-PSA-266"}
- {:asset "QGEN", :date 1551398400, :chart "event-QGEN-209"}
- {:asset "RCI", :date 1646179200, :chart "event-RCI-897"}
- {:asset "RELX", :date 1550620800, :chart "event-RELX-202"}
- {:asset "REXR", :date 1541376000, :chart "event-REXR-131"}
- {:asset "RGA", :date 1560902400, :chart "event-RGA-285"}
- {:asset "RL", :date 1727136000, :chart "event-RL-1610"}
- {:asset "RLI", :date 1555891200, :chart "event-RLI-244"}
- {:asset "RLI", :date 1650412800, :chart "event-RLI-1000"}
- {:asset "RS", :date 1707177600, :chart "event-RS-1451"}
- {:asset "RSG", :date 1658966400, :chart "event-RSG-1068"}
- {:asset "RY", :date 1569456000, :chart "event-RY-354"}
- {:asset "S", :date 1531353600, :chart "event-S-50"}
- {:asset "S", :date 1558051200, :chart "event-S-263"}
- {:asset "SAFE", :date 1552521600, :chart "event-SAFE-218"}
- {:asset "SAN", :date 1738627200, :chart "event-SAN-1700"}
- {:asset "SJM", :date 1641254400, :chart "event-SJM-927"}
- {:asset "SKM", :date 1769126400, :chart "event-SKM-1943"}
- {:asset "SNA", :date 1709769600, :chart "event-SNA-1472"}
- {:asset "SNA", :date 1728864000, :chart "event-SNA-1624"}
- {:asset "SNN", :date 1544486400, :chart "event-SNN-155"}
- {:asset "SNX", :date 1736294400, :chart "event-SNX-1683"}
- {:asset "SO", :date 1549843200, :chart "event-SO-196"}
- {:asset "SO", :date 1752710400, :chart "event-SO-1812"}
- {:asset "SPH", :date 1698364800, :chart "event-SPH-1383"}
- {:asset "SSD", :date 1635984000, :chart "event-SSD-886"}
- {:asset "STAG", :date 1553040000, :chart "event-STAG-222"}
- {:asset "STAG", :date 1577750400, :chart "event-STAG-420"}
- {:asset "STE", :date 1747180800, :chart "event-STE-1769"}
- {:asset "STN", :date 1740441600, :chart "event-STN-1714"}
- {:asset "STWD", :date 1556150400, :chart "event-STWD-247"}
- {:asset "STZ", :date 1528934400, :chart "event-STZ-31"}
- {:asset "STZ", :date 1712707200, :chart "event-STZ-1495"}
- {:asset "SUN", :date 1533081600, :chart "event-SUN-64"}
- {:asset "SWX", :date 1558483200, :chart "event-SWX-266"}
- {:asset "SWX", :date 1754956800, :chart "event-SWX-1830"}
- {:asset "SYK", :date 1548720000, :chart "event-SYK-187"}
- {:asset "SYY", :date 1754956800, :chart "event-SYY-1830"}
- {:asset "TDG", :date 1548633600, :chart "event-TDG-186"}
- {:asset "TDG", :date 1746057600, :chart "event-TDG-1760"}
- {:asset "TDY", :date 1647993600, :chart "event-TDY-981"}
- {:asset "TM", :date 1568073600, :chart "event-TM-342"}
- {:asset "TMO", :date 1626912000, :chart "event-TMO-812"}
- {:asset "TPR", :date 1531958400, :chart "event-TPR-55"}
- {:asset "TRNO", :date 1541548800, :chart "event-TRNO-133"}
- {:asset "TRTX", :date 1576195200, :chart "event-TRTX-409"}
- {:asset "TRV", :date 1746489600, :chart "event-TRV-1700"}
- {:asset "TSLX", :date 1571788800, :chart "event-TSLX-373"}
- {:asset "TSLX", :date 1738195200, :chart "event-TSLX-1697"}
- {:asset "TTC", :date 1550188800, :chart "event-TTC-200"}
- {:asset "TU", :date 1555027200, :chart "event-TU-239"}
- {:asset "TU", :date 1575417600, :chart "event-TU-402"}
- {:asset "UBS", :date 1728604800, :chart "event-UBS-1623"}
- {:asset "UL", :date 1553472000, :chart "event-UL-225"}
- {:asset "UL", :date 1717459200, :chart "event-UL-1533"}
- {:asset "UL", :date 1765843200, :chart "event-UL-1918"}
- {:asset "UNH", :date 1666915200, :chart "event-UNH-1133"}
- {:asset "UTL", :date 1549497600, :chart "event-UTL-194"}
- {:asset "V", :date 1726444800, :chart "event-V-1604"}
- {:asset "VOYA", :date 1726444800, :chart "event-VOYA-1604"}
- {:asset "VTR", :date 1760659200, :chart "event-VTR-1877"}
- {:asset "VZ", :date 1576022400, :chart "event-VZ-407"}
- {:asset "WAT", :date 1548115200, :chart "event-WAT-182"}
- {:asset "WCN", :date 1702339200, :chart "event-WCN-1350"}
- {:asset "WEC", :date 1530144000, :chart "event-WEC-41"}
- {:asset "WES", :date 1737072000, :chart "event-WES-1689"}
- {:asset "WMK", :date 1666224000, :chart "event-WMK-1058"}
- {:asset "WSO", :date 1637280000, :chart "event-WSO-897"}
- {:asset "WTM", :date 1557273600, :chart "event-WTM-256"}
- {:asset "WTM", :date 1731024000, :chart "event-WTM-1643"}
- {:asset "WTM", :date 1764288000, :chart "event-WTM-1906"}
- {:asset "YUM", :date 1535673600, :chart "event-YUM-86"}
- {:asset "YUM", :date 1738713600, :chart "event-YUM-1635"}]
+; saved on 2026-02-08 15:05:41
+[{:asset "CCK",
+  :date 1538438400,
+  :chart "event-CCK-107",
+  :text "-5"}
+ {:asset "MDT",
+  :date 1759363200,
+  :chart "event-MDT-1866",
+  :text "-5"}
+ {:asset "STE",
+  :date 1747180800,
+  :chart "event-STE-1769",
+  :text "-4"}
+ {:asset "MCD",
+  :date 1727222400,
+  :chart "event-MCD-1611",
+  :text "-4"}
+ {:asset "CNO",
+  :date 1765497600,
+  :chart "event-CNO-1916",
+  :text "-4"}
+ {:asset "CL",
+  :date 1580860800,
+  :chart "event-CL-444",
+  :text "-3"}
+ {:asset "BCE",
+  :date 1542931200,
+  :chart "event-BCE-144",
+  :text "-3"}
+ {:asset "ESRT",
+  :date 1534377600,
+  :chart "event-ESRT-75",
+  :text "-3"}
+ {:asset "V",
+  :date 1726444800,
+  :chart "event-V-1604",
+  :text "-3"}
+ {:asset "CHT",
+  :date 1565654400,
+  :chart "event-CHT-323",
+  :text "-3"}
+ {:asset "SNA",
+  :date 1709769600,
+  :chart "event-SNA-1472",
+  :text "-3"}
+ {:asset "DOC",
+  :date 1574726400,
+  :chart "event-DOC-397",
+  :text "-3"}
+ {:asset "ABT",
+  :date 1630454400,
+  :chart "event-ABT-841",
+  :text "-3"}
+ {:asset "PPG",
+  :date 1555286400,
+  :chart "event-PPG-240",
+  :text "-3"}
+ {:asset "TRNO",
+  :date 1541548800,
+  :chart "event-TRNO-133",
+  :text "-3"}
+ {:asset "TPR",
+  :date 1531958400,
+  :chart "event-TPR-55",
+  :text "-3"}
+ {:asset "RELX",
+  :date 1550620800,
+  :chart "event-RELX-202",
+  :text "-3"}
+ {:asset "FRT",
+  :date 1571356800,
+  :chart "event-FRT-370",
+  :text "-2"}
+ {:asset "IFF",
+  :date 1559779200,
+  :chart "event-IFF-276",
+  :text "-2"}
+ {:asset "STZ",
+  :date 1528934400,
+  :chart "event-STZ-31",
+  :text "-2"}
+ {:asset "KR",
+  :date 1730764800,
+  :chart "event-KR-1640",
+  :text "-2"}
+ {:asset "FDS",
+  :date 1731369600,
+  :chart "event-FDS-1645",
+  :text "-2"}
+ {:asset "PGR",
+  :date 1641427200,
+  :chart "event-PGR-929",
+  :text "-2"}
+ {:asset "KOF",
+  :date 1546905600,
+  :chart "event-KOF-173",
+  :text "-2"}
+ {:asset "CB",
+  :date 1553817600,
+  :chart "event-CB-229",
+  :text "-2"}
+ {:asset "CBU",
+  :date 1556755200,
+  :chart "event-CBU-252",
+  :text "-2"}
+ {:asset "CP",
+  :date 1707177600,
+  :chart "event-CP-1451",
+  :text "-2"}
+ {:asset "L",
+  :date 1558310400,
+  :chart "event-L-264",
+  :text "-2"}
+ {:asset "SKM",
+  :date 1769126400,
+  :chart "event-SKM-1943",
+  :text "-2"}
+ {:asset "STN",
+  :date 1740441600,
+  :chart "event-STN-1714",
+  :text "-2"}
+ {:asset "STWD",
+  :date 1556150400,
+  :chart "event-STWD-247",
+  :text "-2"}
+ {:asset "UNH",
+  :date 1666915200,
+  :chart "event-UNH-1133",
+  :text "-2"}
+ {:asset "AFL",
+  :date 1762992000,
+  :chart "event-AFL-1896",
+  :text "-2"}
+ {:asset "AIG",
+  :date 1532995200,
+  :chart "event-AIG-63",
+  :text "-2"}
+ {:asset "AIG",
+  :date 1740614400,
+  :chart "event-AIG-1716",
+  :text "-2"}
+ {:asset "CCK",
+  :date 1642464000,
+  :chart "event-CCK-936",
+  :text "-2"}
+ {:asset "CNO",
+  :date 1533081600,
+  :chart "event-CNO-64",
+  :text "-2"}
+ {:asset "ECL",
+  :date 1581984000,
+  :chart "event-ECL-452",
+  :text "-2"}
+ {:asset "FCN",
+  :date 1721779200,
+  :chart "event-FCN-1567",
+  :text "-2"}
+ {:asset "FCPT",
+  :date 1650499200,
+  :chart "event-FCPT-1001",
+  :text "-2"}
+ {:asset "FG",
+  :date 1533600000,
+  :chart "event-FG-68",
+  :text "-2"}
+ {:asset "GD",
+  :date 1669852800,
+  :chart "event-GD-1087",
+  :text "-2"}
+ {:asset "GIS",
+  :date 1584316800,
+  :chart "event-GIS-471",
+  :text "-2"}
+ {:asset "GSK",
+  :date 1564099200,
+  :chart "event-GSK-311",
+  :text "-2"}
+ {:asset "IHG",
+  :date 1727222400,
+  :chart "event-IHG-1611",
+  :text "-2"}
+ {:asset "IVR",
+  :date 1565136000,
+  :chart "event-IVR-319",
+  :text "-2"}
+ {:asset "KO",
+  :date 1743552000,
+  :chart "event-KO-1740",
+  :text "-2"}
+ {:asset "KREF",
+  :date 1577318400,
+  :chart "event-KREF-417",
+  :text "-2"}
+ {:asset "OMC",
+  :date 1549238400,
+  :chart "event-OMC-191",
+  :text "-2"}
+ {:asset "PPL",
+  :date 1530489600,
+  :chart "event-PPL-43",
+  :text "-2"}
+ {:asset "PPL",
+  :date 1660521600,
+  :chart "event-PPL-1080",
+  :text "-2"}
+ {:asset "PRU",
+  :date 1538697600,
+  :chart "event-PRU-110",
+  :text "-2"}
+ {:asset "RGA",
+  :date 1560902400,
+  :chart "event-RGA-285",
+  :text "-2"}
+ {:asset "RLI",
+  :date 1650412800,
+  :chart "event-RLI-1000",
+  :text "-2"}
+ {:asset "RY",
+  :date 1569456000,
+  :chart "event-RY-354",
+  :text "-2"}
+ {:asset "S",
+  :date 1531353600,
+  :chart "event-S-50",
+  :text "-2"}
+ {:asset "S",
+  :date 1558051200,
+  :chart "event-S-263",
+  :text "-2"}
+ {:asset "STZ",
+  :date 1712707200,
+  :chart "event-STZ-1495",
+  :text "-2"}
+ {:asset "SUN",
+  :date 1533081600,
+  :chart "event-SUN-64",
+  :text "-2"}
+ {:asset "SWX",
+  :date 1558483200,
+  :chart "event-SWX-266",
+  :text "-2"}
+ {:asset "SWX",
+  :date 1754956800,
+  :chart "event-SWX-1830",
+  :text "-2"}
+ {:asset "SYY",
+  :date 1754956800,
+  :chart "event-SYY-1830",
+  :text "-2"}
+ {:asset "TDG",
+  :date 1746057600,
+  :chart "event-TDG-1760",
+  :text "-2"}
+ {:asset "WSO",
+  :date 1637280000,
+  :chart "event-WSO-897",
+  :text "-2"}
+ {:asset "WTM",
+  :date 1557273600,
+  :chart "event-WTM-256",
+  :text "-2"}
+ {:asset "ARE",
+  :date 1548806400,
+  :chart "event-ARE-188",
+  :text "-2"}
+ {:asset "BKH",
+  :date 1761091200,
+  :chart "event-BKH-1880",
+  :text "-2"}
+ {:asset "BMI",
+  :date 1638835200,
+  :chart "event-BMI-908",
+  :text "-2"}
+ {:asset "CMI",
+  :date 1543536000,
+  :chart "event-CMI-149",
+  :text "-2"}
+ {:asset "RS",
+  :date 1707177600,
+  :chart "event-RS-1451",
+  :text "-2"}
+ {:asset "SNN",
+  :date 1544486400,
+  :chart "event-SNN-155",
+  :text "-2"}
+ {:asset "WES",
+  :date 1737072000,
+  :chart "event-WES-1689",
+  :text "-2"}
+ {:asset "ITW",
+  :date 1636934400,
+  :chart "event-ITW-893",
+  :text "-2"}
+ {:asset "LADR",
+  :date 1581292800,
+  :chart "event-LADR-447",
+  :text "-2"}
+ {:asset "IRM",
+  :date 1548720000,
+  :chart "event-IRM-187",
+  :text "-2"}
+ {:asset "SO",
+  :date 1752710400,
+  :chart "event-SO-1812",
+  :text "-2"}
+ {:asset "UL",
+  :date 1765843200,
+  :chart "event-UL-1918",
+  :text "-2"}
+ {:asset "UL",
+  :date 1717459200,
+  :chart "event-UL-1533",
+  :text "-2"}
+ {:asset "ITW",
+  :date 1730764800,
+  :chart "event-ITW-1640",
+  :text "-2"}
+ {:asset "MCD",
+  :date 1666828800,
+  :chart "event-MCD-1132",
+  :text "-2"}
+ {:asset "CHT",
+  :date 1610064000,
+  :chart "event-CHT-611",
+  :text "-2"}
+ {:asset "VZ",
+  :date 1576022400,
+  :chart "event-VZ-407",
+  :text "-2"}
+ {:asset "KRG",
+  :date 1721606400,
+  :chart "event-KRG-1565",
+  :text "-2"}
+ {:asset "REXR",
+  :date 1541376000,
+  :chart "event-REXR-131",
+  :text "-2"}
+ {:asset "NNI",
+  :date 1715212800,
+  :chart "event-NNI-1516",
+  :text "-2"}
+ {:asset "CNA",
+  :date 1568160000,
+  :chart "event-CNA-343",
+  :text "-2"}
+ {:asset "FLO",
+  :date 1669161600,
+  :chart "event-FLO-1151",
+  :text "-2"}
+ {:asset "ED",
+  :date 1534204800,
+  :chart "event-ED-73",
+  :text "-2"}
+ {:asset "IEX",
+  :date 1635984000,
+  :chart "event-IEX-886",
+  :text "-1"}
+ {:asset "EBF",
+  :date 1721001600,
+  :chart "event-EBF-1560",
+  :text "-1"}
+ {:asset "JNJ",
+  :date 1579132800,
+  :chart "event-JNJ-431",
+  :text "-1"}
+ {:asset "MMM",
+  :date 1555372800,
+  :chart "event-MMM-241",
+  :text "-1"}
+ {:asset "ARI",
+  :date 1568764800,
+  :chart "event-ARI-348",
+  :text "-1"}
+ {:asset "PNW",
+  :date 1581465600,
+  :chart "event-PNW-449",
+  :text "-1"}
+ {:asset "AZO",
+  :date 1733356800,
+  :chart "event-AZO-1661",
+  :text "-1"}
+ {:asset "MMS",
+  :date 1543276800,
+  :chart "event-MMS-146",
+  :text "-1"}
+ {:asset "ACRE",
+  :date 1567728000,
+  :chart "event-ACRE-340",
+  :text "-1"}
+ {:asset "TRV",
+  :date 1746489600,
+  :chart "event-TRV-1700",
+  :text "-1"}
+ {:asset "PH",
+  :date 1635897600,
+  :chart "event-PH-885",
+  :text "-1"}
+ {:asset "IFF",
+  :date 1540771200,
+  :chart "event-IFF-126",
+  :text "-1"}
+ {:asset "AMRC",
+  :date 1530576000,
+  :chart "event-AMRC-44",
+  :text "-1"}
+ {:asset "ORI",
+  :date 1562025600,
+  :chart "event-ORI-294",
+  :text "-1"}
+ {:asset "TM",
+  :date 1568073600,
+  :chart "event-TM-342",
+  :text "-1"}
+ {:asset "GIB",
+  :date 1738108800,
+  :chart "event-GIB-1627",
+  :text "-1"}
+ {:asset "JNJ",
+  :date 1740960000,
+  :chart "event-JNJ-1718",
+  :text "-1"}
+ {:asset "CVS",
+  :date 1528934400,
+  :chart "event-CVS-31",
+  :text "-1"}
+ {:asset "NAD",
+  :date 1551139200,
+  :chart "event-NAD-206",
+  :text "-1"}
+ {:asset "AXS",
+  :date 1765756800,
+  :chart "event-AXS-1917",
+  :text "-1"}
+ {:asset "ACM",
+  :date 1701907200,
+  :chart "event-ACM-1411",
+  :text "0"}
+ {:asset "FTS",
+  :date 1639440000,
+  :chart "event-FTS-913",
+  :text "0"}
+ {:asset "SJM",
+  :date 1641254400,
+  :chart "event-SJM-927",
+  :text "0"}
+ {:asset "ASR",
+  :date 1532304000,
+  :chart "event-ASR-57",
+  :text "0"}
+ {:asset "SPH",
+  :date 1698364800,
+  :chart "event-SPH-1383",
+  :text "0"}
+ {:asset "NHI",
+  :date 1567123200,
+  :chart "event-NHI-336",
+  :text "0"}
+ {:asset "AZO",
+  :date 1705536000,
+  :chart "event-AZO-1438",
+  :text "0"}
+ {:asset "JNJ",
+  :date 1627862400,
+  :chart "event-JNJ-819",
+  :text "0"}
+ {:asset "UBS",
+  :date 1728604800,
+  :chart "event-UBS-1623",
+  :text "0"}
+ {:asset "HESM",
+  :date 1736726400,
+  :chart "event-HESM-1685",
+  :text "0"}
+ {:asset "TU",
+  :date 1555027200,
+  :chart "event-TU-239",
+  :text "0"}
+ {:asset "AXS",
+  :date 1710806400,
+  :chart "event-AXS-1480",
+  :text "0"}
+ {:asset "ALL",
+  :date 1533254400,
+  :chart "event-ALL-66",
+  :text "0"}
+ {:asset "PG",
+  :date 1631232000,
+  :chart "event-PG-847",
+  :text "0"}
+ {:asset "EIX",
+  :date 1530748800,
+  :chart "event-EIX-45",
+  :text "0"}
+ {:asset "HSBC",
+  :date 1714348800,
+  :chart "event-HSBC-1439",
+  :text "0"}
+ {:asset "CB",
+  :date 1765324800,
+  :chart "event-CB-1914",
+  :text "0"}
+ {:asset "AEE",
+  :date 1759104000,
+  :chart "event-AEE-1863",
+  :text "0"}
+ {:asset "TDY",
+  :date 1647993600,
+  :chart "event-TDY-981",
+  :text "0"}
+ {:asset "STAG",
+  :date 1553040000,
+  :chart "event-STAG-222",
+  :text "0"}
+ {:asset "AME",
+  :date 1730764800,
+  :chart "event-AME-1640",
+  :text "0"}
+ {:asset "GATX",
+  :date 1756252800,
+  :chart "event-GATX-1841",
+  :text "1"}
+ {:asset "WTM",
+  :date 1764288000,
+  :chart "event-WTM-1906",
+  :text "1"}
+ {:asset "BRO",
+  :date 1555891200,
+  :chart "event-BRO-244",
+  :text "1"}
+ {:asset "BHP",
+  :date 1550102400,
+  :chart "event-BHP-199",
+  :text "1"}
+ {:asset "NI",
+  :date 1552348800,
+  :chart "event-NI-216",
+  :text "1"}
+ {:asset "HII",
+  :date 1534118400,
+  :chart "event-HII-72",
+  :text "1"}
+ {:asset "NEA",
+  :date 1550016000,
+  :chart "event-NEA-198",
+  :text "1"}
+ {:asset "CHT",
+  :date 1590969600,
+  :chart "event-CHT-457",
+  :text "1"}
+ {:asset "MMS",
+  :date 1715126400,
+  :chart "event-MMS-1515",
+  :text "1"}
+ {:asset "TRTX",
+  :date 1576195200,
+  :chart "event-TRTX-409",
+  :text "1"}
+ {:asset "FMX",
+  :date 1530748800,
+  :chart "event-FMX-45",
+  :text "1"}
+ {:asset "BKH",
+  :date 1579564800,
+  :chart "event-BKH-433",
+  :text "1"}
+ {:asset "MDT",
+  :date 1563148800,
+  :chart "event-MDT-302",
+  :text "1"}
+ {:asset "JNJ",
+  :date 1648598400,
+  :chart "event-JNJ-986",
+  :text "1"}
+ {:asset "WTM",
+  :date 1731024000,
+  :chart "event-WTM-1643",
+  :text "1"}
+ {:asset "MPLX",
+  :date 1764288000,
+  :chart "event-MPLX-1840",
+  :text "2"}
+ {:asset "AGO",
+  :date 1572912000,
+  :chart "event-AGO-382",
+  :text "2"}
+ {:asset "YUM",
+  :date 1535673600,
+  :chart "event-YUM-86",
+  :text "2"}
+ {:asset "QGEN",
+  :date 1551398400,
+  :chart "event-QGEN-209",
+  :text "2"}
+ {:asset "CL",
+  :date 1706140800,
+  :chart "event-CL-1443",
+  :text "2"}
+ {:asset "STAG",
+  :date 1577750400,
+  :chart "event-STAG-420",
+  :text "2"}
+ {:asset "WMK",
+  :date 1666224000,
+  :chart "event-WMK-1058",
+  :text "2"}
+ {:asset "FE",
+  :date 1758758400,
+  :chart "event-FE-1795",
+  :text "3"}
+ {:asset "NIQ",
+  :date 1548806400,
+  :chart "event-NIQ-188",
+  :text "3"}
+ {:asset "DUK",
+  :date 1648080000,
+  :chart "event-DUK-982",
+  :text "3"}
+ {:asset "TSLX",
+  :date 1571788800,
+  :chart "event-TSLX-373",
+  :text "3"}
+ {:asset "HRL",
+  :date 1579132800,
+  :chart "event-HRL-431",
+  :text "3"}
+ {:asset "TSLX",
+  :date 1738195200,
+  :chart "event-TSLX-1697",
+  :text "3"}
+ {:asset "AHH",
+  :date 1556496000,
+  :chart "event-AHH-249",
+  :text "3"}
+ {:asset "CAH",
+  :date 1730332800,
+  :chart "event-CAH-1637",
+  :text "3"}
+ {:asset "ADC",
+  :date 1658102400,
+  :chart "event-ADC-1060",
+  :text "3"}
+ {:asset "NVG",
+  :date 1553558400,
+  :chart "event-NVG-226",
+  :text "3"}
+ {:asset "BXP",
+  :date 1579132800,
+  :chart "event-BXP-431",
+  :text "3"}
+ {:asset "AXS",
+  :date 1557964800,
+  :chart "event-AXS-262",
+  :text "3"}
+ {:asset "CL",
+  :date 1529884800,
+  :chart "event-CL-38",
+  :text "3"}
+ {:asset "TU",
+  :date 1575417600,
+  :chart "event-TU-402",
+  :text "4"}
+ {:asset "KO",
+  :date 1559606400,
+  :chart "event-KO-274",
+  :text "4"}
+ {:asset "ESE",
+  :date 1720742400,
+  :chart "event-ESE-1559",
+  :text "4"}
+ {:asset "UTL",
+  :date 1549497600,
+  :chart "event-UTL-194",
+  :text "4"}
+ {:asset "D",
+  :date 1529280000,
+  :chart "event-D-33",
+  :text "4"}
+ {:asset "HYT",
+  :date 1561680000,
+  :chart "event-HYT-292",
+  :text "4"}
+ {:asset "NZF",
+  :date 1552348800,
+  :chart "event-NZF-216",
+  :text "4"}
+ {:asset "PSA",
+  :date 1558483200,
+  :chart "event-PSA-266",
+  :text "4"}
+ {:asset "CMS",
+  :date 1529971200,
+  :chart "event-CMS-39",
+  :text "4"}
+ {:asset "RSG",
+  :date 1658966400,
+  :chart "event-RSG-1068",
+  :text "4"}
+ {:asset "AJG",
+  :date 1531785600,
+  :chart "event-AJG-53",
+  :text "4"}
+ {:asset "SNX",
+  :date 1736294400,
+  :chart "event-SNX-1683",
+  :text "4"}
+ {:asset "BRC",
+  :date 1756252800,
+  :chart "event-BRC-1841",
+  :text "5"}
+ {:asset "UL",
+  :date 1553472000,
+  :chart "event-UL-225",
+  :text "5"}
+ {:asset "BMI",
+  :date 1574380800,
+  :chart "event-BMI-395",
+  :text "5"}
+ {:asset "WEC",
+  :date 1530144000,
+  :chart "event-WEC-41",
+  :text "5"}
+ {:asset "CACI",
+  :date 1707350400,
+  :chart "event-CACI-1453",
+  :text "5"}
+ {:asset "INVH",
+  :date 1552521600,
+  :chart "event-INVH-218",
+  :text "5"}
+ {:asset "AMH",
+  :date 1554940800,
+  :chart "event-AMH-238",
+  :text "5"}
+ {:asset "SO",
+  :date 1549843200,
+  :chart "event-SO-196",
+  :text "5"}
+ {:asset "EXR",
+  :date 1553126400,
+  :chart "event-EXR-223",
+  :text "5"}
+ {:asset "RCI",
+  :date 1646179200,
+  :chart "event-RCI-897",
+  :text "5"}
+ {:asset "WCN",
+  :date 1702339200,
+  :chart "event-WCN-1350",
+  :text "5"}
+ {:asset "DTE",
+  :date 1530489600,
+  :chart "event-DTE-43",
+  :text "5"}
+ {:asset "CL",
+  :date 1555459200,
+  :chart "event-CL-242",
+  :text "6"}
+ {:asset "LTC",
+  :date 1565308800,
+  :chart "event-LTC-321",
+  :text "6"}
+ {:asset "GIS",
+  :date 1638489600,
+  :chart "event-GIS-906",
+  :text "6"}
+ {:asset "FR",
+  :date 1550102400,
+  :chart "event-FR-199",
+  :text "6"}
+ {:asset "EIG",
+  :date 1529280000,
+  :chart "event-EIG-33",
+  :text "6"}
+ {:asset "CUBE",
+  :date 1557705600,
+  :chart "event-CUBE-259",
+  :text "7"}
+ {:asset "GHC",
+  :date 1541030400,
+  :chart "event-GHC-129",
+  :text "7"}
+ {:asset "ES",
+  :date 1530835200,
+  :chart "event-ES-46",
+  :text "7"}
+ {:asset "WAT",
+  :date 1548115200,
+  :chart "event-WAT-182",
+  :text "7"}
+ {:asset "FCPT",
+  :date 1579737600,
+  :chart "event-FCPT-435",
+  :text "7"}
+ {:asset "DEO",
+  :date 1548806400,
+  :chart "event-DEO-188",
+  :text "7"}
+ {:asset "CHH",
+  :date 1728950400,
+  :chart "event-CHH-1625",
+  :text "8"}
+ {:asset "GWW",
+  :date 1635897600,
+  :chart "event-GWW-885",
+  :text "8"}
+ {:asset "ATO",
+  :date 1721088000,
+  :chart "event-ATO-1561",
+  :text "8"}
+ {:asset "CLX",
+  :date 1581033600,
+  :chart "event-CLX-382",
+  :text "8"}
+ {:asset "VOYA",
+  :date 1726444800,
+  :chart "event-VOYA-1604",
+  :text "8"}
+ {:asset "ADM",
+  :date 1528934400,
+  :chart "event-ADM-31",
+  :text "8"}
+ {:asset "NGG",
+  :date 1638835200,
+  :chart "event-NGG-908",
+  :text "8"}
+ {:asset "GPC",
+  :date 1658361600,
+  :chart "event-GPC-1063",
+  :text "8"}
+ {:asset "RL",
+  :date 1727136000,
+  :chart "event-RL-1610",
+  :text "9"}
+ {:asset "SYK",
+  :date 1548720000,
+  :chart "event-SYK-187",
+  :text "9"}
+ {:asset "DCI",
+  :date 1706745600,
+  :chart "event-DCI-1448",
+  :text "10"}
+ {:asset "PPL",
+  :date 1571616000,
+  :chart "event-PPL-371",
+  :text "10"}
+ {:asset "VTR",
+  :date 1760659200,
+  :chart "event-VTR-1877",
+  :text "10"}
+ {:asset "PPG",
+  :date 1571184000,
+  :chart "event-PPG-368",
+  :text "10"}
+ {:asset "LDOS",
+  :date 1531872000,
+  :chart "event-LDOS-54",
+  :text "11"}
+ {:asset "DE",
+  :date 1646352000,
+  :chart "event-DE-968",
+  :text "11"}
+ {:asset "CHT",
+  :date 1746057600,
+  :chart "event-CHT-1693",
+  :text "11"}
+ {:asset "AIZ",
+  :date 1646870400,
+  :chart "event-AIZ-972",
+  :text "11"}
+ {:asset "OHI",
+  :date 1566432000,
+  :chart "event-OHI-330",
+  :text "11"}
+ {:asset "SSD",
+  :date 1635984000,
+  :chart "event-SSD-886",
+  :text "12"}
+ {:asset "YUM",
+  :date 1738713600,
+  :chart "event-YUM-1635",
+  :text "12"}
+ {:asset "TMO",
+  :date 1626912000,
+  :chart "event-TMO-812",
+  :text "12"}
+ {:asset "RLI",
+  :date 1555891200,
+  :chart "event-RLI-244",
+  :text "12"}
+ {:asset "NPK",
+  :date 1733270400,
+  :chart "event-NPK-1660",
+  :text "13"}
+ {:asset "CX",
+  :date 1529280000,
+  :chart "event-CX-33",
+  :text "14"}
+ {:asset "GWW",
+  :date 1726704000,
+  :chart "event-GWW-1607",
+  :text "14"}
+ {:asset "TTC",
+  :date 1550188800,
+  :chart "event-TTC-200",
+  :text "14"}
+ {:asset "PAY",
+  :date 1534464000,
+  :chart "event-PAY-76",
+  :text "15"}
+ {:asset "ADM",
+  :date 1641168000,
+  :chart "event-ADM-926",
+  :text "16"}
+ {:asset "TDG",
+  :date 1548633600,
+  :chart "event-TDG-186",
+  :text "19"}
+ {:asset "BWXT",
+  :date 1726790400,
+  :chart "event-BWXT-1608",
+  :text "20"}
+ {:asset "SNA",
+  :date 1728864000,
+  :chart "event-SNA-1624",
+  :text "20"}
+ {:asset "SAN",
+  :date 1738627200,
+  :chart "event-SAN-1700",
+  :text "22"}
+ {:asset "DAR",
+  :date 1573084800,
+  :chart "event-DAR-384",
+  :text "27"}
+ {:asset "SAFE",
+  :date 1552521600,
+  :chart "event-SAFE-218",
+  :text "33"}]

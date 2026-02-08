@@ -1,9 +1,8 @@
-(ns demo.eventstudy
+(ns demo.breakout.chart
   (:require
    [clojure.pprint :refer [print-table]]
    [com.rpl.specter :as specter]
    [tablecloth.api :as tc]
-   [quanta.tradingview.handler.response.asset :refer [symbol-search symbol-info]]
    [quanta.tradingview.chart.db :refer [save-chart load-chart]]
    [quanta.tradingview.chart.edit :refer [describe-charts
                                           keep-only-main-chart
@@ -17,25 +16,11 @@
 
 
 
-(count events)
-; 301
-
-(symbol-info (:asset-db env) "WTR")
-
-(symbol-info (:asset-db env) "KO")
-
-
-
-(count events-with-asset)
-;234
-
-
 
 
 
 (defn create-chart-for-event [{:keys [date asset close
                                       trailing-high trailing-high-date]}]
-
   (->> (load-chart env {:chart-id "1770419848"})
        (modify-chart {:chart-id "eventtest"
                       :name "eventtest"
@@ -89,15 +74,13 @@
     (describe-charts)
     (print-table))
 
-
-
 (create-chart-for-event
  {:date #time/zoned-date-time "2022-11-03T00:00Z",
   :asset "ABC", :close 157.84, :trailing-high 167.19,
   :trailing-high-date #time/zoned-date-time "2022-04-21T00:00Z"})
 
 (->> (create-chart-for-event (get events 1))
-     (modify-chart {:chart-id (str "event-demo")
+     (modify-chart {:chart-id "event-demo"
                     :name "event-demo"})
      (save-chart env {}))
 

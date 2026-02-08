@@ -182,12 +182,13 @@
               <th>Asset</th>
               <th>Unix</th>
               <th>Date</th>
+              <th>Text</th>
               <th>Chart</th>
             </tr>
           </thead>
           <tbody id="events-body">
             <tr>
-              <td colspan="4" class="muted">Loading…</td>
+              <td colspan="5" class="muted">Loading…</td>
             </tr>
           </tbody>
         </table>
@@ -401,7 +402,7 @@
         if (!Array.isArray(events) || events.length === 0) {
           const tr = document.createElement('tr');
           const td = document.createElement('td');
-          td.colSpan = 4;
+          td.colSpan = 5;
           td.className = 'muted';
           td.textContent = 'No events.';
           tr.appendChild(td);
@@ -412,6 +413,7 @@
         for (const ev of events) {
           const asset = pick(ev, ['asset', 'symbol', 'ticker', 'instrument']) ?? '';
           const date = pick(ev, ['date', 'date-instant', 'dateInstant', 'datetime', 'time', 'ts', 'timestamp']);
+          const text = pick(ev, ['text']) ?? '';
           const chart = chartCellValue(ev);
 
           const tr = document.createElement('tr');
@@ -434,6 +436,9 @@
           const tdDate = document.createElement('td');
           tdDate.textContent = toDisplayDate(date);
 
+          const tdText = document.createElement('td');
+          tdText.textContent = String(text);
+
           const tdChart = document.createElement('td');
           if (chart.href) {
             const a = document.createElement('a');
@@ -447,6 +452,7 @@
           tr.appendChild(tdAsset);
           tr.appendChild(tdUnix);
           tr.appendChild(tdDate);
+          tr.appendChild(tdText);
           tr.appendChild(tdChart);
           bodyEl.appendChild(tr);
         }

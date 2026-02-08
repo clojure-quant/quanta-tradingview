@@ -353,7 +353,7 @@
     const errorEl = el('div', { class: 'events-error', style: 'display:none' });
 
     const bodyEl = el('tbody', { id: 'events-overlay-body' }, [
-      el('tr', null, el('td', { colspan: '4', class: 'events-muted' }, 'Loading…'))
+      el('tr', null, el('td', { colspan: '5', class: 'events-muted' }, 'Loading…'))
     ]);
 
     const table = el('table', { 'aria-label': 'events' }, [
@@ -362,6 +362,7 @@
           el('th', null, 'Asset'),
           el('th', null, 'Unix'),
           el('th', null, 'Date'),
+          el('th', null, 'Text'),
           el('th', null, 'Chart')
         ])
       ),
@@ -594,13 +595,14 @@
       bodyEl.innerHTML = '';
 
       if (!Array.isArray(events) || events.length === 0) {
-        bodyEl.appendChild(el('tr', null, el('td', { colspan: '4', class: 'events-muted' }, 'No events.')));
+        bodyEl.appendChild(el('tr', null, el('td', { colspan: '5', class: 'events-muted' }, 'No events.')));
         return;
       }
 
       for (const evObj of events) {
         const asset = pick(evObj, ['asset', 'symbol', 'ticker', 'instrument']) ?? '';
         const date = pick(evObj, ['date', 'date-instant', 'dateInstant', 'datetime', 'time', 'ts', 'timestamp']);
+        const text = pick(evObj, ['text']) ?? '';
         const chart = chartCellValue(evObj);
 
         const tr = el('tr');
@@ -632,6 +634,7 @@
         const tdAsset = el('td', null, String(asset));
         const tdUnix = el('td', null, unix == null ? '' : String(unix));
         const tdDate = el('td', null, toDisplayDate(date));
+        const tdText = el('td', null, String(text));
 
         const tdChart = el('td');
         if (chart.href) {
@@ -644,6 +647,7 @@
         tr.appendChild(tdAsset);
         tr.appendChild(tdUnix);
         tr.appendChild(tdDate);
+        tr.appendChild(tdText);
         tr.appendChild(tdChart);
         bodyEl.appendChild(tr);
       }

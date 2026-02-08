@@ -419,7 +419,7 @@
           tr.addEventListener('click', (e) => {
             // Don't trigger when clicking links.
             if (e.target && e.target.closest && e.target.closest('a')) return;
-            showRowDialog(ev);
+            console.log(`loading chart ${String(asset)} date: ${toDisplayDate(date)}`);
           });
 
           const tdAsset = document.createElement('td');

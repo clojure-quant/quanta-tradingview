@@ -427,6 +427,101 @@
       }
     }
 
+    function getTvWidget() {
+      // tvtrading.html stores it as window.tvWidget
+      return (typeof window !== 'undefined' && window.tvWidget) ? window.tvWidget : null;
+    }
+
+    function waitForTvWidgetReady(widget) {
+      // Charting Library exposes widget.onChartReady(cb)
+      return new Promise((resolve) => {
+        if (!widget) return resolve();
+        if (typeof widget.onChartReady === 'function') {
+          widget.onChartReady(() => resolve());
+        } else {
+          resolve();
+        }
+      });
+    }
+
+    function parseJsonIfLooksLikeJson(v) {
+      if (typeof v !== 'string') return v;
+      const s = v.trim();
+      if (!s) return v;
+      if (!(s.startsWith('{') || s.startsWith('['))) return v;
+      try {
+        return JSON.parse(s);
+      } catch (_) {
+        return v;
+      }
+    }
+
+    function getChartRefFromEvent(evObj) {
+      return pick(evObj, ['chart', 'chartId', 'chart-id', 'chart_id', 'chartid']);
+    }
+
+    async function loadTradingViewLayoutFromEvent(evObj) {
+      const widget = getTvWidget();
+      if (!widget) return false;
+
+      await waitForTvWidgetReady(widget);
+
+      const chartRef = getChartRefFromEvent(evObj);
+      if (chartRef == null) return false;
+
+      // If the event already contains a full chart "state/layout" object, use widget.load(state).
+      // (The Charting Library widget API supports widget.load(state)).
+      if (typeof chartRef === 'object') {
+        const stateMaybe = pick(chartRef, ['state', 'layout', 'content', 'data']);
+        const parsed = parseJsonIfLooksLikeJson(stateMaybe ?? chartRef);
+        if (parsed && typeof parsed === 'object' && typeof widget.load === 'function') {
+          setStatus('Loading chart…');
+          await widget.load(parsed);
+          setStatus('Chart loaded.');
+          return true;
+        }
+      }
+
+      // If chartRef is JSON string representing a saved state, load it.
+      if (typeof chartRef === 'string') {
+        const parsed = parseJsonIfLooksLikeJson(chartRef);
+        if (parsed && typeof parsed === 'object' && typeof widget.load === 'function') {
+          setStatus('Loading chart…');
+          await widget.load(parsed);
+          setStatus('Chart loaded.');
+          return true;
+        }
+      }
+
+      // Otherwise assume chartRef is a saved-chart id/name and load from charts_storage.
+      // The Charting Library widget API supports widget.getSavedCharts(cb) and widget.loadChartFromServer(record).
+      if (typeof widget.getSavedCharts === 'function' && typeof widget.loadChartFromServer === 'function') {
+        const chartId = String(chartRef);
+        setStatus(`Looking up chart ${chartId}…`);
+
+        const records = await new Promise((resolve) => {
+          try {
+            widget.getSavedCharts((r) => resolve(r || []));
+          } catch (_) {
+            resolve([]);
+          }
+        });
+
+        const rec = (records || []).find((x) => String(x && x.id) === chartId || String(x && x.name) === chartId);
+        if (!rec) {
+          setStatus(`Chart not found: ${chartId}`);
+          return false;
+        }
+
+        setStatus(`Loading chart ${chartId}…`);
+        await widget.loadChartFromServer(rec);
+        setStatus('Chart loaded.');
+        return true;
+      }
+
+      return false;
+    }
+
     function renderEvents(events) {
       bodyEl.innerHTML = '';
 
@@ -445,7 +540,12 @@
 
         tr.addEventListener('click', (e) => {
           if (e.target && e.target.closest && e.target.closest('a')) return;
-          showRowDialog(evObj);
+
+          console.log(`loading chart ${String(asset)} date: ${toDisplayDate(date)}`);
+
+          // If this page has a TradingView Charting Library widget (window.tvWidget),
+          // try to load the chart/layout referenced by this row.
+          loadTradingViewLayoutFromEvent(evObj).catch(showError);
         });
 
         const tdAsset = el('td', null, String(asset));

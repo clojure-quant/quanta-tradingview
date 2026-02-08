@@ -523,7 +523,20 @@
       return false;
     }
 
-    async function focusTradingViewOnEventDate(evObj) {
+    function getCurrentVisibleRangeSeconds(widget) {
+      try {
+        const chartApi = (widget && typeof widget.activeChart === 'function') ? widget.activeChart() : null;
+        if (!chartApi || typeof chartApi.getVisibleRange !== 'function') return null;
+        const current = chartApi.getVisibleRange();
+        if (!current || !Number.isFinite(current.from) || !Number.isFinite(current.to)) return null;
+        const len = Math.max(0, current.to - current.from);
+        return len > 0 ? len : null;
+      } catch (_) {
+        return null;
+      }
+    }
+
+    async function focusTradingViewOnEventDate(evObj, rangeOverrideSeconds) {
       const widget = getTvWidget();
       if (!widget) return false;
 
@@ -540,18 +553,14 @@
       const chartApi = (typeof widget.activeChart === 'function') ? widget.activeChart() : null;
       if (!chartApi || typeof chartApi.setVisibleRange !== 'function') return false;
 
-      let range = 86400 * 60; // fallback: ~60 days (in seconds)
+      let range = (Number.isFinite(rangeOverrideSeconds) && rangeOverrideSeconds > 0)
+        ? rangeOverrideSeconds
+        : 86400 * 60; // fallback: ~60 days (in seconds)
 
-      try {
-        if (typeof chartApi.getVisibleRange === 'function') {
-          const current = chartApi.getVisibleRange();
-          if (current && Number.isFinite(current.from) && Number.isFinite(current.to)) {
-            const len = Math.max(0, current.to - current.from);
-            if (len > 0) range = len;
-          }
-        }
-      } catch (_) {
-        // ignore
+      // If no override was passed in, use the current chart's visible range.
+      if (!(Number.isFinite(rangeOverrideSeconds) && rangeOverrideSeconds > 0)) {
+        const currentLen = getCurrentVisibleRangeSeconds(widget);
+        if (Number.isFinite(currentLen) && currentLen > 0) range = currentLen;
       }
 
       range = Math.max(60, Math.floor(range));
@@ -603,11 +612,15 @@
           console.log(`loading chart ${String(asset)} date: ${toDisplayDate(date)}`);
 
           // If this page has a TradingView Charting Library widget (window.tvWidget),
-          // load the chart/layout referenced by this row, then focus time on the event date.
+          // capture the current visible range BEFORE loading the new chart, then load it,
+          // then focus time on the event date using that same range.
           try {
+            const widget = getTvWidget();
+            const rangeBefore = widget ? getCurrentVisibleRangeSeconds(widget) : null;
+
             const loaded = await loadTradingViewLayoutFromEvent(evObj);
             if (loaded) {
-              await focusTradingViewOnEventDate(evObj);
+              await focusTradingViewOnEventDate(evObj, rangeBefore);
             }
           } catch (err) {
             showError(err);

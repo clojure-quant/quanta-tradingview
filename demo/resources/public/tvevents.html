@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+	<title>TradingView Charting Library demo</title>
+
+	<!-- Fix for iOS Safari zooming bug -->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+	<script type="text/javascript" src="/r/charting_library_trading/charting_library.standalone.js"></script>
+	<script type="text/javascript" src="/r/tradingview/UDF_30/bundle.js"></script>
+	<script type="text/javascript" src="/r/charting_library_trading/brokerdemo.js"></script>
+	<script type="text/javascript" src="/r/charting_library_trading/logging.js"></script><script type="text/javascript" src="/r/charting_library_trading/brokerdemo.js"></script>
+	<script type="text/javascript">
+
+		function getParameterByName(name) {
+			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+				results = regex.exec(location.search);
+			return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+
+		function addTV(container, asset) {
+			var datafeedUrl = "http://localhost:8080/tv";
+			//var datafeedUrl = "https://demo_feed.tradingview.com";
+			//var customDataUrl = getParameterByName('dataUrl');
+			//if (customDataUrl !== "") {
+			//	datafeedUrl = customDataUrl.startsWith('https://') ? customDataUrl : `https://${customDataUrl}`;
+			//}
+
+			var datafeed =  new Datafeeds.UDFCompatibleDatafeed(datafeedUrl, undefined, {
+					maxResponseLength: 1000,
+					expectedOrder: 'latestFirst',
+				});
+		
+			var widget = window.tvWidget = new TradingView.widget({
+				// debug: true, // uncomment this line to see Library errors and warnings in the console
+				fullscreen: true,
+				//autosize: true,
+				symbol: asset,
+				interval: '1D',
+				container: container,
+
+				//	BEWARE: no trailing slash is expected in feed URL
+				datafeed:datafeed,
+				library_path: "charting_library_trading/",
+				locale: "en",
+				disabled_features: ["use_localstorage_for_settings",
+                                    'open_account_manager',
+						            'dom_widget'
+
+				],
+				enabled_features: ["study_templates",
+					"charting_library_debug_mode",
+					"symbol_info",
+					"watchlist",
+					"header_widget",
+					'display_data_mode',
+                    'items_favoriting',
+
+				],
+				//charts_storage_url: 'https://saveload.tradingview.com',
+				charts_storage_url: 'http://localhost:8080/tv/storage',
+				charts_storage_api_version: "1.1",
+				client_id: 'tradingview.com',
+				user_id: 'user-444',
+				theme: getParameterByName('theme'),
+				widgetbar: {
+						details: true,
+						news: false,
+						watchlist: true,
+						datawindow: true,
+						watchlist_settings: {
+							default_symbols: [
+								'###STOCKS',
+								'OMC',
+								'NASDAQ:MSFT',
+								'NYSE:IBM',
+								'###FOREX',
+								'FX:EURUSD',
+								'FX:GBPUSD',
+								'###CRYPTO',
+								'KO',
+								'CRYPTO:ETHUSD',
+							],
+						},
+					},
+					broker_factory: function (host) {
+						var broker =  new DemoBrokerTerminal(host);
+						attachBrokerLogging(broker, "DemoBroker");
+						return broker;
+					},
+					broker_config: {
+						configFlags: {
+							supportNativeReversePosition: true,
+							supportClosePosition: true,
+							supportPLUpdate: true,
+							supportLevel2Data: false,
+							showQuantityInsteadOfAmount: true,
+							supportEditAmount: false,
+							supportOrderBrackets: true,
+							supportMarketBrackets: true,
+							supportPositionBrackets: true,
+							supportOrdersHistory: false,
+						},
+						durations: [
+							{ name: 'DAY', value: 'DAY' },
+							{ name: 'GTC', value: 'GTC' },
+						],
+					},
+			});
+
+
+		}
+
+		function initOnReady() {
+			addTV("tv_chart_container1", 'OMC');
+		};
+
+		window.addEventListener('DOMContentLoaded', initOnReady, false);
+	</script>
+
+</head>
+
+<body style="margin:0px;">
+	<div style="height:vh;width:vw;" id="tv_chart_container1"></div>
+
+	<!-- events overlay -->
+	<script src="events.js"></script>
+</body>
+
+</html>

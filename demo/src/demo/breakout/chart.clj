@@ -1,12 +1,10 @@
 (ns demo.breakout.chart
   (:require
-   [clojure.pprint :refer [print-table]]
-   [com.rpl.specter :as specter]
-   [tablecloth.api :as tc]
+   [clojure.pprint :refer [print-table]] 
    [quanta.tradingview.chart.db :refer [save-chart load-chart]]
    [quanta.tradingview.chart.edit :refer [describe-charts
-                                          keep-only-main-chart
-                                          remove-drawings
+                                          ;keep-only-main-chart
+                                          ;remove-drawings
                                           add-drawing
                                           modify-chart set-chart-asset
                                           set-axes-sources]]
@@ -14,12 +12,7 @@
    [demo.env :refer [env]]))
 
 
-
-
-
-
-
-(defn create-chart-for-event [{:keys [date asset close
+(defn create-chart-for-event [{:keys [date asset _close
                                       trailing-high trailing-high-date]}]
   (->> (load-chart env {:chart-id "1770585201"  ;"1770419848"
                         })

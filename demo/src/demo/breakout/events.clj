@@ -1,7 +1,7 @@
 (ns demo.breakout.events
   (:require
    [tablecloth.api :as tc]
-   [modular.persist.protocol :refer [save loadr]]
+   [modular.persist.protocol :refer [save]]
    [modular.persist.edn] ; side effects
    [quanta.tradingview.handler.response.asset :refer [symbol-info]]
    [quanta.tradingview.chart.source :refer [->epoch]]

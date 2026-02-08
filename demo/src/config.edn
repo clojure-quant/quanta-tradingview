@@ -20,8 +20,11 @@
                                         {:value "stock" :name "Stocks"}
                                         {:value "ETF" :name "ETF"}]
                         :exchanges [{:value "" :name "All Exchanges" :desc ""}
-                                    {:value "us" :name "US Stocks" :desc ""}]}}
+                                    {:value "us" :name "US Stocks" :desc ""}]}
+               :events-path "./tv/events/"
+               }
  
+ ; :assets is defined in tv-assets.edn
  ;:assets [{:asset "A" :name "asdf" :category "stock" :exchange "us"}
  ;         {:asset "AA" :name "anonomynous alcoholico" :category "stock" :exchange "us"}]
 

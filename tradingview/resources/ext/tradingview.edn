@@ -48,7 +48,12 @@
                                                                ring.middleware.multipart-params/wrap-multipart-params
                                                                webserver.middleware.ctx/ctx-middleware]
                                                   :services #{:tradingview}}]
-
+              
+              ; events
+              ["/events" {:get quanta.tradingview.handler.events/events-handler
+                          :middleware [webserver.middleware.api/wrap-api-handler
+                                       webserver.middleware.ctx/ctx-middleware]
+               :services #{:tradingview}}]
 
               ;["/error" {:get demo.error/error-handler}]
               ]

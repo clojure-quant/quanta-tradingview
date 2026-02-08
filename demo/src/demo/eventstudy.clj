@@ -11,17 +11,11 @@
                                           add-drawing
                                           modify-chart set-chart-asset
                                           set-axes-sources]]
+   [demo.breakout.events :refer [events events-with-asset event-chart-name]]
    [demo.env :refer [env]]))
 
 
-(def events
-  (-> (tc/dataset "2018-pl2.csv" {:key-fn keyword})
-      (tc/select-columns [:date-instant :asset :close :trailing-high
-                          :trailing-high-date :idx])
-      (tc/rename-columns {:date-instant :date})
-      (tc/rows :as-maps)))
 
-events
 
 (count events)
 ; 301
@@ -30,9 +24,7 @@ events
 
 (symbol-info (:asset-db env) "KO")
 
-(def events-with-asset 
-  (->> events
-       (filter #(:description (symbol-info (:asset-db env) (:asset %))))))
+
 
 (count events-with-asset)
 ;234
@@ -110,7 +102,7 @@ events
      (save-chart env {}))
 
 (defn create-chart-asset-event [event]
-  (let [chart-name (str "event-" (:asset event) "-" (:idx event))]
+  (let [chart-name (event-chart-name event)]
     (->> (create-chart-for-event event)
          (modify-chart {:chart-id chart-name
                         :name chart-name})

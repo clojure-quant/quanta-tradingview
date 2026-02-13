@@ -1,40 +1,33 @@
 (ns demo.handler-demo
-  (:require 
-   [quanta.tradingview.asset.db :refer [search instrument-details]]
+  (:require
    [quanta.tradingview.handler.asset :refer [symbols-handler search-handler]]
    [quanta.tradingview.handler.response.asset :refer [symbol-search symbol-info]]
    [quanta.tradingview.handler.history :refer [history-handler]]
-   [demo.env :refer [env]]
-   ))
+   [quanta.tradingview.handler.config :refer [calc-exchanges calc-categories]]
+   [demo.env :refer [env]]))
 
-;; use custom asset db
-
-(def assets [{:asset "A" :name "asdf" :category "stock" :exchange "US"}
-             {:asset "AA" :name "anonomynous alcoholico" :category "stock" :exchange "US"}])
-(def asset-db (quanta.tradingview.asset.db/start-asset-db assets))
-
-(instrument-details asset-db "AA")
-
-(search asset-db "")
-
-;; use webserver config
 
 env
 
-(symbol-info (:asset-db env) "AA")
+;; DETAILS ONE ASSET
+(symbol-info (:assetdb env) "AA")
 
-(instrument-details (:asset-db env) "AA")
 (symbols-handler {:ctx env
                   :query-params {:symbol "AA"}})
+
+;; SEARCH 
+
+(symbol-search (:assetdb env) "A" "etf" "" 2)
+
 (search-handler {:ctx env
-                  :query-params {:query "A"
-                                 ;:type "Equity"
-                                 :limit "10"
-                                 }})
+                 :query-params {:query "A"
+                                :type "etf"
+                                :limit "10"}})
+;; CONFIG
 
+(calc-exchanges env)
 
-(search (:asset-db env) "")
-
+(calc-categories env)
 
  ; history
 (history-handler {:ctx env

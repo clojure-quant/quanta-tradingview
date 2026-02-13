@@ -17,11 +17,11 @@
 
 (def events-with-asset
   (->> events
-       (filter #(:description (symbol-info (:asset-db env) (:asset %))))))
+       (filter #(:description (symbol-info (:assetdb env) (:asset %))))))
 
 (comment 
-  (symbol-info (:asset-db env) "WTR")
-  (symbol-info (:asset-db env) "KO")
+  (symbol-info (:assetdb env) "WTR")
+  (symbol-info (:assetdb env) "KO")
   (count events-with-asset)
   ;234
   )

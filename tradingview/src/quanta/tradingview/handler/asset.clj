@@ -9,14 +9,14 @@
 ;  {"symbol":"BA","full_name":"BA","description":"The Boeing Company","exchange":"NYSE","type":"stock"}]
 
 (defn search-handler [{:keys [ctx query-params] :as _req}]
-  (let [asset-db (:asset-db ctx)
+  (let [assetdb (:assetdb ctx)
         {:keys [query type exchange limit]} (clojure.walk/keywordize-keys query-params)
         limit (Integer/parseInt limit)
-        result-tv (symbol-search asset-db query type exchange limit)]
+        result-tv (symbol-search assetdb query type exchange limit)]
     (res/response result-tv)))
 
 (defn symbols-handler [{:keys [ctx query-params] :as _req}]
-  (let [asset-db (:asset-db ctx)
+  (let [assetdb (:assetdb ctx)
         {:keys [symbol]} (clojure.walk/keywordize-keys query-params)
-        si (symbol-info asset-db symbol)]
+        si (symbol-info assetdb symbol)]
     (res/response si)))

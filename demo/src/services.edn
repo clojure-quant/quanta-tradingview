@@ -1,10 +1,9 @@
  {:modular (modular.system/modular-env)  ; {:profile "jetty"  :config ["demo.edn" "secrets.edn"]}
   :components
   {:config1 {:start (modular.config/load-config! (:config #ref [:modular]))}
-   :config {:start (deref (clip/ref :config1))}
+   :config {:start (deref (clip/ref :config1))} 
 
    :exts {:start (extension/discover (:extension (clip/ref :config)))}
-
    :timbre {:start (modular.log/timbre-config!
                     (:timbre/clj  (clip/ref :config)))}
 
@@ -14,12 +13,17 @@
    
    ;; BAR DB + MARKET DATA 
    
-   :duckdb {; duck-db db has .ddb extension
-            :start (quanta.bar.db.duck/start-bardb-duck "./duck/bento.ddb")
-            :stop (quanta.bar.db.duck/stop-bardb-duck this)}
-
-   :asset-db {:start (quanta.tradingview.asset.db/start-asset-db (:assets (clip/ref :config)))}
+   ;:bardb {; duck-db db has .ddb extension
+   ;         :start (quanta.bar.db.duck/start-bardb-duck 
+   ;                 (str (clip/ref quantastore)  "/bardb/bento.ddb"))
+   ;         :stop (quanta.bar.db.duck/stop-bardb-duck this)}
    
+   :bardb {:start (quanta.bar.db.nippy/start-bardb-nippy
+                   (modular.env/env "${QUANTASTORE}/bardb/eodhd-nippy/"))}
+   
+   :assetdb {:start (quanta.market.asset.datahike/start-asset-db
+                     (modular.env/env "${QUANTASTORE}/assetdb"))}
+
    ;; executor
    
    :exec {:start (flowy.executor/start-executor
@@ -27,16 +31,13 @@
                    :exts (clip/ref :exts)}
                   (:services (clip/ref :config)))}
 
-   
-
    ;; webserver
    :webly {:start (webly.spa/start-webly
                    {:exts (clip/ref :exts)
                     :ctx {:flowy (flowy.reflower/start-reflower (clip/ref :exec))
-                          :bar-db (clip/ref :duckdb)
-                          :asset-db (clip/ref :asset-db)
-                          :tradingview (:tradingview (clip/ref :config))
-                          }}
+                          :bar-db  (clip/ref :bardb)
+                          :assetdb (clip/ref :assetdb)
+                          :tradingview (:tradingview (clip/ref :config))}}
                    (clip/ref :config)
                    (:profile #ref [:modular]))
            :stop (webly.spa/stop-webly this)}

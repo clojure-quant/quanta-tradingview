@@ -15,11 +15,11 @@
               ["/tv/search" {:get quanta.tradingview.handler.asset/search-handler
                              :middleware [webserver.middleware.api/wrap-api-handler
                                           webserver.middleware.ctx/ctx-middleware]
-                             :services #{:asset-db}}]
+                             :services #{:assetdb}}]
               ["/tv/symbols" {:get quanta.tradingview.handler.asset/symbols-handler
                               :middleware [webserver.middleware.api/wrap-api-handler
                                            webserver.middleware.ctx/ctx-middleware]
-                              :services #{:asset-db}}]
+                              :services #{:assetdb}}]
               ["/tv/config" {:get quanta.tradingview.handler.config/config-handler
                              :middleware [webserver.middleware.api/wrap-api-handler
                                           webserver.middleware.ctx/ctx-middleware]

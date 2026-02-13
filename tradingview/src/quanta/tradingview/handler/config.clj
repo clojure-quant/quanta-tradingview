@@ -1,6 +1,7 @@
 (ns quanta.tradingview.handler.config
   (:require
-   [ring.util.response :as res]))
+   [ring.util.response :as res]
+   [quanta.market.asset.datahike :refer [exchanges categories]]))
 
 ;; CONFIG - Tell TradingView which featurs are supported by server.
 
@@ -26,6 +27,21 @@
                ;{:value "LN" :name "London" :desc ""}
                  ]})
 
+(defn calc-exchanges [{:keys [assetdb]}]
+  (->> (exchanges assetdb)
+       (map (fn [n] {:value n :name n :desc ""}))
+       (concat [{:value "" :name "All Exchanges" :desc ""}])
+       (into [])))
+
+(defn calc-categories [{:keys [assetdb]}]
+  (->> (categories assetdb)
+       (map (fn [n] {:value (name n) :name (name n)}))
+       (concat [{:value "" :name "All"}])
+       (into [])))
+
 (defn config-handler [{:keys [ctx] :as _req}]
-  (let [tradingview (:tradingview ctx)]
-    (res/response (:config tradingview))))
+  (let [tradingview (:tradingview ctx)
+        config (-> (:config tradingview)
+                   (assoc :exchanges (calc-exchanges ctx)
+                          :symbols_types (calc-categories ctx)))]
+    (res/response config)))

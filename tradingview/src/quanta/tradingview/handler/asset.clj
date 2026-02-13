@@ -15,6 +15,8 @@
         result-tv (symbol-search assetdb query type exchange limit)]
     (res/response result-tv)))
 
+;https://demo_feed.tradingview.com/symbols?symbol=FX%3AEURUSD
+
 (defn symbols-handler [{:keys [ctx query-params] :as _req}]
   (let [assetdb (:assetdb ctx)
         {:keys [symbol]} (clojure.walk/keywordize-keys query-params)

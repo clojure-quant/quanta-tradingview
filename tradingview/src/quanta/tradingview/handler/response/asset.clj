@@ -15,11 +15,35 @@
    :exchange-listed (:asset/exchange a)
    :type (name (:asset/category a))})
 
+
+(def example-symbolinfo-response-error
+  {"s" "error"
+   "errmsg" "unknown_symbol FX:EURUSD"})
+
+(def example-symbolinfo-response-success
+{"name" "MSFT"
+ "exchange-traded" "NasdaqNM"
+ "exchange-listed" "NasdaqNM"
+ "timezone" "America/New_York"
+ "minmov" 1
+ "minmov2" 0
+ "pointvalue" 1
+ "session" "0930-1630"
+ "has_intraday" false
+ "visible_plots_set" "ohlcv"
+ "description" "Microsoft Corporation"
+ "type" "stock"
+ "supported_resolutions" ["D" "2D" "3D" "W" "3W" "M" "6M"]
+ "pricescale" 100
+ "ticker" "MSFT"
+ "logo_urls" ["https://s3-symbol-logo.tradingview.com/microsoft.svg"]
+ "exchange_logo" "https://s3-symbol-logo.tradingview.com/country/US.svg"})
+
 (defn symbol-info
   "Converts instrument [from db] to tradingview symbol-information
    Used in symbol and search"
   [assetdb s]
-  (let [i (get-asset assetdb s)]
+  (if-let [i (get-asset assetdb s)]
     (merge (instrument->tradingview i)
            {:supported_resolutions [;"15"
                                     "D"]
@@ -42,8 +66,9 @@
 
                 ; :expired true ; whether this symbol is an expired futures contract or not.
                 ; :expiration_date  (to-epoch-no-ms- (-> 1 t/hours t/ago))
-            })))
-
+            })
+    {:s "error"
+     :errmsg (str "unknown_symbol " s)}))
 
 
 (defn symbol-search [assetdb query type exchange limit]

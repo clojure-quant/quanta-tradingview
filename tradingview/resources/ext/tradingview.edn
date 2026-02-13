@@ -48,6 +48,7 @@
                                                                ring.middleware.multipart-params/wrap-multipart-params
                                                                webserver.middleware.ctx/ctx-middleware]
                                                   :services #{:tradingview}}]
+                ;;https://saveload.tradingview.com/1.1/drawing_templates?client=trading_platform_demo&user=public_user&tool=LineToolHorzRay
               
               ; events
               ["/events" {:get quanta.tradingview.handler.events/events-handler

@@ -45,6 +45,11 @@
    "LineToolHorzRay" {:state {:text ""
                               :title ""} :points 1}})
 
+;https://saveload.tradingview.com/1.1/drawing_templates?client=trading_platform_demo&user=public_user&tool=LineToolHorzRay
+;https://saveload.tradingview.com/1.1/drawing_templates?client=trading_platform_demo&user=public_user&tool=LineToolTrendLine
+
+; {"status": "ok", "data": ["Choch", "\u538b\u529b\u7ebf", "Bull trendline", "W", "H4", "uptrend", "Lik", "white line", "rish_draw", "Lg", "rishabh_drawing2", "tl", "3reere", "tla"]}%   
+
 (defn mandatory-state-fields [state-schema]
   (->> state-schema
        :state

@@ -15,6 +15,9 @@ env
 (symbols-handler {:ctx env
                   :query-params {:symbol "AA"}})
 
+; curl http://localhost:8080/tv/symbols\?symbol\=CRYPTO%3AETHUSD
+; exception 
+
 ;; SEARCH 
 
 (symbol-search (:assetdb env) "A" "etf" "" 2)

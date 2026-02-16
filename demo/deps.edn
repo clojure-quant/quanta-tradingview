@@ -8,7 +8,9 @@
   org.pinkgorilla/transit-ajax {:mvn/version "0.1.11"} ; encoding
   org.pinkgorilla/css-theme {:mvn/version "0.1.8"}
   org.pinkgorilla/modular {:mvn/version "0.3.73"}
-  io.github.clojure-quant/quanta-tradingview {:local/root "../tradingview" :deps/manifest :deps}}
+  io.github.clojure-quant/quanta-tradingview {:local/root "../tradingview" :deps/manifest :deps}
+  io.github.clojure-quant/algo-breakout {:local/root "../breakout" :deps/manifest :deps}}
+ 
  :aliases
  {:test {:extra-paths ["test"]
          :extra-deps {io.github.cognitect-labs/test-runner {:git/url "https://github.com/cognitect-labs/test-runner.git"

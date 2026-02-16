@@ -12,17 +12,19 @@
   ;:transit-ds {:start (cquant.transit.techml/add-techml-dataset-handlers!)}
    
    ;; BAR DB + MARKET DATA 
-   
-   ;:bardb {; duck-db db has .ddb extension
-   ;         :start (quanta.bar.db.duck/start-bardb-duck 
-   ;                 (str (clip/ref quantastore)  "/bardb/bento.ddb"))
-   ;         :stop (quanta.bar.db.duck/stop-bardb-duck this)}
-   
-   :bardb {:start (quanta.bar.db.nippy/start-bardb-nippy
-                   (modular.env/env "${QUANTASTORE}/bardb/eodhd-nippy/"))}
+   :quanta-store {:start "home/florian/quantastore"}
    
    :assetdb {:start (quanta.market.asset.datahike/start-asset-db
                      (modular.env/env "${QUANTASTORE}/assetdb"))}
+
+   :bardb {; duck-db db has .ddb extension
+           :start (quanta.bar.db.duck/start-bardb-duck 
+                   (modular.env/env "${QUANTASTORE}/bardb/eodhd.ddb"))
+           :stop (quanta.bar.db.duck/stop-bardb-duck this)}
+   
+   :bardb-nippy-eodhd {:start (quanta.bar.db.nippy/start-bardb-nippy
+                               (modular.env/env "${QUANTASTORE}/bardb/eodhd-nippy/"))}
+      
 
    ;; executor
    

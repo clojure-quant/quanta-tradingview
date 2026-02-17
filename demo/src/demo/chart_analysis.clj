@@ -1,7 +1,7 @@
 (ns demo.chart-analysis
   (:require
    [clojure.pprint :refer [print-table]]
-      [com.rpl.specter :as specter]
+   [com.rpl.specter :as specter]
    [quanta.tradingview.chart.db :refer [save-chart chart-list load-chart]]
    [quanta.tradingview.chart.edit :refer [describe-charts get-source describe-sources
                                           pane pane-owner keep-only-main-chart
@@ -44,9 +44,8 @@
 
 (-> (load-chart env {:chart-id "1770585201"})
  ;(load-chart env {:chart-id "event-AIG-63"})
- (describe-charts)
- (print-table)
- )
+    (describe-charts)
+    (print-table))
 ; | :chart | :pane | :source |        :type |       :id | :asset |
 ; |--------+-------+---------+--------------+-----------+--------|
 ; |      0 |     0 |       0 |   MainSeries | _seriesId |    OMC |
@@ -55,10 +54,9 @@
 ; |      0 |     0 |       3 |        Study |    snTsLT |        |
 
 (->> (load-chart env {:chart-id "1770585201"})
-     (specter/select [:charts 0 :panes 0 :sources specter/ALL 
-                     (specter/pred #(not (= "study_Volume" (:type %))))
-                      :id])
-     )
+     (specter/select [:charts 0 :panes 0 :sources specter/ALL
+                      (specter/pred #(not (= "study_Volume" (:type %))))
+                      :id]))
 ["_seriesId" "389Oub" "Eex4ul" "snTsLT"]
 (->> (load-chart env {:chart-id "1770585201"})
      (specter/select [:charts 0 :panes 0 :rightAxisesState 0 :sources]))

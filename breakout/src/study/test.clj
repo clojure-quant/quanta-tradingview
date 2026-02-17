@@ -8,7 +8,7 @@
    [quanta2.algo :refer [available-algos]]
    [quanta2.asset-list :refer [show-lists]]
    [breakout.algo] ; for side effects
-   [study.pl :refer [add-exit-pl]]
+   [breakout.indicator.pl :refer [add-exit-pl]]
    [demo.env :refer [env]]))
 
 (m/? (b/summary (:bar-db env) {:calendar [:us :d]}))
@@ -60,23 +60,27 @@
 (->> ds-etf
      :signals
     ;(add-exit-pl) 
- )
+     )
 
-(-> demo 
-    ()
-    )
-
+(defn cum-pl [ds]
+  (reduce + (:pl ds)))
 
 (-> demo
     :signals
     (tc/select-rows (fn [row]
                       (> (:close row) 1.0)))
-    (tc/select-columns [;:date 
+    (tc/select-columns [:date
                         :asset :close :pl :px0 :px5 :px10 :px20 :px40])
-
     (add-exit-pl)
-    ;(tc/info)
-    )
+    cum-pl)
+
+
+
+
+ ;(tc/dataset "etf-signals.csv" {:key-fn keyword})
+
+
+
 
 (:errors demo)
 ;("MUSE" "BCHP" "GRNJ" "CVRT" "BSR" "QTOP" "WTIU")

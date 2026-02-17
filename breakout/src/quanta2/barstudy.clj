@@ -20,29 +20,51 @@
 
 ; (pmap #(add-trailing-decline-signal (tc/as-regular-dataset %) window dd dd-n-min))
 
-(defn run-algo [algo-kw algo-opts assets bar-dict]
-  (let [algo (get-algo algo-kw)
-        _ (assert algo (str "run-algo algo " algo-kw " not available. "))
-        make-task (fn [asset]
+(defn run-algo [algo algo-opts assets bar-dict]
+  (let [make-task (fn [asset]
                     (let [bar-ds (get bar-dict asset)]
                       ;(m/sp 
-                       (m/via m/cpu (quanta2.protocol/calculate algo algo-opts bar-ds))))
+                      (m/via m/cpu
+                             (try
+                               {:data (quanta2.protocol/calculate algo algo-opts bar-ds)}
+                               (catch Exception ex
+                                 {:error asset}
+                                 )))))
         calc-tasks (map make-task assets)]
     (run-parallel calc-tasks 8)))
+
+(defn get-signals [algo algo-opts results]
+  (let [all-ds (apply tc/concat results)]
+    (quanta2.protocol/select-signal algo algo-opts all-ds)))
+
 
 
 (defn run [env {:keys [algo asset list algo-opts calendar window] :as opts}]
   (m/sp
-   (let [assets (->> (assets env (select-keys opts [:list :asset]))
+   (let [algo-kw algo
+         algo (get-algo algo-kw)
+         _ (assert algo (str "run-algo algo " algo-kw " not available. "))
+         assets (->> (assets env (select-keys opts [:list :asset]))
                      (into []))
-         _ (println "running on assets: " assets)
+         _ (println "running on assets: " (count assets))
          bar-all-ds (m/? (b/get-bars (:bar-db env) {:asset assets :calendar calendar}
                                      (select-keys window [:start :end])))
          bar-dict (bar-all->map bar-all-ds)
-         results (m/? (run-algo algo algo-opts assets bar-dict))]
+         _ (println "bars loaded for assets" (count (keys bar-dict)))
+         result-seq (m/? (run-algo algo algo-opts assets bar-dict))
+         results (->>  result-seq
+                       (remove (fn [r] (:error r)))
+                       (map :data))
+         err-seq (->> result-seq
+                      (filter (fn [r] (:error r)))
+                      (map :error))
+         ]
      ;bar-all-ds
      ;bar-dict
-     results)))
+     {:errors err-seq
+      :results results
+      :signals (get-signals algo algo-opts results)}
+     )))
 
 
 #_(defn calculate-window

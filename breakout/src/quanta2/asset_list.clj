@@ -14,6 +14,9 @@
       (d/q @dbconn)
       (only-names)))
 
+(defn show-lists [{:keys [assetdb]}]
+  (get-lists assetdb))
+
 (defn assets [env {:keys [asset list]}]
   (->>  (concat
          (if list (:lists/asset (get-list (:assetdb env) list)) [])

@@ -1,64 +1,65 @@
  {:modular (modular.system/modular-env)  ; {:profile "jetty"  :config ["demo.edn" "secrets.edn"]}
-  :components
-  {:config1 {:start (modular.config/load-config! (:config #ref [:modular]))}
-   :config {:start (deref (clip/ref :config1))} 
+ :components
+ {:config1 {:start (modular.config/load-config! (:config #ref [:modular]))}
+  :config {:start (deref (clip/ref :config1))}
 
-   :exts {:start (extension/discover (:extension (clip/ref :config)))}
-   :timbre {:start (modular.log/timbre-config!
-                    (:timbre/clj  (clip/ref :config)))}
+  :exts {:start (extension/discover (:extension (clip/ref :config)))}
+  :timbre {:start (modular.log/timbre-config!
+                   (:timbre/clj  (clip/ref :config)))}
 
    ; transit-encoding
-   :transit-tick {:start (transit.type.tick/add-tick-handlers!)}
+  :transit-tick {:start (transit.type.tick/add-tick-handlers!)}
   ;:transit-ds {:start (cquant.transit.techml/add-techml-dataset-handlers!)}
-   
-   ;; BAR DB + MARKET DATA 
-   :quanta-store {:start "home/florian/quantastore"}
-   
-   :assetdb {:start (quanta.market.asset.datahike/start-asset-db
-                     (modular.env/env "${QUANTASTORE}/assetdb"))}
 
-   :bardb {; duck-db db has .ddb extension
-           :start (quanta.bar.db.duck/start-bardb-duck 
-                   (modular.env/env "${QUANTASTORE}/bardb/eodhd.ddb"))
-           :stop (quanta.bar.db.duck/stop-bardb-duck this)}
-   
-   :bardb-nippy-eodhd {:start (quanta.bar.db.nippy/start-bardb-nippy
-                               (modular.env/env "${QUANTASTORE}/bardb/eodhd-nippy/"))}
-      
+  ;; BAR DB + MARKET DATA 
+  :quanta-store {:start "home/florian/quantastore"}
 
-   ;; executor
-   
-   :exec {:start (flowy.executor/start-executor
-                  {:env {}
-                   :exts (clip/ref :exts)}
-                  (:services (clip/ref :config)))}
+  :assetdb {:start (quanta.market.asset.datahike/start-asset-db
+                    (modular.env/env "${QUANTASTORE}/assetdb"))}
 
-   ;; webserver
-   :webly {:start (webly.spa/start-webly
-                   {:exts (clip/ref :exts)
-                    :ctx {:flowy (flowy.reflower/start-reflower (clip/ref :exec))
-                          :bar-db  (clip/ref :bardb)
-                          :assetdb (clip/ref :assetdb)
-                          :tradingview (:tradingview (clip/ref :config))}}
-                   (clip/ref :config)
-                   (:profile #ref [:modular]))
-           :stop (webly.spa/stop-webly this)}
+  :bardb {; duck-db db has .ddb extension
+          :start (quanta.bar.db.duck/start-bardb-duck
+                  (modular.env/env "${QUANTASTORE}/bardb/eodhd.ddb"))
+          :stop (quanta.bar.db.duck/stop-bardb-duck this)}
+
+  :bardb-nippy-eodhd {:start (quanta.bar.db.nippy/start-bardb-nippy
+                              (modular.env/env "${QUANTASTORE}/bardb/eodhd-nippy/"))}
+
+  :bardb-sa {:start (quanta.bar.split.service/start-split-service {:bardb (clip/ref :bardb)})}
+
+  ;; executor
+
+  :exec {:start (flowy.executor/start-executor
+                 {:env {}
+                  :exts (clip/ref :exts)}
+                 (:services (clip/ref :config)))}
+
+  ;; webserver
+  :webly {:start (webly.spa/start-webly
+                  {:exts (clip/ref :exts)
+                   :ctx {:flowy (flowy.reflower/start-reflower (clip/ref :exec))
+                         :bar-db  (clip/ref :bardb)
+                         :assetdb (clip/ref :assetdb)
+                         :tradingview (:tradingview (clip/ref :config))}}
+                  (clip/ref :config)
+                  (:profile #ref [:modular]))
+          :stop (webly.spa/stop-webly this)}
 
 
-   ;; NREPL
-   
-   :nrepl {:start (nrepl.server/start-server
-                   :bind "0.0.0.0"
-                   :port 9100
+  ;; NREPL
+
+  :nrepl {:start (nrepl.server/start-server
+                  :bind "0.0.0.0"
+                  :port 9100
                   ;:middleware cider.nrepl.middleware/cider-middleware
                   ;:handler cider.nrepl/cider-nrepl-handler
-                   )
-           :stop (.close this)}
+                  )
+          :stop (.close this)}
 
 
 
 ;
-   }}
+  }}
 
 
 

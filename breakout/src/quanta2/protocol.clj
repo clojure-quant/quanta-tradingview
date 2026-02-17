@@ -6,6 +6,8 @@
   (algoname [_])
   ; calculate
   (calculate [_ opts ds])
+  (select-signal [_ opts ds])
+    
   ;(preload-n [_ opts])
   )
 

@@ -78,7 +78,7 @@
 
 
 (defn add-trailing-decline-signal [bar-ds {:keys [window-n dd-max dd-min-n]}]
-  (println "add-trailing window: " window-n " dd-max: " dd-max " dd-min-n: " dd-min-n)
+  ;(println "add-trailing window: " window-n " dd-max: " dd-max " dd-min-n: " dd-min-n)
   (let [ds (add-trailing-decline bar-ds window-n)
         ds (tc/add-columns ds {:idx (range (tc/row-count ds))})
         {:keys [idx prct-decline trailing-ago trailing-max-decline]} ds

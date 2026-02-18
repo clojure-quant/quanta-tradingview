@@ -12,7 +12,6 @@
   ;:transit-ds {:start (cquant.transit.techml/add-techml-dataset-handlers!)}
 
   ;; BAR DB + MARKET DATA 
-  :quanta-store {:start "home/florian/quantastore"}
 
   :assetdb {:start (quanta.market.asset.datahike/start-asset-db
                     (modular.env/env "${QUANTASTORE}/assetdb"))}
@@ -27,6 +26,13 @@
 
   :bardb-sa {:start (quanta.bar.split.service/start-split-service {:bardb (clip/ref :bardb)})}
 
+  :tradingview {:start (assoc (:tradingview (clip/ref :config))
+                              :charts-path (modular.env/env "${QUANTASTORE}/tv/chart/") 
+                              :template-path (modular.env/env "${QUANTASTORE}/tv/template/") 
+                              :marks-path (modular.env/env "${QUANTASTORE}/tv/mark/") 
+                              :events-path (modular.env/env "${QUANTASTORE}/tv/events/") 
+                              )}
+
   ;; executor
 
   :exec {:start (flowy.executor/start-executor
@@ -40,11 +46,10 @@
                    :ctx {:flowy (flowy.reflower/start-reflower (clip/ref :exec))
                          :bar-db  (clip/ref :bardb)
                          :assetdb (clip/ref :assetdb)
-                         :tradingview (:tradingview (clip/ref :config))}}
+                         :tradingview (clip/ref :tradingview)}}
                   (clip/ref :config)
                   (:profile #ref [:modular]))
           :stop (webly.spa/stop-webly this)}
-
 
   ;; NREPL
 

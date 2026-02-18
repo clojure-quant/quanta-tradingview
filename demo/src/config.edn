@@ -8,8 +8,8 @@
  ;:reitit {:wrap juan.app/wrap-app}
  
  :tradingview {:charts-path "./tv/chart/"
-               :template-path "./tv/template/"
-               :marks-path "./tv/mark/"
+               :template-path "/tv/template/"
+               :marks-path "/tv/mark/"
                :config {:supports_time true  ; we send our server-time
                         :supports_search true ;search and individual symbol resolve logic.
                         :supports_marks false

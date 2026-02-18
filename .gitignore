@@ -41,4 +41,7 @@ classes
 .gorilla/
 # database
 demo/duck/
-demo/.clj-kondo
+demo/.clj-kondo/**
+.clj-kondo/**
+!.clj-kondo/
+!.clj-kondo/config.edn

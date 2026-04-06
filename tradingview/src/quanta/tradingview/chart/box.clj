@@ -9,8 +9,7 @@
    [cljc.java-time.instant :as ti]
    [clojure.java.io :as io]
    [babashka.fs :refer [create-dirs]]
-   [modular.persist.edn] ; side effects to load edn files
-   [modular.persist.protocol :refer [save loadr]]
+   [quanta.tradingview.persist :refer [spit-edn slurp-edn]]
    ;[modular.helper.id :refer [guuid-str]]
    [quanta.tradingview.chart.db :refer [load-chart save-chart]]))
 
@@ -74,7 +73,7 @@
   (let [{:keys [content]} data-boxed
         data-edn (chart-unbox data-boxed)]
     (when debug?
-      (save :edn (filename-chart-unboxed charts-path client-id user-id chart-id) data-boxed))
+      (spit-edn (filename-chart-unboxed charts-path client-id user-id chart-id) data-boxed))
     (save-chart charts-path client-id user-id chart-id data-edn)))
 
 (defn load-chart-boxed [charts-path client-id user-id chart-id]

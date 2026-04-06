@@ -1,8 +1,7 @@
 (ns demo.breakout.events
   (:require
    [tablecloth.api :as tc]
-   [modular.persist.protocol :refer [save]]
-   [modular.persist.edn] ; side effects
+   [quanta.tradingview.persist :refer [spit-edn slurp-edn]]
    [quanta.tradingview.handler.response.asset :refer [symbol-info]]
    [quanta.tradingview.chart.source :refer [->epoch]]
    [demo.env :refer [env]]))
@@ -48,7 +47,7 @@
        (map #(select-keys % [:asset :date :chart :text]))
        (map #(with-meta % nil)) 
        (into [])
-       (save :edn "./tv/events/breakout.edn")))
+       (spit-edn "./tv/events/breakout.edn")))
 
 
 (comment

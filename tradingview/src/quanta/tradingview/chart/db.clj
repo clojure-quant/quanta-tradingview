@@ -5,8 +5,8 @@
    [cljc.java-time.instant :as ti]
    [clojure.java.io :as io]
    [babashka.fs :refer [create-dirs]]
-   [modular.persist.edn] ; side effects to load edn files
-   [modular.persist.protocol :refer [save loadr]]))
+   [quanta.tradingview.persist :refer [spit-edn slurp-edn]]
+   ))
 
 (defn now-epoch []
   (-> (tick/now)
@@ -26,7 +26,7 @@
                      :user user-id ;(if (string? user-id)  (Integer/parseInt user-id) user-id)
                      )]
      (create-dirs charts-path)
-     (save :edn (filename-chart charts-path client-id user-id chart-id) data)
+     (spit-edn (filename-chart charts-path client-id user-id chart-id) data)
      (info "saved chart id: " chart-id)))
   ([env opts data]
    (let [charts-path (get-in env [:tradingview :charts-path])
@@ -39,7 +39,7 @@
 (defn load-chart
   ([charts-path client-id user-id chart-id]
    ;(println "charts-path: " charts-path " client-id: " client-id " user-id: " user-id " chart-id: " chart-id)
-   (loadr :edn (filename-chart charts-path client-id user-id chart-id)))
+   (slurp-edn (filename-chart charts-path client-id user-id chart-id)))
   ([env opts]
    (let [charts-path (get-in env [:tradingview :charts-path])
          client-id (or (:client-id opts) (get-in env [:default :client-id]))

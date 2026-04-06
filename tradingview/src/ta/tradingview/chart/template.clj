@@ -1,8 +1,7 @@
 (ns ta.tradingview.chart.template
   (:require
    [tick.core :as t]
-   [modular.persist.protocol :refer [save loadr]]
-   [modular.persist.edn] ; side effects
+   [quanta.tradingview.persist :refer [spit-edn slurp-edn]]
    [ta.helper.date :refer [now-datetime datetime->epoch-second epoch-second->datetime]]
    [ta.tradingview.chart.maker :refer [create-study make-chart]]
    [ta.tradingview.chart.template.trendline :as tl]
@@ -17,10 +16,10 @@
 
 (defn save-template
   [name data]
-  (save :edn (filename-template name) data))
+  (spit-edn (filename-template name) data))
 
 (defn load-template [name]
-  (loadr :edn (filename-template name)))
+  (slurp-edn (filename-template name)))
 
 ; helper
 

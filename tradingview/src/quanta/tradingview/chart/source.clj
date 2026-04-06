@@ -4,8 +4,7 @@
    [nano-id.core :refer [nano-id]]
    [tick.core :as t]
    [com.rpl.specter :as specter]
-   [modular.persist.protocol :refer [save loadr]]
-   [modular.persist.edn] ; side effects
+   [quanta.tradingview.persist :refer [spit-edn slurp-edn]]
    ))
 
 (def template-path "./resources/tradingview/template/")
@@ -22,13 +21,13 @@
 (defn save-source
   [source-data]
   (let [filename (str template-path (:type source-data) ".edn")]
-    (save :edn filename source-data)))
+    (spit-edn filename source-data)))
 
 (defn load-source
   [source-type]
   (let [filename (str template-path source-type ".edn")]
     (if (fs/exists? filename)
-      (loadr :edn filename)
+      (slurp-edn filename)
       (throw (ex-info (str "source not found: " filename)
                       {:source-type source-type
                        :filename filename})))))

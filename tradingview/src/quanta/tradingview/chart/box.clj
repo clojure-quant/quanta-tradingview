@@ -10,7 +10,6 @@
    [clojure.java.io :as io]
    [babashka.fs :refer [create-dirs]]
    [quanta.tradingview.persist :refer [spit-edn slurp-edn]]
-   ;[modular.helper.id :refer [guuid-str]]
    [quanta.tradingview.chart.db :refer [load-chart save-chart]]))
 
 (defn chart-unbox [{:keys [content _client _id _user] :as data}]

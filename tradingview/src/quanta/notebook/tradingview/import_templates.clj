@@ -1,9 +1,11 @@
-(ns demo.import-templates
+(ns quanta.notebook..import-templates
   (:require
    [quanta.tradingview.chart.db :refer [load-chart]]
    [quanta.tradingview.chart.source :refer [save-source list-sources load-source create-source]]
    [quanta.tradingview.chart.source-import :refer [add-templates]] 
-   [demo.env :refer [env]]))
+   [modular.system :refer [env]]))
+
+(def ctx (:ctx env))
 
 ;; play with existing sources
 (list-sources)
@@ -32,10 +34,10 @@
 
 ;; add new sources
 
-(-> (load-chart env {:chart-id "1770323667"})
+(-> (load-chart ctx {:chart-id "1770323667"})
     (add-templates))
 
-(-> (load-chart env {:chart-id "eventtest"})
+(-> (load-chart ctx {:chart-id "eventtest"})
     (add-templates))
 
 

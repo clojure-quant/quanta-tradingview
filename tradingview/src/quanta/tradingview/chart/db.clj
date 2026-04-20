@@ -30,8 +30,8 @@
      (info "saved chart id: " chart-id)))
   ([env opts data]
    (let [charts-path (get-in env [:tradingview :charts-path])
-         client-id (or (:client-id opts) (get-in env [:default :client-id]))
-         user-id (or (:user-id opts) (get-in env [:default :user-id]))
+         client-id (or (:client-id opts) (get-in env [:tradingview :default :client-id]))
+         user-id (or (:user-id opts) (get-in env [:tradingview :default :user-id]))
          chart-id (or (:chart-id opts) (:chart-id data))]
     ; (println "charts-path: " charts-path " client-id: " client-id " user-id: " user-id " chart-id: " chart-id)
      (save-chart charts-path client-id user-id chart-id data))))
@@ -42,8 +42,8 @@
    (slurp-edn (filename-chart charts-path client-id user-id chart-id)))
   ([env opts]
    (let [charts-path (get-in env [:tradingview :charts-path])
-         client-id (or (:client-id opts) (get-in env [:default :client-id]))
-         user-id (or (:user-id opts) (get-in env [:default :user-id]))
+         client-id (or (:client-id opts) (get-in env [:tradingview :default :client-id]))
+         user-id (or (:user-id opts) (get-in env [:tradingview :default :user-id]))
          chart-id (:chart-id opts)]
      ;(println "charts-path: " charts-path " client-id: " client-id " user-id: " user-id " chart-id: " chart-id)
      (load-chart charts-path client-id user-id chart-id))))
@@ -109,11 +109,11 @@
         (into [])))
   ([env]
    (let [charts-path (get-in env [:tradingview :charts-path])
-         client-id  (get-in env [:default :client-id])
-         user-id (get-in env [:default :user-id])]
+         client-id  (get-in env [:tradingview :default :client-id])
+         user-id (get-in env [:tradingview :default :user-id])]
      (chart-list charts-path client-id user-id)))
   ([env opts]
    (let [charts-path (get-in env [:tradingview :charts-path])
-         client-id (or (:client-id opts) (get-in env [:default :client-id]))
-         user-id (or (:user-id opts) (get-in env [:default :user-id]))]
+         client-id (or (:client-id opts) (get-in env [:tradingview :default :client-id]))
+         user-id (or (:user-id opts) (get-in env [:tradingview :default :user-id]))]
      (chart-list charts-path client-id user-id))))

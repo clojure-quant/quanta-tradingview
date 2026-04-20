@@ -27,21 +27,22 @@
                ;{:value "LN" :name "London" :desc ""}
                  ]})
 
-(defn calc-exchanges [{:keys [assetdb]}]
-  (->> (exchanges assetdb)
+(defn calc-exchanges [asset-db]
+  (->> (exchanges asset-db)
        (map (fn [n] {:value n :name n :desc ""}))
        (concat [{:value "" :name "All Exchanges" :desc ""}])
        (into [])))
 
-(defn calc-categories [{:keys [assetdb]}]
-  (->> (categories assetdb)
+(defn calc-categories [asset-db]
+  (->> (categories asset-db)
        (map (fn [n] {:value (name n) :name (name n)}))
        (concat [{:value "" :name "All"}])
        (into [])))
 
 (defn config-handler [{:keys [ctx] :as _req}]
   (let [tradingview (:tradingview ctx)
+        asset-db (:asset-db ctx)
         config (-> (:config tradingview)
-                   (assoc :exchanges (calc-exchanges ctx)
-                          :symbols_types (calc-categories ctx)))]
+                   (assoc :exchanges (calc-exchanges asset-db)
+                          :symbols_types (calc-categories asset-db)))]
     (res/response config)))

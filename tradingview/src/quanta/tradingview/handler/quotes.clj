@@ -1,5 +1,6 @@
 (ns quanta.tradingview.handler.quotes
   (:require
+    [taoensso.timbre :refer [info warn error]]
    [clojure.walk]
    [clojure.string :as str]
    [ring.util.response :as res]))
@@ -30,7 +31,7 @@
 (defn quote-handler [{:keys [ctx query-params] :as _req}]
   ; http://localhost:8080/tv/quotes?symbols=KO%2CDAR
   ; quotes are required via the UDF feed.
-  (let [_ (println "query-params: " query-params)
+  (let [_ (info "quote handler query-params: " query-params)
         ;countback	The number of bars to return, starting with to. 
         ;           This has higher priority than from. If countback is set, from should be ignored.
         {:keys [symbols]} (clojure.walk/keywordize-keys query-params)

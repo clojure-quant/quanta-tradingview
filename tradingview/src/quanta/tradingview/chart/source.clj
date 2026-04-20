@@ -2,6 +2,7 @@
   (:require
    [babashka.fs :as fs]
    [nano-id.core :refer [nano-id]]
+   [clojure.java.io :as io]
    [tick.core :as t]
    [com.rpl.specter :as specter]
    [quanta.tradingview.persist :refer [spit-edn slurp-edn]]

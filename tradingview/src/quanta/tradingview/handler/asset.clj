@@ -9,16 +9,16 @@
 ;  {"symbol":"BA","full_name":"BA","description":"The Boeing Company","exchange":"NYSE","type":"stock"}]
 
 (defn search-handler [{:keys [ctx query-params] :as _req}]
-  (let [assetdb (:assetdb ctx)
+  (let [asset-db (:asset-db ctx)
         {:keys [query type exchange limit]} (clojure.walk/keywordize-keys query-params)
         limit (Integer/parseInt limit)
-        result-tv (symbol-search assetdb query type exchange limit)]
+        result-tv (symbol-search asset-db query type exchange limit)]
     (res/response result-tv)))
 
 ;https://demo_feed.tradingview.com/symbols?symbol=FX%3AEURUSD
 
 (defn symbols-handler [{:keys [ctx query-params] :as _req}]
-  (let [assetdb (:assetdb ctx)
+  (let [asset-db (:asset-db ctx)
         {:keys [symbol]} (clojure.walk/keywordize-keys query-params)
-        si (symbol-info assetdb symbol)]
+        si (symbol-info asset-db symbol)]
     (res/response si)))

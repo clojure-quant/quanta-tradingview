@@ -2,14 +2,12 @@
  :deps
  {org.clojure/clojure    {:mvn/version "1.12.4"}
   org.clj-commons/hickory {:mvn/version "0.7.3"} 
-  org.pinkgorilla/extension {:mvn/version "0.0.16"} ; extension config
-  org.pinkgorilla/flowy {:mvn/version "0.1.43"}
-  org.pinkgorilla/webly {:mvn/version "0.9.724"}
-  org.pinkgorilla/transit-ajax {:mvn/version "0.1.11"} ; encoding
-  org.pinkgorilla/css-theme {:mvn/version "0.1.8"}
-  org.pinkgorilla/modular {:mvn/version "0.3.73"}
+  ;org.pinkgorilla/modular {:mvn/version "0.5.80"} ; app start
+  org.pinkgorilla/modular {:local/root "../../../pink-gorilla/modular" :deps/manifest :deps}
   io.github.clojure-quant/quanta-tradingview {:local/root "../tradingview" :deps/manifest :deps}
-  io.github.clojure-quant/algo-breakout {:local/root "../breakout" :deps/manifest :deps}}
+  io.github.clojure-quant/algo-florian {:local/root "../../algo-florian" :deps/manifest :deps}
+  io.github.clojure-quant/quanta-studio {:local/root "../../quanta-studio2/studio" :deps/manifest :deps}
+  }
  
  :aliases
  {:test {:extra-paths ["test"]
@@ -18,28 +16,22 @@
          :main-opts ["-m" "cognitect.test-runner"]
          :exec-fn cognitect.test-runner.api/test}
 
-  :web {:exec-fn modular.system/start!
-        :exec-args {:profile "jetty"
-                    :config ["config.edn"]
-                    :services "services.edn"}}
-  
-
   ; web compile
   
   :npm-install {:exec-fn webly.spa/webly-build
-                :exec-args {:profile "npm-install"
-                            :config ["config-shared.edn"
-                                     "config-live.edn"]}}
+                :exec-args {:config ["quanta/studio-config.edn"
+                                     ;"${MYVAULT}/quanta.edn"
+                                     ]
+                            :profile "npm-install"}}
 
-  :compile {:exec-fn webly.spa/webly-build
-            :exec-args {:profile "compile"
-                        :config [{:extension {:disabled #{"ui-tailwind"
-                                                          "missionary-sci"}}}
-                                 "config-shared.edn"
-                                 "config-live.edn"]}}
+  :watch {:exec-fn modular.system/start!
+          :exec-args {:profile "watch"
+                      :config  ["quanta/studio-config.edn"
+                                ;"${MYVAULT}/quanta.edn"
+                                ]
+                      :services "quanta/studio-services.edn"}}
 
-  :adv {:exec-args {:profile "release-adv"}}
-
+  
   :make-demo-charts {:exec-fn  demo.chartmaker/make-demo-charts}
 
 ;

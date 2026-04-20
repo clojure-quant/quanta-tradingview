@@ -1,4 +1,4 @@
-(ns demo.chart-analysis
+(ns quanta.notebook.chart-analysis
   (:require
    [clojure.pprint :refer [print-table]]
    [com.rpl.specter :as specter]
@@ -6,9 +6,11 @@
    [quanta.tradingview.chart.edit :refer [describe-charts get-source describe-sources
                                           pane pane-owner keep-only-main-chart
                                           remove-drawings]]
-   [demo.env :refer [env]]))
+   [modular.system :refer [env]]))
 
-(-> (chart-list env)
+(def ctx (:ctx env))
+
+(-> (chart-list ctx)
     (print-table))
 
 ; |       :name | :symbol | :resolution |        :id |  :timestamp |
@@ -23,7 +25,7 @@
 ; | 3-indicator |     DAR |          1D | 1770334643 | 1.7703346E9 |
 
 
-(-> (load-chart env {:chart-id "1770323667"})
+(-> (load-chart ctx {:chart-id "1770323667"})
     (describe-charts)
     (print-table))
 
@@ -42,7 +44,7 @@
 ; |      0 |     1 |       0 |               Study |    EfnuL8 |        |
 ; |      0 |     1 |       1 |   LineToolTrendLine |    cbmSrG |     KO |
 
-(-> (load-chart env {:chart-id "1770585201"})
+(-> (load-chart ctx {:chart-id "1770585201"})
  ;(load-chart env {:chart-id "event-AIG-63"})
     (describe-charts)
     (print-table))
@@ -53,12 +55,12 @@
 ; |      0 |     0 |       2 |        Study |    Eex4ul |        |
 ; |      0 |     0 |       3 |        Study |    snTsLT |        |
 
-(->> (load-chart env {:chart-id "1770585201"})
+(->> (load-chart ctx {:chart-id "1770585201"})
      (specter/select [:charts 0 :panes 0 :sources specter/ALL
                       (specter/pred #(not (= "study_Volume" (:type %))))
                       :id]))
 ["_seriesId" "389Oub" "Eex4ul" "snTsLT"]
-(->> (load-chart env {:chart-id "1770585201"})
+(->> (load-chart ctx {:chart-id "1770585201"})
      (specter/select [:charts 0 :panes 0 :rightAxisesState 0 :sources]))
 [["_seriesId" "Eex4ul" "snTsLT"]]
 
@@ -78,10 +80,10 @@
 ; |      0 |     0 |       9 |       LineToolTable |    HPnS7G |
 
 
-(-> (load-chart env {:chart-id "1770323667"})
+(-> (load-chart ctx {:chart-id "1770323667"})
     (get-source 0 0 3))
 
-(-> (load-chart env {:chart-id "1770323667"})
+(-> (load-chart ctx {:chart-id "1770323667"})
     (get-source 0 0 6))
 
 
@@ -96,22 +98,22 @@
             :offset 0,
             :price 67.13970181128232}]})
 
-(-> (load-chart env {:chart-id "1770323667"})
+(-> (load-chart ctx {:chart-id "1770323667"})
     (pane-owner 0 0))
 ; "_seriesId"
 
-(-> (load-chart env {:chart-id "1770323667"})
+(-> (load-chart ctx {:chart-id "1770323667"})
     (pane-owner 0 1))
 ; "EfnuL8"
 
 
 
-(->> (load-chart env {:chart-id "1770323667"})
+(->> (load-chart ctx {:chart-id "1770323667"})
      (remove-drawings)
      (keep-only-main-chart)
-     (save-chart env {:chart-id "999"}))
+     (save-chart ctx {:chart-id "999"}))
 
-(-> (load-chart env {:chart-id "999"})
+(-> (load-chart ctx {:chart-id "999"})
     (describe-charts)
     (print-table))
 

@@ -1,31 +1,31 @@
 {:name "quanta-tradingview"
- :web/routes [["/tv/time" {:get quanta.tradingview.handler.time/time-handler
+ :web/routes [["/tv/config" {:get quanta.tradingview.handler.config/config-handler
+                             :middleware [webserver.middleware.api/wrap-api-handler
+                                          webserver.middleware.ctx/ctx-middleware]
+                             :services #{:tradingview :asset-db}}]
+               ; asset
+              ["/tv/search" {:get quanta.tradingview.handler.asset/search-handler
+                             :middleware [webserver.middleware.api/wrap-api-handler
+                                          webserver.middleware.ctx/ctx-middleware]
+                             :services #{:asset-db}}]
+              ["/tv/symbols" {:get quanta.tradingview.handler.asset/symbols-handler
+                              :middleware [webserver.middleware.api/wrap-api-handler
+                                           webserver.middleware.ctx/ctx-middleware]
+                              :services #{:asset-db}}]
+              ; time
+              ["/tv/time" {:get quanta.tradingview.handler.time/time-handler
                            :middleware [webserver.middleware.api/wrap-api-handler]
                            :services #{}}]
               ; bars and marks
               ["/tv/history" {:get quanta.tradingview.handler.history/history-handler
                               :middleware [webserver.middleware.api/wrap-api-handler
                                            webserver.middleware.ctx/ctx-middleware]
-                              :services #{:bar-db}}]
+                              :services #{:bar-db :asset-db}}]
               ["/tv/marks" {:get quanta.tradingview.handler.mark/marks-handler
                             :middleware [webserver.middleware.api/wrap-api-handler
                                          webserver.middleware.ctx/ctx-middleware]
                             :services #{}}]
-              ; asset
-              ["/tv/search" {:get quanta.tradingview.handler.asset/search-handler
-                             :middleware [webserver.middleware.api/wrap-api-handler
-                                          webserver.middleware.ctx/ctx-middleware]
-                             :services #{:assetdb}}]
-              ["/tv/symbols" {:get quanta.tradingview.handler.asset/symbols-handler
-                              :middleware [webserver.middleware.api/wrap-api-handler
-                                           webserver.middleware.ctx/ctx-middleware]
-                              :services #{:assetdb}}]
-              ["/tv/config" {:get quanta.tradingview.handler.config/config-handler
-                             :middleware [webserver.middleware.api/wrap-api-handler
-                                          webserver.middleware.ctx/ctx-middleware]
-                             :services #{:tradingview}}]
               ; trading
-
               ["/tv/quotes" {:get quanta.tradingview.handler.quotes/quote-handler
                              :middleware [webserver.middleware.api/wrap-api-handler
                                           webserver.middleware.ctx/ctx-middleware]
@@ -48,25 +48,20 @@
                                                                ring.middleware.multipart-params/wrap-multipart-params
                                                                webserver.middleware.ctx/ctx-middleware]
                                                   :services #{:tradingview}}]
-                ;;https://saveload.tradingview.com/1.1/drawing_templates?client=trading_platform_demo&user=public_user&tool=LineToolHorzRay
+              ;;https://saveload.tradingview.com/1.1/drawing_templates?client=trading_platform_demo&user=public_user&tool=LineToolHorzRay
               
               ; events
               ["/events" {:get quanta.tradingview.handler.events/events-handler
                           :middleware [webserver.middleware.api/wrap-api-handler
                                        webserver.middleware.ctx/ctx-middleware]
-               :services #{:tradingview}}]
+                          :services #{:tradingview}}]
+
+              ["/tradingview" {:get quanta.tradingview.handler.events/tradingview-page-handler}]
+              ["/tradingview-events" {:get quanta.tradingview.handler.events/tradingview-events-page-handler}]
+
 
               ;["/error" {:get demo.error/error-handler}]
               ]
-
-
- ;:clj-services {:name "quanta-tradingview"
- ;               :permission #{}
- ;               :symbols [; tradingview api (via websocket)
- ;                         ta.tradingview.handler.config/get-server-config
- ;                         ta.tradingview.handler.asset/symbol-info
- ;                         ta.tradingview.handler.asset/symbol-search
- ;                         ta.tradingview.handler.time/server-time]}
 
 ; :cljs-routes {"algo/tradingview" ta.tradingview.goldly.page.tradingview-algo/tvalgo-page
 ;               "tradingview" ta.tradingview.goldly.page.tradingview-udf/tradingview-page}

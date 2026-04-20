@@ -1,13 +1,15 @@
 (ns quanta.tradingview.handler.response.bars
   (:require
+   [taoensso.timbre :refer [info warn error]]
+   [missionary.core :as m]
    [tick.core :as t]
    [cljc.java-time.instant :refer [of-epoch-milli]]
    [tablecloth.api :as tc]
    [tech.v3.datatype :as dtype]
-   [missionary.core :as m] 
    [quanta.bar.protocol :as b]
-   ;[ta.tradingview.db.asset :refer [get-asset-exchange]]
-   ))
+   ;; quanta
+   [quanta.bar.protocol :as b]
+   [quanta.market.asset.datahike :refer [get-asset-market]]))
 
 ;s	Status code: ok, error, or no_data.
 ; errmsg	Error message if s is error.
@@ -80,32 +82,33 @@
      :v (into [] (map int (:volume bar-epoch-ds)))
      :s "ok"}))
 
-(defn load-series [db asset resolution from to countback]
-  (println "load series asset: " asset " resolution: " resolution " from: " from " to: " to
+(defn load-series [bar-db asset-db asset resolution from to countback]
+  (info "load series asset: " asset " resolution: " resolution " from: " from " to: " to
            " countback: " countback)
   (try
     (let [from (Long/parseLong from) ;(Integer/parseInt from)
           to (Long/parseLong to) ; (Integer/parseInt to)
           start (epoch-second->instant from)
           end (epoch-second->instant to)
-          _ (println "window start: " start " end: " end)
-        ;exchange (get-asset-exchange asset)
-        ;calendar [exchange (dict-tv->interval resolution)]
-          calendar [:us :d]
+          _ (info "window start: " start " end: " end)
+          market (get-asset-market asset-db asset)
+          interval (dict-tv->interval resolution)
+          calendar [market interval]
+          _ (info "calendar: " calendar)
           n (when countback
-              (println "using countback: " countback)
-              (Integer/parseInt countback))
+               (info "using countback: " countback)
+               (Integer/parseInt countback))
           window (if n
                    {:n n :end end}
                    {:start start :end end})
-          bar-ds (m/? (b/get-bars db {:asset asset :calendar calendar} window))]
-      (println "bar-ds: " bar-ds)
+          bar-ds (m/? (b/get-bars bar-db {:asset asset :calendar calendar} window))]
+      (info "bar-ds: " bar-ds)
       (if (or (nil? bar-ds)
               (= (tc/row-count bar-ds) 0))
         tv-no-data-response
         (tv-response bar-ds)))
     (catch Exception ex
-      (println "load-series exception: " ex)
+      (error "load-series exception: " ex)
       tv-no-data-response)))
 
 (comment

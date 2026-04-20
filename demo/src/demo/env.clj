@@ -1,9 +1,9 @@
 (ns demo.env
   (:require
-   [modular.system :refer [system]]
+    [modular.system :refer [system]]
     [quanta.bar.protocol :as b]
     [quanta.bar.protocol :as b]
-   [tick.core :as t]
+    [tick.core :as t]
     [missionary.core :as m]
    ))
 

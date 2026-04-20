@@ -1,13 +1,11 @@
-# quanta-tradingview
-
-
+# quanta-tradingview [![GitHub Actions status |clojure-quant/quanta-tradingview](https://github.com/clojure-quant/quanta-tradingview/workflows/CI/badge.svg)](https://github.com/clojure-quant/quanta-tradingview/actions?workflow=CI)[![Clojars Project](https://img.shields.io/clojars/v/io.github.clojure-quant/quanta-tradingview.svg)](https://clojars.org/io.github.clojure-quant/quanta-tradingview)
 
 
 ## demo
 
 cd demo
-nix-shell
-clj -X:web
+clj -X:npm-install
+clj -X:watch
 
 
 

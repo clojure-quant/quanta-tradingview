@@ -4,8 +4,7 @@
     [quanta.bar.protocol :as b]
     [quanta.bar.protocol :as b]
     [tick.core :as t]
-    [missionary.core :as m]
-   ))
+    [missionary.core :as m]))
 
 
 (-> (:ss system)

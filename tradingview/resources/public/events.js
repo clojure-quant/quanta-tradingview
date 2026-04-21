@@ -4,15 +4,18 @@
   Usage:
     <script src="/events.js"></script>
 
-  Injects a floating, draggable, resizable events window that loads JSON from /events.
+  Injects a floating, draggable, resizable events window that loads:
+    1) event sources from /events
+    2) events for selected source from /events/{source}
 */
 
 (function () {
   const ROOT_ID = 'events-overlay-root';
 
-  if (document.getElementById(ROOT_ID)) {
-    // Already mounted.
-    return;
+  const existingRoot = document.getElementById(ROOT_ID);
+  if (existingRoot) {
+    // Replace existing mount to avoid stale UI after script hot-reload.
+    existingRoot.remove();
   }
 
   function el(tag, attrs, children) {
@@ -172,6 +175,11 @@
     const root = el('div', { id: ROOT_ID });
 
     const statusEl = el('div', { class: 'events-status' }, 'Loading…');
+    const sourceSelect = el('select', {
+      'aria-label': 'event source',
+      title: 'Event source',
+      style: 'min-width: 120px; max-width: 220px;'
+    });
     const reloadBtn = el('button', { type: 'button' }, 'Reload');
 
     const header = el(
@@ -185,7 +193,7 @@
           el('div', { class: 'events-window-title' }, 'Events'),
           statusEl
         ]),
-        el('div', { class: 'events-controls' }, [reloadBtn])
+        el('div', { class: 'events-controls' }, [sourceSelect, reloadBtn])
       ]
     );
 
@@ -499,9 +507,48 @@
       }
     }
 
-    async function loadEvents() {
+    function normalizeSourceList(data) {
+      if (Array.isArray(data)) return data;
+      if (data && typeof data === 'object') {
+        if (Array.isArray(data.sources)) return data.sources;
+        if (Array.isArray(data.events)) return data.events;
+        if (Array.isArray(data.data)) return data.data;
+      }
+      return [];
+    }
+
+    function normalizeEvents(data) {
+      if (Array.isArray(data)) return data;
+      if (data && typeof data === 'object') {
+        if (Array.isArray(data.events)) return data.events;
+        if (Array.isArray(data.data)) return data.data;
+      }
+      return [];
+    }
+
+    function selectedSource() {
+      return sourceSelect.value || '';
+    }
+
+    function populateSources(sources) {
+      sourceSelect.innerHTML = '';
+
+      if (!Array.isArray(sources) || sources.length === 0) {
+        sourceSelect.disabled = true;
+        sourceSelect.appendChild(el('option', { value: '' }, 'No sources'));
+        return;
+      }
+
+      sourceSelect.disabled = false;
+      for (const source of sources) {
+        const value = String(source);
+        sourceSelect.appendChild(el('option', { value }, value));
+      }
+    }
+
+    async function loadEventSources() {
       hideError();
-      setStatus('Loading…');
+      setStatus('Loading sources…');
 
       const res = await fetch('/events', {
         headers: {
@@ -517,29 +564,65 @@
       }
 
       const data = await res.json();
+      const sources = normalizeSourceList(data).map((x) => String(x));
+      populateSources(sources);
+      return sources;
+    }
 
-      let events = data;
-      if (data && !Array.isArray(data) && typeof data === 'object') {
-        if (Array.isArray(data.events)) events = data.events;
-        else if (Array.isArray(data.data)) events = data.data;
+    async function loadEventsForSource(source) {
+      hideError();
+      if (!source) {
+        renderEvents([]);
+        setStatus('No source selected.');
+        return;
       }
 
+      setStatus(`Loading ${source}…`);
+
+      const res = await fetch(`/events/${encodeURIComponent(source)}`, {
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+
+      if (!res.ok) {
+        const body = await res.text().catch(() => '');
+        throw new Error(
+          `GET /events/${source} failed: ${res.status} ${res.statusText}${body ? "\n\n" + body : ''}`
+        );
+      }
+
+      const data = await res.json();
+      const events = normalizeEvents(data);
+
       renderEvents(events);
-      setStatus(`Loaded ${Array.isArray(events) ? events.length : 0} events.`);
+      setStatus(`Loaded ${Array.isArray(events) ? events.length : 0} events from ${source}.`);
+    }
+
+    async function loadSourcesAndEvents() {
+      const sources = await loadEventSources();
+      const source = sources.length > 0 ? sources[0] : '';
+      if (source) sourceSelect.value = source;
+      await loadEventsForSource(source);
     }
 
     reloadBtn.addEventListener('click', () => {
-      loadEvents().catch(showError);
+      loadEventsForSource(selectedSource()).catch(showError);
+    });
+
+    sourceSelect.addEventListener('change', () => {
+      loadEventsForSource(selectedSource()).catch(showError);
     });
 
     // Expose for manual triggering if needed.
     window.__eventsOverlay = {
-      reload: () => loadEvents().catch(showError),
+      reload: () => loadEventsForSource(selectedSource()).catch(showError),
+      reloadSources: () => loadSourcesAndEvents().catch(showError),
       root,
       win
     };
 
-    loadEvents().catch(showError);
+    loadSourcesAndEvents().catch(showError);
   }
 
   if (document.readyState === 'loading') {

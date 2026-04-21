@@ -2,15 +2,23 @@
   (:require
    [ring.util.response :as res]
    [clojure.java.io :as io]
-   [quanta.tradingview.persist :refer [spit-edn slurp-edn]]
+   [quanta.tradingview.events :refer [list-events load-events]]
    ))
 
-(defn events-handler [{:keys [ctx query-params] :as _req}]
-  (let [tradingview (:tradingview ctx)
-        events-path (:events-path tradingview)
-        events (slurp-edn (str events-path "events.edn"))]
+(defn events-browse-handler [{:keys [ctx query-params] :as _req}]
+  (let [events (list-events ctx)]
     (res/response events)))
 
+(defn- id-from-request
+  "Extract message entity id from request. Reitit puts path params in :path-params (string keys)."
+  [request]
+  (or (get (:path-params request) "id")
+      (get (:path-params request) :id)))
+
+(defn events-load-handler [{:keys [ctx] :as req}]
+  (let [id (id-from-request req)
+        events (load-events ctx id)]
+    (res/response events)))
 
 (defn tradingview-page-handler [_req]
   (let [html (-> "public/tvtrading.html" (io/resource) slurp)]

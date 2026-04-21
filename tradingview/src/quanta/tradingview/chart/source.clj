@@ -5,8 +5,7 @@
    [clojure.java.io :as io]
    [tick.core :as t]
    [com.rpl.specter :as specter]
-   [quanta.tradingview.persist :refer [spit-edn slurp-edn]]
-   ))
+   [quanta.tradingview.persist :refer [spit-edn slurp-edn]]))
 
 (def template-path "./resources/tradingview/template/")
 
@@ -28,8 +27,7 @@
   [source-type]
   (let [template-path "tradingview/template/"
         filename (str template-path source-type ".edn")
-        filename (io/resource filename)
-        ]
+        filename (io/resource filename)]
     (if (fs/exists? filename)
       (slurp-edn filename)
       (throw (ex-info (str "source not found: " filename)
@@ -77,13 +75,12 @@
 (-> (t/date)
     (t/at (t/time "00:00:00"))
     (t/in (t/zone "UTC"))
-    (t/instant)
-    )
+    (t/instant))
 
 (defn sanitize-point [{:keys [time_t price] :as point}]
-  (cond 
+  (cond
     ; integer - leave unchanged 
-    (number? time_t) 
+    (number? time_t)
     point
     ; date-time - convert to epoch
     (or (t/zoned-date-time? time_t) (t/instant? time_t))
@@ -92,7 +89,7 @@
     (t/date? time_t)
     (update point :time_t date->epoch)
     ; default - leave unchanged
-    :else     
+    :else
     point))
 
 (defn sanitize-points [points]

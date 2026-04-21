@@ -26,7 +26,10 @@
 
 (defn load-source
   [source-type]
-  (let [filename (str template-path source-type ".edn")]
+  (let [template-path "tradingview/template/"
+        filename (str template-path source-type ".edn")
+        filename (io/resource filename)
+        ]
     (if (fs/exists? filename)
       (slurp-edn filename)
       (throw (ex-info (str "source not found: " filename)
